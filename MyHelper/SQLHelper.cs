@@ -1,4 +1,14 @@
-﻿using System.Text;
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2015-01-18  
+// Modifyed：selonsy  
+// ModifyTime：2016-08-25  
+// Desc：
+// 数据库访问类
+// </summary> 
+
+using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
@@ -8,20 +18,21 @@ using System;
 namespace Devin
 {
     /// <summary>
-    /// 数据库的通用访问代码 
-    /// 此类为抽象类，不允许实例化，在应用时直接调用即可
-    /// 创建人：沈金龙
-    /// 创建时间：2015-01-18
-    /// 修改时间：2015-07-30
+    /// 数据库访问类 
     /// </summary>
     public abstract class SQLHelper
     {
         #region 全局变量
 
         /// <summary>
-        /// 默认数据库连接字符串
+        /// 默认数据库连接字符串(app.config)
         /// </summary>
-        private static string connectionString = System.Configuration.ConfigurationManager.AppSettings["ConnStr"].ToString().Trim();
+        private static string connectionString = Base.Conn4Sa;
+
+        /// <summary>
+        /// 默认数据库连接字符串(web.config)
+        /// </summary>
+        private static string connectionString1 = System.Configuration.ConfigurationManager.AppSettings["ConnStr"].ToString().Trim();
         
         /// <summary>
         /// Hashtable to store cached parameters

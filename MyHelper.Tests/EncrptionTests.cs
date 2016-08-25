@@ -4,7 +4,7 @@ using Devin;
 namespace Devin.Tests
 {
     [TestClass()]
-    public class EncrptionTest
+    public class EncrptionTests
     {
         [TestMethod()]
         public void MyEncodeTest()
@@ -20,7 +20,7 @@ namespace Devin.Tests
         {
             string a = "6.707";
             string expected = "95938";
-            string actual = EncrptionHelper.MyDecode(a);
+            string actual = EncrptionHelper.MyDecode(a);            
             Assert.AreEqual(expected, actual);
         }
     }

@@ -167,7 +167,7 @@ namespace Devin
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteError(ex);
+                    LogHelper.WriteException(ex);
                 }
             }
             return StrBuff;

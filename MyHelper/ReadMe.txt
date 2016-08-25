@@ -30,25 +30,25 @@
 2、文件注释(全局注释)：
 
 中文版：
-/// <summary>  
-/// 作者：devin  
-/// 创始时间：2014-08-20  
-/// 修改人：沈金龙  
-/// 修改时间：2016-08-20  
-/// 描述：  
-/// 主要用于装逼
-/// </summary>  
+// <summary>  
+// 作者：devin  
+// 创始时间：2014-08-20  
+// 修改人：沈金龙  
+// 修改时间：2016-08-20  
+// 描述：  
+// 主要用于装逼
+// </summary>  
 
 英文版：
-/// <summary>  
-/// Copyright：Sichen International Co. Ltd.
-/// Author：Devin
-/// Date：2016-08-20  
-/// Modifyed：selonsy  
-/// ModifyTime：2016-08-20  
-/// Desc：
-///	主要用于装逼
-/// </summary>  
+// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2016-08-20  
+// Modifyed：selonsy  
+// ModifyTime：2016-08-20  
+// Desc：
+// 主要用于装逼
+// </summary>  
 
 3、PHP注释
 <?php
@@ -79,3 +79,4 @@ function myFunction(){
      //处理函数
 }
 /*--------------------shenjl Add On 2015-08-27OA 相关流程处理逻辑 End--------------------*/
+
