@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AppConfigTests.cs" />
     <Compile Include="EncrptionTests.cs" />
+    <Compile Include="IniConfigTests.cs" />
     <Compile Include="LogHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempTestTests.cs" />

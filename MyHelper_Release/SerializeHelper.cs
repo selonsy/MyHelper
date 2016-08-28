@@ -6,7 +6,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
-namespace GMS.Framework.Utility
+namespace Devin
 {
     public class SerializeHelper
     {

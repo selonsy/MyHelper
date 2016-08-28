@@ -64,6 +64,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="T4\DBHelper.ttinclude" />
+    <Compile Include="SerializeHelper.cs" />
     <Compile Include="T4\TemplateClass.cs" />
     <Compile Include="FileOperateHelper.cs" />
     <Compile Include="FileUpDownHelper.cs" />
@@ -95,7 +96,6 @@
     <Compile Include="Temp\ObjectHelper.cs" />
     <Compile Include="Temp\PermutationAndCombination.cs" />
     <Compile Include="Temp\SerializationHelper.cs" />
-    <Compile Include="Temp\SerializeHelper.cs" />
     <Compile Include="Temp\StringHelper.cs" />
     <Compile Include="Temp\StringUtil.cs" />
     <Compile Include="Temp\ValidateCode\AnimatedGifEncoder.cs" />

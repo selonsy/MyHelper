@@ -33,7 +33,7 @@ namespace Devin
         /// 默认数据库连接字符串(web.config)
         /// </summary>
         private static string connectionString1 = "";//System.Configuration.ConfigurationManager.AppSettings["ConnStr"].ToString().Trim();
-        
+
         /// <summary>
         /// Hashtable to store cached parameters
         /// 用于存储缓存的参数信息
@@ -171,7 +171,7 @@ namespace Devin
         /// <param name="cmdText">T-SQL语句</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>返回一个数值表示此SqlCommand命令执行后影响的行数</returns>
-        public static int ExecteNonQuery(SqlConnection sqlConnection , string cmdText, params SqlParameter[] commandParameters)
+        public static int ExecteNonQuery(SqlConnection sqlConnection, string cmdText, params SqlParameter[] commandParameters)
         {
             SqlCommand cmd = new SqlCommand();
 
@@ -222,7 +222,7 @@ namespace Devin
             //自定义连接字符串
             if (connectionStringSign != "")
                 SetConStr(connectionStringSign);
-            
+
             SqlCommand cmd = new SqlCommand();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -296,7 +296,7 @@ namespace Devin
         /// <param name="cmdText">T-SQL语句</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
-        public static object ExecuteScalar(string connectionStringSign , string cmdText , params SqlParameter[] commandParameters)
+        public static object ExecuteScalar(string connectionStringSign, string cmdText, params SqlParameter[] commandParameters)
         {
             //自定义连接字符串
             if (connectionStringSign != "")
@@ -323,7 +323,7 @@ namespace Devin
         /// <param name="cmdText">T-SQL语句</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
-        public static object ExecuteScalar(SqlConnection sqlConnection , string cmdText , params SqlParameter[] commandParameters)
+        public static object ExecuteScalar(SqlConnection sqlConnection, string cmdText, params SqlParameter[] commandParameters)
         {
             SqlCommand cmd = new SqlCommand();
             PrepareCommand(cmd, sqlConnection, null, CommandType.Text, cmdText, commandParameters);

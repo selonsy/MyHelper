@@ -6,9 +6,13 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Globalization;
 using System.Web.Security;
+using System.Collections;
 
 namespace Devin
 {
+    /// <summary>
+    /// Encrption帮助类
+    /// </summary>
     public abstract class EncrptionHelper
     {
         #region DES
@@ -48,6 +52,7 @@ namespace Devin
                 return encryptString;
             }
         }
+
         /// DES解密字符串
         /// <summary>        
         /// DES解密字符串        
@@ -92,10 +97,20 @@ namespace Devin
             }
             return sb.ToString();                       
         }
+        /// <summary>
+        /// MD5加密字符串(已过时)
+        /// </summary>
+        /// <param name="encryptString"></param>
+        /// <returns></returns>
         public static string EncryptMD5_1(string encryptString)
         {
             return FormsAuthentication.HashPasswordForStoringInConfigFile(encryptString, "md5");
         }
+        /// <summary>
+        /// MD5加密字符串
+        /// </summary>
+        /// <param name="encryptString"></param>
+        /// <returns></returns>
         public static string EncryptMD5_2(string encryptString)
         {
             byte[] result = Encoding.Default.GetBytes(encryptString);
@@ -103,6 +118,11 @@ namespace Devin
             byte[] output = md5.ComputeHash(result);
             return BitConverter.ToString(output).Replace("-", "");
         }
+        /// <summary>
+        /// MD5加密字符串
+        /// </summary>
+        /// <param name="encryptString"></param>
+        /// <returns></returns>
         public static string EncryptMD5_3(string encryptString)
         {
             var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
@@ -122,12 +142,97 @@ namespace Devin
         }
 
         #endregion
+        
+        #region RSA
+
+        #region 公钥和私钥
+
+        /// <summary>
+        /// RSA公钥
+        /// </summary>
+        private static string RSAPublicKey = @"<RSAKeyValue><Modulus>puajh2nmtmaLPAQfrbtnEjlZylRDNmpgSmSnriPwK3nKrC06ZkjYsPnyw0Z3LXQw3OQyoH1R+d8/k68AKkbxv01elW9Xkg9eCqfLvUoJ46oX3CyRmtmp5jclrIT2upBXbjlAqBiRyEAsyLnwBtiG4qudNV+V1/YgV8dKen/jF8U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>"
+             ;
+        /// <summary>
+        /// RSA私钥
+        /// </summary>
+        private static string RSAPrivateKey = @"            <RSAKeyValue><Modulus>puajh2nmtmaLPAQfrbtnEjlZylRDNmpgSmSnriPwK3nKrC06ZkjYsPnyw0Z3LXQw3OQyoH1R+d8/k68AKkbxv01elW9Xkg9eCqfLvUoJ46oX3CyRmtmp5jclrIT2upBXbjlAqBiRyEAsyLnwBtiG4qudNV+V1/YgV8dKen/jF8U=</Modulus><Exponent>AQAB</Exponent><P>6d19htFXzFa0Rof2vlxuF5AuaCQ7m8ieBCHhr7ZRt02blUYireWv6Km2FwXNXn5mwpWaSlBJdTDoG9xLOmJYTw==</P><Q>trKd8DiYEeF8CHKIRGkxK0z7ulCwdB8pHDpCKwJN6w7bClFGfikFQkbbEdBPQmuFfiy9+cH3dQQa1y64yUp1qw==</Q><DP>KVnkjCYP5C2giqgX1Oj6/mecDQX7FDyQ1CI5iZwvLr4mOGrCTwVB6V24uLFp8r9e5CEXuvQfSP1wzRxSoOwquQ==</DP><DQ>nspWLZDy0y+4/xqUx2jqPGlXrRMumm7u60LTedAx6uhphuknLMX4dSdihnQYP3F2gDjhEW/95S2hKn/ISeO2qw==</DQ><InverseQ>q50M0lubWlnW1wX2dEFt8mhFI7E8jtfH0MfTkVqZlky2O7dG075Os+QawBevb0N3Q0npXRJtvEJZFfHUZrgHzA==</InverseQ><D>PqNItEWWhNYvYzLZAMbYhApqHHlLUFzUDpeAJubt+CMZYU0IIeMtEB5+cbM8fx6gSAaMyZa+8VxL7A09rqA5kcoNI9GAsWJopm22+fydLl7ftHn/Eco+xJQ0xsm9zTWLful4j1kMSFkr5F7crv54NjMcOOdel42toISX3Mv5Q/E=</D></RSAKeyValue>"
+            ;
+
+        //生成秘钥
+        //using (RSACryptoServiceProvider rsa1 = new RSACryptoServiceProvider())
+        //{
+        //    string publicKey = rsa1.ToXmlString(false); // 公钥
+        //    string privateKey = rsa1.ToXmlString(true); // 私钥和公钥
+        //}
+
+        #endregion
+
+        /// <summary>
+        /// RSA加密
+        /// </summary>
+        /// <param name="content">要加密的文本</param>
+        /// <returns>加密后的文本</returns>
+        public static string EncryptRSA(string content)
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            byte[] cipherbytes;
+            rsa.FromXmlString(RSAPublicKey);
+            cipherbytes = rsa.Encrypt(Encoding.UTF8.GetBytes(content), false);
+            return Convert.ToBase64String(cipherbytes);            
+        }
+
+        /// <summary>
+        /// RSA加密
+        /// </summary>
+        /// <param name="publickey">公钥</param>
+        /// <param name="content">要加密的文本</param>
+        /// <returns>加密后的文本</returns>
+        public static string EncryptRSA(string publickey, string content)
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            byte[] cipherbytes;
+            rsa.FromXmlString(publickey);
+            cipherbytes = rsa.Encrypt(Encoding.UTF8.GetBytes(content), false);
+            return Convert.ToBase64String(cipherbytes);
+        }
+
+        /// <summary>
+        /// RSA解密
+        /// </summary>
+        /// <param name="content">要解密的文本</param>
+        /// <returns>解密后的文本</returns>
+        public static string DecryptRSA(string content)
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            byte[] cipherbytes;
+            rsa.FromXmlString(RSAPrivateKey);
+            cipherbytes = rsa.Decrypt(Convert.FromBase64String(content), false);
+            return Encoding.UTF8.GetString(cipherbytes);
+        }
+
+        /// <summary>
+        /// RSA解密
+        /// </summary>
+        /// <param name="privatekey">私钥</param>
+        /// <param name="content">要解密的文本</param>
+        /// <returns>解密后的文本</returns>
+        public static string DecryptRSA(string privatekey, string content)
+        {
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            byte[] cipherbytes;
+            rsa.FromXmlString(privatekey);
+            cipherbytes = rsa.Decrypt(Convert.FromBase64String(content), false);
+            return Encoding.UTF8.GetString(cipherbytes);
+        }
+
+        #endregion
 
         #region Mysoft
+
         /// <summary>
         /// 明源的加密函数
         /// </summary>
-        /// <param name="inStr">待加密的字符串</param>
+        /// <param name="instr">待加密的字符串</param>
         /// <returns>加密后的字符串</returns>
         /// <example>
         /// 95938-6.707
@@ -172,6 +277,7 @@ namespace Devin
             }
             return StrBuff;
         }
+
         /// <summary>
         /// 明源的解密函数
         /// </summary>
@@ -222,12 +328,7 @@ namespace Devin
         }
 
         #endregion
-
-        #region RSA
-
-        #endregion
     }
-
 
     #region DES加密详解_测试 
 

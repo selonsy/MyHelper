@@ -18,6 +18,9 @@ using System.Collections.Specialized;
 using System.ServiceModel.Configuration;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.IO;
+using System.Collections;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Devin
 {
@@ -37,7 +40,7 @@ namespace Devin
         /// 构造函数
         /// </summary>
         static AppConfig()
-        {        
+        {
             appSettings = ConfigurationManager.AppSettings;
             connectionstringsettings = ConfigurationManager.ConnectionStrings;
         }
@@ -325,8 +328,8 @@ namespace Devin
         {
             get
             {
-                return Assembly.GetExecutingAssembly().Location;                
-            }                       
+                return Assembly.GetExecutingAssembly().Location;
+            }
         }
 
         /// <summary>
@@ -361,11 +364,11 @@ namespace Devin
         /// <param name="newProviderName">数据提供程序名称</param> 
         public static void UpdateConnectionString(string newName, string newConString, string newProviderName)
         {
-            bool exist = false;                                 
+            bool exist = false;
             if (config.ConnectionStrings.ConnectionStrings[newName] != null)
             {
                 exist = true;
-            }            
+            }
             if (exist)
             {
                 // 如果连接串已存在，首先删除它  
@@ -444,7 +447,7 @@ namespace Devin
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("system.serviceModel");
         }
-        
+
         /// <summary>
         /// 修改applicationSettings中App.Properties.Settings中服务的IP地址(待完善) 
         /// </summary>
@@ -480,7 +483,7 @@ namespace Devin
             ConfigurationManager.RefreshSection("applicationSettings");
         }
 
-#region 私有函数
+        #region 私有函数
         private static string GetNewIP(string oldValue, string serverIP)
         {
             string pattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b";
@@ -489,7 +492,75 @@ namespace Devin
             return newvalue;
         }
 
-#endregion
+        #endregion
 
+    }
+
+    /// <summary>
+    /// 配置管理类(xxx.ini)
+    /// </summary>
+    public class IniConfig
+    {
+        public Dictionary<string, string> configData;
+        string fullFileName;
+        public IniConfig(string _fileName)
+        {
+            configData = new Dictionary<string, string>();
+            //fullFileName = Directory.GetCurrentDirectory() + @"\" + _fileName;
+            fullFileName = _fileName;
+            bool hasCfgFile = File.Exists(fullFileName);
+            if (hasCfgFile == false)
+            {
+                StreamWriter writer = new StreamWriter(File.Create(fullFileName), Encoding.Default);
+                writer.Close();
+            }
+            StreamReader reader = new StreamReader(fullFileName, Encoding.Default);
+            string line;
+            int indx = 0;
+            while ((line = reader.ReadLine()) != null)
+            {
+                if (line.StartsWith(";") || string.IsNullOrEmpty(line))
+                    configData.Add(";" + indx++, line);
+                else
+                {
+                    string[] key_value = line.Split('=');
+                    if (key_value.Length >= 2)
+                        configData.Add(key_value[0].Trim(), key_value[1].Trim());
+                    else
+                        configData.Add(";" + indx++, line);
+                }
+            }
+            reader.Close();
+        }        
+
+        public string get(string key)
+        {
+            if (configData.Count <= 0)
+                return null;
+            else if (configData.ContainsKey(key))
+                return configData[key].ToString();
+            else
+                return null;
+        }
+        public void set(string key, string value)
+        {
+            if (configData.ContainsKey(key))
+                configData[key] = value;
+            else
+                configData.Add(key, value);
+        }
+        public void save()
+        {
+            StreamWriter writer = new StreamWriter(fullFileName, false, Encoding.Default);
+            IDictionaryEnumerator enu = configData.GetEnumerator();
+            while (enu.MoveNext())
+            {
+                if (enu.Key.ToString().StartsWith(";"))
+                    writer.WriteLine(enu.Value);
+                else
+                    writer.WriteLine(enu.Key + "=" + enu.Value);
+            }
+            writer.Close();
+        }
     }
 }

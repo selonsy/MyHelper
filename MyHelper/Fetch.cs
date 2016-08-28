@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Devin
 {
+    /// <summary>
+    /// Fetch操作类
+    /// </summary>
     public class Fetch
     {
         /// <summary>

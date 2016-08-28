@@ -5,14 +5,9 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Devin's Helper")]
-[assembly: AssemblyDescription("The Code Helper of Devin Shen")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("思辰国际")]
-[assembly: AssemblyProduct("Devin's Helper")]
-[assembly: AssemblyCopyright("Copyright © Selonsy 2015")]
-[assembly: AssemblyTrademark("思辰国际")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle("Microsoft® C Runtime Library")]
+[assembly: AssemblyProduct("Microsoft® Visual Studio® 2015")]
+[assembly: AssemblyCopyright("© Microsoft Corporation.All rights reserved.")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型
 // 对 COM 组件不可见。  如果需要从 COM 访问此程序集中的类型，
