@@ -18,8 +18,8 @@ namespace Devin
     /// 日志类
     /// </summary>
     public static class LogHelper
-    {        
-      
+    {
+
         #region Exception日志
 
         /// <summary>
@@ -44,18 +44,18 @@ namespace Devin
             MyWriteLog(errMsg, defaultPath, LogType.Exception);
         }
 
-        /// <summary>
-        /// 记录Exception日志，自定义信息、保存路径
-        /// </summary>
-        /// <param name="ex">Exception</param>
-        /// <param name="msg">自定义信息</param>
-        /// <param name="path">保存路径</param>
-        /// <param name="ps"></param>
-        public static void WriteException(Exception ex,string msg,string path,params object[] ps)
-        {
-            string errMsg = FormatMsg(ex, msg, LogType.Exception, ps);
-            MyWriteLog(errMsg, path, LogType.Exception);
-        }
+        ///// <summary>
+        ///// 记录Exception日志，自定义信息、保存路径
+        ///// </summary>
+        ///// <param name="ex">Exception</param>
+        ///// <param name="msg">自定义信息</param>
+        ///// <param name="path">保存路径</param>
+        ///// <param name="ps"></param>
+        //public static void WriteException(Exception ex,string msg,string path,params object[] ps)
+        //{
+        //    string errMsg = FormatMsg(ex, msg, LogType.Exception, ps);
+        //    MyWriteLog(errMsg, path, LogType.Exception);
+        //}
 
         #endregion
 
@@ -72,17 +72,17 @@ namespace Devin
             MyWriteLog(errMsg, defaultPath, LogType.Debug);
         }
 
-        /// <summary>
-        /// 记录Debug日志，自定义保存路径
-        /// </summary>
-        /// <param name="msg">自定义信息</param>
-        /// <param name="path">保存路径</param>
-        /// <param name="ps"></param>
-        public static void WriteDebug(string msg, string path, params object[] ps)
-        {
-            string errMsg = FormatMsg(null, msg, LogType.Debug, ps);
-            MyWriteLog(errMsg, path, LogType.Debug);
-        }
+        ///// <summary>
+        ///// 记录Debug日志，自定义保存路径
+        ///// </summary>
+        ///// <param name="msg">自定义信息</param>
+        ///// <param name="path">保存路径</param>
+        ///// <param name="ps"></param>
+        //public static void WriteDebug(string msg, string path, params object[] ps)
+        //{
+        //    string errMsg = FormatMsg(null, msg, LogType.Debug, ps);
+        //    MyWriteLog(errMsg, path, LogType.Debug);
+        //}
 
         #endregion
 
@@ -99,17 +99,17 @@ namespace Devin
             MyWriteLog(errMsg, defaultPath, LogType.Error);
         }
 
-        /// <summary>
-        /// 记录Error日志，自定义保存路径
-        /// </summary>
-        /// <param name="msg">自定义信息</param>
-        /// <param name="path">保存路径</param>
-        /// <param name="ps"></param>
-        public static void WriteError(string msg, string path, params object[] ps)
-        {
-            string errMsg = FormatMsg(null, msg, LogType.Error, ps);
-            MyWriteLog(errMsg, path, LogType.Error);
-        }
+        ///// <summary>
+        ///// 记录Error日志，自定义保存路径
+        ///// </summary>
+        ///// <param name="msg">自定义信息</param>
+        ///// <param name="path">保存路径</param>
+        ///// <param name="ps"></param>
+        //public static void WriteError(string msg, string path, params object[] ps)
+        //{
+        //    string errMsg = FormatMsg(null, msg, LogType.Error, ps);
+        //    MyWriteLog(errMsg, path, LogType.Error);
+        //}
 
         #endregion
 
@@ -126,17 +126,17 @@ namespace Devin
             MyWriteLog(errMsg, defaultPath, LogType.Request);
         }
 
-        /// <summary>
-        /// 记录Error日志，自定义保存路径
-        /// </summary>
-        /// <param name="msg">自定义信息</param>
-        /// <param name="path">保存路径</param>
-        /// <param name="ps"></param>
-        public static void WriteRequest(string msg, string path, params object[] ps)
-        {
-            string errMsg = FormatMsg(null, msg, LogType.Request, ps);
-            MyWriteLog(errMsg, path, LogType.Request);
-        }
+        ///// <summary>
+        ///// 记录Error日志，自定义保存路径
+        ///// </summary>
+        ///// <param name="msg">自定义信息</param>
+        ///// <param name="path">保存路径</param>
+        ///// <param name="ps"></param>
+        //public static void WriteRequest(string msg, string path, params object[] ps)
+        //{
+        //    string errMsg = FormatMsg(null, msg, LogType.Request, ps);
+        //    MyWriteLog(errMsg, path, LogType.Request);
+        //}
 
         #endregion
 
@@ -231,10 +231,10 @@ namespace Devin
             string result = string.Empty;
             result += "\r\n堆栈信息:";
             result += "\r\n[GetType]" + ex.GetType() + "\r\n";
-            result += "[Message]"+ex.Message + "\r\n";
+            result += "[Message]" + ex.Message + "\r\n";
             result += "[Source]" + ex.Source + "\r\n";
             result += "[TargetSite]" + ex.TargetSite + "\r\n";
-            result += "[Data]" + ex.Data + "\r\n";                       
+            result += "[Data]" + ex.Data + "\r\n";
             result += "[StackTrace]\r\n" + ex.StackTrace + "\r\n";
             return result;
         }
@@ -251,10 +251,10 @@ namespace Devin
         {
             //Result
             string result;
-                
+
             //Header
             string header = string.Format("[{0}][{1} {2}] ", logtype.ToString(), DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
-            
+
             //Msg
             msg = string.Format(msg, ps);
             if (ex != null)

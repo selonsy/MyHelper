@@ -97,6 +97,7 @@ namespace Devin
             }
             return sb.ToString();                       
         }
+
         /// <summary>
         /// MD5加密字符串(已过时)
         /// </summary>
@@ -106,6 +107,7 @@ namespace Devin
         {
             return FormsAuthentication.HashPasswordForStoringInConfigFile(encryptString, "md5");
         }
+
         /// <summary>
         /// MD5加密字符串
         /// </summary>
@@ -118,6 +120,7 @@ namespace Devin
             byte[] output = md5.ComputeHash(result);
             return BitConverter.ToString(output).Replace("-", "");
         }
+
         /// <summary>
         /// MD5加密字符串
         /// </summary>
@@ -128,17 +131,6 @@ namespace Devin
             var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
             var result = BitConverter.ToString(md5.ComputeHash(UnicodeEncoding.UTF8.GetBytes(encryptString.Trim())));
             return result;
-        }
-
-        /// MD5解密字符串
-        /// <summary>
-        /// MD5解密字符串
-        /// </summary>
-        /// <param name="encryptString"></param>
-        /// <returns></returns>
-        public static string DecryptMD5(string encryptString)
-        {
-            return "你在逗我么，你解一个试试？（手动鄙视脸）";
         }
 
         #endregion
