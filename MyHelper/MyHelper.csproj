@@ -17,12 +17,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\debug\</OutputPath>
+    <OutputPath>..\..\CommonConfig\lib\Devin\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\debug\ufjnls.xml</DocumentationFile>
+    <DocumentationFile>D:\00MyWorkSpace\99MyGitHub\CommonConfig\lib\Devin\debug\ufjnls.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +34,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\03MyLib\IcsharpCode\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\CommonConfig\lib\itextsharp\itextsharp.dll</HintPath>
     </Reference>
@@ -49,6 +52,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,7 +67,14 @@
     <Compile Include="EncrptionHelper.cs" />
     <Compile Include="ExceptionHelper.cs" />
     <Compile Include="Fetch.cs" />
+    <Compile Include="HttpHelper.cs" />
     <Compile Include="PDFHelper.cs" />
+    <Compile Include="PicHelper.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RegExp.cs" />
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -124,7 +135,8 @@
     <Compile Include="Temp\ValidateCode\ValidateCode_Style9.cs" />
     <Compile Include="Temp\WcfServiceProxy.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="ZipHelper.cs" />
+    <Compile Include="ZipHelper2.cs" />
+    <Compile Include="ZipHelper1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReadMe.txt" />
@@ -136,7 +148,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

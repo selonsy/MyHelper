@@ -328,6 +328,7 @@ namespace Devin
         {
             get
             {
+                //如果在外部的程序里面引用的话,获取的是当前执行程序的bin目录下面的dll的路径,而不是其引用的位置的dll
                 return Assembly.GetExecutingAssembly().Location;                
             }                       
         }
