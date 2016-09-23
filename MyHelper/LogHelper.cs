@@ -116,7 +116,7 @@ namespace Devin
         #region Request日志
 
         /// <summary>
-        /// 记录Error日志
+        /// 记录Request日志
         /// </summary>
         /// <param name="msg">自定义信息</param>
         /// <param name="ps"></param>
@@ -127,7 +127,7 @@ namespace Devin
         }
 
         ///// <summary>
-        ///// 记录Error日志，自定义保存路径
+        ///// 记录Request日志，自定义保存路径
         ///// </summary>
         ///// <param name="msg">自定义信息</param>
         ///// <param name="path">保存路径</param>

@@ -31,7 +31,7 @@ namespace Devin
         {
             try
             {
-                System.IO.Compression.ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
+                ZipFile.CreateFromDirectory(sourceDirectoryName, destinationArchiveFileName);
             }
             catch(Exception ex)
             {
@@ -48,7 +48,7 @@ namespace Devin
         {            
             try
             {
-                System.IO.Compression.ZipFile.ExtractToDirectory(sourceArchiveFileName, destinationDirectoryName);
+                ZipFile.ExtractToDirectory(sourceArchiveFileName, destinationDirectoryName);
             }
             catch (Exception ex)
             {

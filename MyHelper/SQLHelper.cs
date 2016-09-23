@@ -860,7 +860,7 @@ namespace Devin
         /// ExecuteTables基方法，使用连接字符串标识
         /// 返回一个表集合(DataTableCollection)表示查询得到的数据集
         /// </summary>
-        /// <param name="connecttionString">一个有效的数据库连接字符串</param>
+        /// <param name="connectionStringSign">一个有效的数据库连接字符串</param>
         /// <param name="cmdText">T-SQL语句</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>返回一个表集合(DataTableCollection)表示查询得到的数据集</returns>
@@ -887,7 +887,7 @@ namespace Devin
         /// ExecuteTables基方法，使用数据库连接对象
         /// 返回一个表集合(DataTableCollection)表示查询得到的数据集
         /// </summary>
-        /// <param name="connecttionString">一个有效的数据库连接对象</param>
+        /// <param name="sqlConnection">一个有效的数据库连接对象</param>
         /// <param name="cmdText">T-SQL语句</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>返回一个表集合(DataTableCollection)表示查询得到的数据集</returns>
@@ -933,7 +933,7 @@ namespace Devin
         /// ExecuteTablesSP基方法，使用连接字符串标识
         /// 返回一个表集合(DataTableCollection)表示查询得到的数据集
         /// </summary>
-        /// <param name="connecttionString">一个有效的数据库连接字符串</param>
+        /// <param name="connectionStringSign">一个有效的数据库连接字符串</param>
         /// <param name="cmdText">存储过程</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>返回一个表集合(DataTableCollection)表示查询得到的数据集</returns>
@@ -960,7 +960,7 @@ namespace Devin
         /// ExecuteTablesSP基方法，使用数据库连接对象
         /// 返回一个表集合(DataTableCollection)表示查询得到的数据集
         /// </summary>
-        /// <param name="connecttionString">一个有效的数据库连接对象</param>
+        /// <param name="sqlConnection">一个有效的数据库连接对象</param>
         /// <param name="cmdText">存储过程</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>返回一个表集合(DataTableCollection)表示查询得到的数据集</returns>
@@ -1064,4 +1064,37 @@ namespace Devin
 
     }
 
+    //快速扫描数据SQL语句
+    /*
+     *     
+        SET QUOTED_IDENTIFIER ON
+        SET ANSI_NULLS ON
+        GO
+        CREATE PROCEDURE shenjlSearch @what VARCHAR(800)
+        AS
+        BEGIN
+	        DECLARE @sql varchar(8000)
+	        DECLARE TableCursor CURSOR LOCAL FOR
+	        SELECT sql='IF EXISTS ( SELECT 1 FROM ['+o.name+'] WHERE ['+c.name+'] LIKE ''%'+@what+'%'' )
+	        PRINT ''所在的表及字段：['+o.name+'].['+c.name+']'''
+	        FROM syscolumns c JOIN sysobjects o ON c.id=o.id
+	        --175=char 56=int 可以查 select * from sys.types
+	        WHERE o.xtype='U' AND c.status>=0 AND c.xusertype IN (175, 239, 231, 167 )
+
+	        OPEN TableCursor
+	        FETCH NEXT FROM TableCursor INTO @sql
+	        WHILE @@FETCH_STATUS=0
+	        BEGIN
+	            EXEC( @sql )
+	            FETCH NEXT FROM TableCursor INTO @sql
+	        END
+	        CLOSE TableCursor
+	
+	        -- 删除游标引用
+	        DEALLOCATE TableCursor
+        END
+        GO
+     * 
+     */
 }
+ 
