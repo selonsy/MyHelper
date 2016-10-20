@@ -27,12 +27,12 @@ namespace Devin
         /// <summary>
         /// 默认数据库连接字符串(app.config)
         /// </summary>
-        private static string connectionString = Base.Conn4Sa;
+        private static string connectionString = Base.ConnStr;
 
         /// <summary>
         /// 默认数据库连接字符串(web.config)
         /// </summary>
-        private static string connectionString1 = "";//System.Configuration.ConfigurationManager.AppSettings["ConnStr"].ToString().Trim();
+        private static string connectionString_w = System.Configuration.ConfigurationManager.AppSettings["ConnStr"].ToString().Trim();
         
         /// <summary>
         /// Hashtable to store cached parameters
@@ -623,7 +623,7 @@ namespace Devin
         /// ExecuteDataSet基方法，使用连接字符串标识
         /// 返回一个结果集，类型为DataSet
         /// </summary>
-        /// <param name="connectionString">一个有效的数据库连接字符串</param>
+        /// <param name="connectionStringSign">一个有效的数据库连接字符串</param>
         /// <param name="cmdText">T-SQL语句</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>return a dataset</returns>
@@ -655,7 +655,7 @@ namespace Devin
         /// ExecuteDataSet基方法，使用数据库连接对象
         /// 返回一个结果集，类型为DataSet
         /// </summary>
-        /// <param name="connectionString">一个有效的数据库连接对象</param>
+        /// <param name="sqlConnection">一个有效的数据库连接对象</param>
         /// <param name="cmdText">T-SQL语句</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>return a dataset</returns>
@@ -705,7 +705,7 @@ namespace Devin
         /// ExecuteDataSetSP基方法，使用连接字符串标识
         /// 返回一个结果集，类型为DataSet
         /// </summary>
-        /// <param name="connectionString">一个有效的数据库连接字符串</param>
+        /// <param name="connectionStringSign">一个有效的数据库连接字符串</param>
         /// <param name="cmdText">存储过程名称</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>return a dataset</returns>
@@ -737,7 +737,7 @@ namespace Devin
         /// ExecuteDataSetSP基方法，使用数据库连接对象
         /// 返回一个结果集，类型为DataSet
         /// </summary>
-        /// <param name="connectionString">一个有效的数据库连接对象</param>
+        /// <param name="sqlConnection">一个有效的数据库连接对象</param>
         /// <param name="cmdText">存储过程名称</param>
         /// <param name="commandParameters">以数组形式提供SqlCommand命令中用到的参数列表</param>
         /// <returns>return a dataset</returns>

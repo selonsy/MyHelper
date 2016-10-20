@@ -40,7 +40,7 @@ namespace Devin
         /// 构造函数
         /// </summary>
         static AppConfig()
-        {
+        {        
             appSettings = ConfigurationManager.AppSettings;
             connectionstringsettings = ConfigurationManager.ConnectionStrings;
         }
@@ -314,7 +314,6 @@ namespace Devin
         #endregion
     }
 
-
     /// <summary>
     /// 配置管理类(app.config[*.dll.config])
     /// </summary>
@@ -328,8 +327,9 @@ namespace Devin
         {
             get
             {
-                return Assembly.GetExecutingAssembly().Location;
-            }
+                //如果在外部的程序里面引用的话,获取的是当前执行程序的bin目录下面的dll的路径,而不是其引用的位置的dll
+                return Assembly.GetExecutingAssembly().Location;                
+            }                       
         }
 
         /// <summary>
@@ -364,11 +364,11 @@ namespace Devin
         /// <param name="newProviderName">数据提供程序名称</param> 
         public static void UpdateConnectionString(string newName, string newConString, string newProviderName)
         {
-            bool exist = false;
+            bool exist = false;                                 
             if (config.ConnectionStrings.ConnectionStrings[newName] != null)
             {
                 exist = true;
-            }
+            }            
             if (exist)
             {
                 // 如果连接串已存在，首先删除它  
@@ -447,7 +447,7 @@ namespace Devin
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("system.serviceModel");
         }
-
+        
         /// <summary>
         /// 修改applicationSettings中App.Properties.Settings中服务的IP地址(待完善) 
         /// </summary>
@@ -483,7 +483,7 @@ namespace Devin
             ConfigurationManager.RefreshSection("applicationSettings");
         }
 
-        #region 私有函数
+#region 私有函数
         private static string GetNewIP(string oldValue, string serverIP)
         {
             string pattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b";
@@ -492,7 +492,7 @@ namespace Devin
             return newvalue;
         }
 
-        #endregion
+#endregion
 
     }
 
@@ -501,12 +501,21 @@ namespace Devin
     /// </summary>
     public class IniConfig
     {
-        public Dictionary<string, string> configData;
-        string fullFileName;
+        /// <summary>
+        /// 配置项字典
+        /// </summary>
+        private Dictionary<string, string> configData;
+        /// <summary>
+        /// 配置文件路径
+        /// </summary>
+        private string fullFileName;
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="_fileName">.ini文件的绝对路径</param>
         public IniConfig(string _fileName)
         {
-            configData = new Dictionary<string, string>();
-            //fullFileName = Directory.GetCurrentDirectory() + @"\" + _fileName;
+            configData = new Dictionary<string, string>();            
             fullFileName = _fileName;
             bool hasCfgFile = File.Exists(fullFileName);
             if (hasCfgFile == false)
@@ -515,24 +524,29 @@ namespace Devin
                 writer.Close();
             }
             StreamReader reader = new StreamReader(fullFileName, Encoding.Default);
-            string line;
-            int indx = 0;
+            string line;            
             while ((line = reader.ReadLine()) != null)
             {
-                if (line.StartsWith(";") || string.IsNullOrEmpty(line))
-                    configData.Add(";" + indx++, line);
+                if (line.StartsWith(";") || line.StartsWith("[") || string.IsNullOrEmpty(line))
+                    continue;
                 else
-                {
-                    string[] key_value = line.Split('=');
-                    if (key_value.Length >= 2)
-                        configData.Add(key_value[0].Trim(), key_value[1].Trim());
-                    else
-                        configData.Add(";" + indx++, line);
+                {                    
+                    int index = line.IndexOf('=');
+                    if (index != -1)
+                    {
+                        string key = line.Substring(0, index).Trim();
+                        string value = line.Substring(index+1, line.Length-index-1).Trim();
+                        configData.Add(key, value);
+                    }
                 }
             }
             reader.Close();
-        }        
-
+        }
+        /// <summary>
+        /// 获取配置项
+        /// </summary>
+        /// <param name="key">配置项名称</param>
+        /// <returns></returns>
         public string get(string key)
         {
             if (configData.Count <= 0)
@@ -542,6 +556,11 @@ namespace Devin
             else
                 return null;
         }
+        /// <summary>
+        /// 设置配置项
+        /// </summary>
+        /// <param name="key">配置项名称</param>
+        /// <param name="value">配置项内容</param>
         public void set(string key, string value)
         {
             if (configData.ContainsKey(key))
@@ -549,6 +568,9 @@ namespace Devin
             else
                 configData.Add(key, value);
         }
+        /// <summary>
+        /// 保存配置项
+        /// </summary>
         public void save()
         {
             StreamWriter writer = new StreamWriter(fullFileName, false, Encoding.Default);

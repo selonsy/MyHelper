@@ -314,7 +314,6 @@ namespace Devin
         #endregion
     }
 
-
     /// <summary>
     /// 配置管理类(app.config[*.dll.config])
     /// </summary>
@@ -505,19 +504,18 @@ namespace Devin
         /// <summary>
         /// 配置项字典
         /// </summary>
-        public Dictionary<string, string> configData;
+        private Dictionary<string, string> configData;
         /// <summary>
         /// 配置文件路径
         /// </summary>
-        string fullFileName;
+        private string fullFileName;
         /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="_fileName">.ini文件的绝对路径</param>
         public IniConfig(string _fileName)
         {
-            configData = new Dictionary<string, string>();
-            //fullFileName = Directory.GetCurrentDirectory() + @"\" + _fileName;
+            configData = new Dictionary<string, string>();            
             fullFileName = _fileName;
             bool hasCfgFile = File.Exists(fullFileName);
             if (hasCfgFile == false)
@@ -526,19 +524,20 @@ namespace Devin
                 writer.Close();
             }
             StreamReader reader = new StreamReader(fullFileName, Encoding.Default);
-            string line;
-            int indx = 0;
+            string line;            
             while ((line = reader.ReadLine()) != null)
             {
-                if (line.StartsWith(";") || string.IsNullOrEmpty(line))
-                    configData.Add(";" + indx++, line);
+                if (line.StartsWith(";") || line.StartsWith("[") || string.IsNullOrEmpty(line))
+                    continue;
                 else
-                {
-                    string[] key_value = line.Split('=');
-                    if (key_value.Length >= 2)
-                        configData.Add(key_value[0].Trim(), key_value[1].Trim());
-                    else
-                        configData.Add(";" + indx++, line);
+                {                    
+                    int index = line.IndexOf('=');
+                    if (index != -1)
+                    {
+                        string key = line.Substring(0, index).Trim();
+                        string value = line.Substring(index+1, line.Length-index-1).Trim();
+                        configData.Add(key, value);
+                    }
                 }
             }
             reader.Close();

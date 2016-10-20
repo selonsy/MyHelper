@@ -11,6 +11,7 @@
 
 using System;
 using System.IO;
+using System.Web;
 
 namespace Devin
 {
@@ -18,8 +19,8 @@ namespace Devin
     /// 日志类
     /// </summary>
     public static class LogHelper
-    {
-
+    {        
+      
         #region Exception日志
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Devin
         #region Request日志
 
         /// <summary>
-        /// 记录Error日志
+        /// 记录Request日志
         /// </summary>
         /// <param name="msg">自定义信息</param>
         /// <param name="ps"></param>
@@ -127,7 +128,7 @@ namespace Devin
         }
 
         ///// <summary>
-        ///// 记录Error日志，自定义保存路径
+        ///// 记录Request日志，自定义保存路径
         ///// </summary>
         ///// <param name="msg">自定义信息</param>
         ///// <param name="path">保存路径</param>
@@ -177,7 +178,7 @@ namespace Devin
         /// <param name="path">日志存放路径</param>
         /// <param name="logType">日志类型</param>
         private static void MyWriteLog(string msg, string path, LogType logType)
-        {
+        {                     
             string fileName = path.Trim('\\') + "\\" + logType + "\\" + CreateFileName(logType);
             WriteFile(msg, fileName);
         }
@@ -231,10 +232,10 @@ namespace Devin
             string result = string.Empty;
             result += "\r\n堆栈信息:";
             result += "\r\n[GetType]" + ex.GetType() + "\r\n";
-            result += "[Message]" + ex.Message + "\r\n";
+            result += "[Message]"+ex.Message + "\r\n";
             result += "[Source]" + ex.Source + "\r\n";
             result += "[TargetSite]" + ex.TargetSite + "\r\n";
-            result += "[Data]" + ex.Data + "\r\n";
+            result += "[Data]" + ex.Data + "\r\n";                       
             result += "[StackTrace]\r\n" + ex.StackTrace + "\r\n";
             return result;
         }
@@ -251,10 +252,10 @@ namespace Devin
         {
             //Result
             string result;
-
+                
             //Header
             string header = string.Format("[{0}][{1} {2}] ", logtype.ToString(), DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
-
+            
             //Msg
             msg = string.Format(msg, ps);
             if (ex != null)

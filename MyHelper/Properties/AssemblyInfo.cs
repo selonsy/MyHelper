@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Devin's Helper")]
 [assembly: AssemblyDescription("The Code Helper of Devin Shen")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("思辰国际")]
+[assembly: AssemblyCompany("Sichen International Co. Ltd.")]
 [assembly: AssemblyProduct("Devin's Helper")]
 [assembly: AssemblyCopyright("Copyright © Selonsy 2015")]
-[assembly: AssemblyTrademark("思辰国际")]
+[assembly: AssemblyTrademark("Selonsy")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: 
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("9.5.2.701")]
-[assembly: AssemblyFileVersion("9.5.2.701")]
+[assembly: AssemblyVersion("1.0.16.1016")]
+[assembly: AssemblyFileVersion("1.0.16.1016")]

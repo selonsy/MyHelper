@@ -1,12 +1,10 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ include file="DBHelper.ttinclude" #>
-
 <#@ assembly name="System.Core.dll" #>
 <#@ assembly name="System.Data.dll" #>
 <#@ assembly name="System.Data.DataSetExtensions.dll" #>
 <#@ assembly name="System.Xml.dll" #>
-
 <#@ import namespace="System" #>
 <#@ import namespace="System.Xml" #>
 <#@ import namespace="System.Linq" #>
@@ -14,39 +12,41 @@
 <#@ import namespace="System.Data.SqlClient" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 namespace Devin
-{   
-	
+{   	
 	/// <summary>
 	/// <#= T.TableCommit #>
 	/// </summary>
     public partial class <#= T.ClassName #>
     {
-        /// <summary>
-        /// 用户ID
-        /// </summary>
-        public int UserID { get; set; }
-		/// <summary>
-        /// 用户名
-        /// </summary>
-        public string UserName { get; set; }
-		/// <summary>
-        /// 密码
-        /// </summary>
-        public string Password { get; set; }
-		/// <summary>
-        /// Email
-        /// </summary>
-        public string Email { get; set; }
-		/// <summary>
-        /// 手机号
-        /// </summary>
-        public string Mobile { get; set; }
+        ///<summary>字段枚举</summary>	
+		public enum E<#= T.ClassName #> 
+		{ <#foreach(DbColumn column in T.DbColumnList){ #>	
+			///<summary><#= column.Remark #></summary>
+			<#= column.ColumnName #>,<#}#>
+
+		}
+
+        ///<summary>字段列表</summary>	
+        public static string[] ps = { <#= string.Join(", ", T.DbColumnList.Select(p => "\"" + p.ColumnName + "\"").ToArray()) #> };
+        ///<summary>对应数据库的表名</summary>	
+        public static string tablename = "<#= T.Config.TableName #>";
+
+		#region 字段成员
+
+		<#    foreach(DbColumn column in T.DbColumnList)
+    { 
+		#>///<summary><#= column.Remark #></summary>		
+		public <#= column.CSharpType #><# if(column.CommonType.IsValueType && column.IsNullable){ #>?<# } #> <#= column.ColumnName #> { get; set; }
+		<#
+    } 
+		#>
+
+		#endregion
     }
 }
 
@@ -58,18 +58,18 @@ namespace Devin
         {
             get
             {
-                return @"server=.;uid=sa;pwd=95938;database=Test";                
+                return @"server=.;uid=sa;pwd=95938;database=shenjinlong";                
             }
         }
 		//数据库名称
         public override string DbDataBase
         {
-            get { return "Test"; }
+            get { return "shenjinlong"; }
         }
 		//表名称
         public override string TableName
         {
-            get { return "TestTable"; }
+            get { return "Users"; }
         }
 		//过滤字段
         public override string[] NoExistFields

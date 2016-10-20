@@ -29,17 +29,17 @@ namespace Devin
         {
             get
             {
-                return @"server=.;uid=sa;pwd=95938;database=Test";                
+                return @"server=.;uid=sa;pwd=95938;database=shenjinlong";                
             }
         }
         public override string DbDataBase
         {
-            get { return "Test"; }
+            get { return "shenjinlong"; }
         }
 
         public override string TableName
         {
-            get { return "TestTable"; }
+            get { return "Users"; }
         }
 
         public override string[] NoExistFields
@@ -144,14 +144,14 @@ namespace Devin
                            CAST(colm.precision AS int)PRECISION, 
                            CAST(colm.scale AS int) SCALE, 
                            prop.value Remark
-                    FROM Test.sys.columns colm
-                    INNER JOIN Test.sys.types systype ON colm.system_type_id = systype.system_type_id
+                    FROM {0}.sys.columns colm
+                    INNER JOIN {0}.sys.types systype ON colm.system_type_id = systype.system_type_id
                             AND colm.user_type_id = systype.user_type_id
-                    LEFT JOIN Test.sys.extended_properties prop ON colm.object_id = prop.major_id
+                    LEFT JOIN {0}.sys.extended_properties prop ON colm.object_id = prop.major_id
                             AND colm.column_id = prop.minor_id
                     LEFT JOIN indexCTE ON colm.column_id = indexCTE.column_id
                             AND colm.object_id = indexCTE.object_id
-                    WHERE colm.object_id = OBJECT_ID('Test.dbo.TestTable')
+                    WHERE colm.object_id = OBJECT_ID(@tableName)
                          ORDER BY colm.column_id", database);
             #endregion
             SqlParameter param = new SqlParameter("@tableName", SqlDbType.NVarChar, 100) { Value = string.Format("{0}.{1}.{2}", database, schema, tablename) };
@@ -314,7 +314,7 @@ namespace Devin
     }
 
     /// <summary>
-    /// 数据库&C#类型映射
+    /// 数据库C#类型映射
     /// </summary>
     public class SqlServerDbTypeMap
     {

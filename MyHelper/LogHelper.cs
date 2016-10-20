@@ -11,6 +11,7 @@
 
 using System;
 using System.IO;
+using System.Web;
 
 namespace Devin
 {
@@ -177,7 +178,7 @@ namespace Devin
         /// <param name="path">日志存放路径</param>
         /// <param name="logType">日志类型</param>
         private static void MyWriteLog(string msg, string path, LogType logType)
-        {
+        {                     
             string fileName = path.Trim('\\') + "\\" + logType + "\\" + CreateFileName(logType);
             WriteFile(msg, fileName);
         }
