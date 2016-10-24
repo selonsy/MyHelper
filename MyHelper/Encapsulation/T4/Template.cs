@@ -5,7 +5,7 @@ using System.Text;
 namespace Devin
 {   	
 	/// <summary>
-	/// 
+	/// 用户表
 	/// </summary>
     public partial class USERS
     {
@@ -13,7 +13,7 @@ namespace Devin
 		public enum EUSERS 
 		{ 	
 			///<summary>用户id</summary>
-			UserGuid,	
+			Id,	
 			///<summary>用户名称</summary>
 			UserName,	
 			///<summary>手机号码</summary>
@@ -29,14 +29,14 @@ namespace Devin
 		}
 
         ///<summary>字段列表</summary>	
-        public static string[] ps = { "UserGuid", "UserName", "Phone", "Email", "AddTime", "ModifyTime", "Activity" };
+        public static string[] ps = { "Id", "UserName", "Phone", "Email", "AddTime", "ModifyTime", "Activity" };
         ///<summary>对应数据库的表名</summary>	
         public static string tablename = "Users";
 
 		#region 字段成员
 
 		///<summary>用户id</summary>		
-		public string UserGuid { get; set; }
+		public string Id { get; set; }
 		///<summary>用户名称</summary>		
 		public string UserName { get; set; }
 		///<summary>手机号码</summary>		

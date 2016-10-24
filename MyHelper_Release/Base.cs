@@ -27,7 +27,8 @@ namespace Devin
         /// 构造函数(初始化配置信息)
         /// </summary>
         public Base()
-        {            
+        {           
+            //可以考虑在这个地方初始化 config,根据传递进来的配置文件的路径.防止上面的取路径的不生效.
             //_inipath = HttpRuntime.AppDomainAppPath.ToString() + "\\bin\\ufjnls.dll.ini";
             //config = new IniConfig(_inipath);
         }

@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 namespace Devin.Tests
 {
     [TestFixture()]
-    public class LogHelperTests
+    public class ExceptionHelperTests
     {
         [Test()]
-        public void WriteExceptionTest()
+        public void IsTest()
         {
-            LogHelper.WriteException(new Exception(), "hahahah");           
+            Assert.Fail();
         }
     }
 }

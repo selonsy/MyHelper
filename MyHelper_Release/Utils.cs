@@ -21,6 +21,7 @@ namespace Devin
     /// </summary>
     public abstract class Utils
     {
+
         /// <summary>
         /// 数组比较(linq方式)
         /// </summary>
@@ -86,6 +87,15 @@ namespace Devin
         {
             DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
             return (int)(time - startTime).TotalSeconds;
+        }
+
+        /// <summary>
+        /// 获取32位长度的GUID
+        /// </summary>
+        /// <returns></returns>
+        public static string GetNewGuid()
+        {
+            return Guid.NewGuid().ToString().Replace("-", "");
         }
     }
 }

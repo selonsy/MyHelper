@@ -88,20 +88,20 @@ namespace Devin
         /// <summary>
         /// IsNullOrEmpty
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="s"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmpty(this string str)
+        public static bool IsNullOrEmpty(this string s)
         {
-            return string.IsNullOrEmpty(str);
+            return string.IsNullOrEmpty(s);
         }
         /// <summary>
         /// IsNotNullOrEmpty
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="s"></param>
         /// <returns></returns>
-        public static bool IsNotNullOrEmpty(this string str)
+        public static bool IsNotNullOrEmpty(this string s)
         {
-            return !string.IsNullOrEmpty(str);
+            return !string.IsNullOrEmpty(s);
         }
 
         #endregion
@@ -111,24 +111,73 @@ namespace Devin
         /// <summary>
         /// Match
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="s"></param>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        public static bool IsMatch(this string str, string pattern)
+        public static bool IsMatch(this string s, string pattern)
         {
-            if (str == null) return false;
-            else return Regex.IsMatch(str, pattern);
+            if (s == null) return false;
+            else return Regex.IsMatch(s, pattern);
         }
         /// <summary>
         /// Match
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="s"></param>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        public static string Match(this string str, string pattern)
+        public static string Match(this string s, string pattern)
         {
-            if (str == null) return "";
-            return Regex.Match(str, pattern).Value;
+            if (s == null) return "";
+            return Regex.Match(s, pattern).Value;
+        }
+
+        #endregion
+
+        #region Int
+
+        /// <summary>
+        /// IsInt
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsInt(this string s)
+        {
+            int i;
+            return int.TryParse(s, out i);
+        }
+        /// <summary>
+        /// ToInt
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int ToInt(this string s)
+        {
+            return int.Parse(s);
+        }
+
+        #endregion
+
+        #region Camel/Pascal
+
+        /// <summary>
+        /// ToCamel
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ToCamel(this string s)
+        {
+            if (s.IsNullOrEmpty()) return s;
+            return s[0].ToString().ToLower() + s.Substring(1);
+        }
+        /// <summary>
+        /// ToPascal
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ToPascal(this string s)
+        {
+            if (s.IsNullOrEmpty()) return s;
+            return s[0].ToString().ToUpper() + s.Substring(1);
         }
 
         #endregion
