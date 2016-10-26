@@ -40,6 +40,10 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Blend\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -56,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
+    <Compile Include="CacheHelper.cs" />
     <Compile Include="CookieHelper.cs" />
     <Compile Include="EncrptionHelper.cs" />
     <Compile Include="Extension.cs" />
@@ -66,6 +71,7 @@
     <Compile Include="SerializeHelper.cs" />
     <Compile Include="SQLHelper.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="WebApiHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

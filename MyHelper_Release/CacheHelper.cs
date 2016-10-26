@@ -1,4 +1,14 @@
-﻿using System;
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2016-10-25
+// Modifyed：selonsy  
+// ModifyTime：2016-10-25  
+// Desc：
+// 本地缓存帮助类
+// </summary> 
+
+using System;
 using System.Configuration;
 using System.Web;
 using System.Web.Caching;
@@ -67,7 +77,7 @@ namespace Devin
         /// </summary>
         /// <param name="name">key</param>
         /// <param name="value">value</param>
-        /// <param name="minutes"缓存分钟></param>
+        /// <param name="minutes">缓存分钟</param>
         /// <param name="isAbsoluteExpiration">是否绝对过期</param>
         /// <param name="onRemoveCallback">缓存过期回调</param>
         public static void Set(string name, object value, int minutes, bool isAbsoluteExpiration, CacheItemRemovedCallback onRemoveCallback)

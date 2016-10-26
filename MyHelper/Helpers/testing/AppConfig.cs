@@ -9,21 +9,16 @@
 // </summary> 
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.Collections.Specialized;
 using System.ServiceModel.Configuration;
 using System.Text.RegularExpressions;
 using System.Reflection;
-using System.IO;
-using System.Collections;
-using static System.Net.Mime.MediaTypeNames;
+using System.Runtime.CompilerServices;
 
 namespace Devin
 {
+
     /// <summary>
     /// 配置管理类(machine.config)
     /// </summary>
@@ -496,5 +491,26 @@ namespace Devin
 
     }
 
- 
+    /// <summary>
+    /// 配置管理类(可自由扩充,新建同名属性即可,调用:AppConfig.YourKeyName)
+    /// </summary>
+    public static partial class AppConfig
+    {
+        /// <summary>
+        /// 测试配置项目名称
+        /// </summary>
+        public static string TestConfigName
+        {
+            get
+            {
+                return AppSettingValue();
+            }
+        }
+
+        private static string AppSettingValue([CallerMemberName] string key = null)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
+    }
+
 }

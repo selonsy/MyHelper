@@ -15,7 +15,7 @@ namespace Devin.Tests
         [Test()]
         public void CreateClassInstanceTest()
         {
-            object obj = ReflectionHelper.CreateClassInstance("Devin.Services.apiService，Devin_aliyun");
+            object obj = ReflectionHelper.CreateClassInstance("Devin.Services.apiService,Devin_aliyun");
             MethodInfo methodInfo = ReflectionHelper.CreateMethodInstance(obj, "gettoken");
             string value = ReflectionHelper.DoInvoke<string>(obj, methodInfo, new object[] { "nihao" });
             Assert.IsNotNull(value);

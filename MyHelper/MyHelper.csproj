@@ -71,6 +71,7 @@
     <Compile Include="Helpers\nocomplete\HttpHelper.cs" />
     <Compile Include="Helpers\nocomplete\PDFHelper.cs" />
     <Compile Include="Helpers\testing\PicHelper.cs" />
+    <Compile Include="Helpers\release\WebApiHelper.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,7 +97,7 @@
     <Compile Include="Temp\TempTest.cs" />
     <Compile Include="Temp\AppSettings.cs" />
     <Compile Include="Temp\AssemblyHelper.cs" />
-    <Compile Include="Helpers\testing\CacheHelper.cs" />
+    <Compile Include="Helpers\release\CacheHelper.cs" />
     <Compile Include="Temp\Collection.cs" />
     <Compile Include="Temp\Converter.cs" />
     <Compile Include="Helpers\release\CookieHelper.cs" />
