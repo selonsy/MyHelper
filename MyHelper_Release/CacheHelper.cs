@@ -58,7 +58,7 @@ namespace Devin
         /// <param name="cacheDependency">依赖项</param>
         public static void Set(string name, object value, CacheDependency cacheDependency)
         {
-            HttpRuntime.Cache.Insert(name, value, cacheDependency, Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(20));
+            HttpRuntime.Cache.Insert(name, value, cacheDependency, Cache.NoAbsoluteExpiration, TimeSpan.FromSeconds(20 * 60));
         }
 
         /// <summary>
@@ -66,10 +66,10 @@ namespace Devin
         /// </summary>
         /// <param name="name">key</param>
         /// <param name="value">value</param>
-        /// <param name="minutes">缓存分钟</param>
-        public static void Set(string name, object value, int minutes)
+        /// <param name="seconds">缓存秒数</param>
+        public static void Set(string name, object value, int seconds)
         {
-            HttpRuntime.Cache.Insert(name, value, null, Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(minutes));
+            HttpRuntime.Cache.Insert(name, value, null, Cache.NoAbsoluteExpiration, TimeSpan.FromSeconds(seconds));
         }
 
         /// <summary>
@@ -77,15 +77,15 @@ namespace Devin
         /// </summary>
         /// <param name="name">key</param>
         /// <param name="value">value</param>
-        /// <param name="minutes">缓存分钟</param>
+        /// <param name="seconds">缓存秒数</param>
         /// <param name="isAbsoluteExpiration">是否绝对过期</param>
         /// <param name="onRemoveCallback">缓存过期回调</param>
-        public static void Set(string name, object value, int minutes, bool isAbsoluteExpiration, CacheItemRemovedCallback onRemoveCallback)
+        public static void Set(string name, object value, int seconds, bool isAbsoluteExpiration, CacheItemRemovedCallback onRemoveCallback)
         {
             if (isAbsoluteExpiration)
-                HttpRuntime.Cache.Insert(name, value, null, DateTime.Now.AddMinutes(minutes), Cache.NoSlidingExpiration, CacheItemPriority.Normal, onRemoveCallback);
+                HttpRuntime.Cache.Insert(name, value, null, DateTime.Now.AddSeconds(seconds), Cache.NoSlidingExpiration, CacheItemPriority.Normal, onRemoveCallback);
             else
-                HttpRuntime.Cache.Insert(name, value, null, Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(minutes), CacheItemPriority.Normal, onRemoveCallback);
+                HttpRuntime.Cache.Insert(name, value, null, Cache.NoAbsoluteExpiration, TimeSpan.FromSeconds(seconds), CacheItemPriority.Normal, onRemoveCallback);
         }
     }
 }

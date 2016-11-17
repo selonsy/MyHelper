@@ -182,5 +182,32 @@ namespace Devin
 
         #endregion
 
+        #region DateTime
+
+        /// <summary>
+        /// 日期的最小值(1900-01-01 00:00:00)
+        /// </summary>
+        /// <param name="sqlDateTime"></param>
+        /// <returns></returns>
+        public static DateTime MinValue(this DateTime sqlDateTime)
+        {
+            return new DateTime(1900, 01, 01, 00, 00, 00);
+        }
+
+        #endregion
+
+        #region Enum
+
+        /// <summary>
+        /// ToInt
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static int ToInt(this Enum value)
+        {
+            return Convert.ToInt32(value);
+        }
+
+        #endregion
     }
 }

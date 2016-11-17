@@ -58,8 +58,10 @@ namespace Devin
         public static void Remove(HttpCookie cookie)
         {
             if (cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddDays(-1);
+            {                
+                cookie.Expires = DateTime.MinValue;
+                cookie.Value = string.Empty;
+                cookie.Domain = HttpContext.Current.Request.Url.Host.ToLower();
                 Save(cookie);
             }
         }
@@ -69,15 +71,10 @@ namespace Devin
         /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        /// <param name="expiresHours"></param>
-        public static void Save(string name, string value, int expiresHours = 0)
-        {
-            var httpCookie = Get(name);
-            if (httpCookie == null)
-                httpCookie = new HttpCookie(name);
-            httpCookie.Value = value;
-            httpCookie.Domain = HttpContext.Current.Request.Url.Host.ToLower();
-            Save(httpCookie, expiresHours);
+        /// <param name="expiresSeconds"></param>
+        public static void Save(string name, string value, int expiresSeconds = 0)
+        {            
+            Save(name, value, HttpContext.Current.Request.Url.Host.ToLower(), expiresSeconds);
         }
 
         /// <summary>
@@ -86,8 +83,8 @@ namespace Devin
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <param name="domain"></param>
-        /// <param name="expiresHours"></param>
-        public static void Save(string name, string value, string domain, int expiresHours = 0)
+        /// <param name="expiresSeconds"></param>
+        public static void Save(string name, string value, string domain, int expiresSeconds = 0)
         {
             HttpCookie httpCookie = Get(name);
             if (httpCookie == null)
@@ -101,31 +98,34 @@ namespace Devin
             {
                 httpCookie.Domain = domain;
             }
-            Save(httpCookie, expiresHours);
+            Save(httpCookie, expiresSeconds);
         }
 
         /// <summary>
         /// 保存Cookie
         /// </summary>
         /// <param name="cookie"></param>
-        /// <param name="expiresHours"></param>
-        public static void Save(HttpCookie cookie, int expiresHours = 0)
+        /// <param name="expiresSeconds"></param>
+        public static void Save(HttpCookie cookie, int expiresSeconds = 0)
         {
-            if (expiresHours > 0)
-                cookie.Expires = DateTime.Now.AddHours(expiresHours);
-            HttpContext.Current.Response.Cookies.Add(cookie);
+            if (expiresSeconds > 0)
+                cookie.Expires = DateTime.Now.AddSeconds(expiresSeconds);
+            HttpContext.Current.Response.AppendCookie(cookie);
         }
 
         /// <summary>
         /// 修改cookie
         /// </summary>
         /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         private static HttpCookie Set(string name, string value)
         {
             HttpCookie httpCookie = Get(name);
             if (httpCookie == null)
+            {
                 return null;
+            }               
             else
             {
                 httpCookie.Value = value;
