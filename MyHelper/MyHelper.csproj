@@ -60,6 +60,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encapsulation\Dapper\CommandDefinition.cs" />
+    <Compile Include="Encapsulation\Dapper\CommandFlags.cs" />
+    <Compile Include="Encapsulation\Dapper\CustomPropertyTypeMap.cs" />
+    <Compile Include="Encapsulation\Dapper\DataTableHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\DbString.cs" />
+    <Compile Include="Encapsulation\Dapper\DefaultTypeMap.cs" />
+    <Compile Include="Encapsulation\Dapper\DynamicParameters.CachedOutputSetters.cs" />
+    <Compile Include="Encapsulation\Dapper\DynamicParameters.cs" />
+    <Compile Include="Encapsulation\Dapper\DynamicParameters.ParamInfo.cs" />
+    <Compile Include="Encapsulation\Dapper\ExplicitConstructorAttribute.cs" />
+    <Compile Include="Encapsulation\Dapper\FeatureSupport.cs" />
+    <Compile Include="Encapsulation\Dapper\SimpleMemberMap.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlDataRecordHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlDataRecordListTVPParameter.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.Async.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.CacheInfo.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.DapperRow.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.DapperRowMetaObject.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.DapperTable.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.DeserializerState.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.DontMap.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.GridReader.Async.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.GridReader.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.ICustomQueryParameter.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.IDataReader.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.Identity.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.IDynamicParameters.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.IMemberMap.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.IParameterCallbacks.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.IParameterLookup.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.ITypeHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.ITypeMap.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.Link.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.LiteralToken.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.Settings.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.TypeDeserializerCache.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.TypeHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\SqlMapper.TypeHandlerCache.cs" />
+    <Compile Include="Encapsulation\Dapper\TableValuedParameter.cs" />
+    <Compile Include="Encapsulation\Dapper\TypeExtensions.cs" />
+    <Compile Include="Encapsulation\Dapper\UdtTypeHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\WrappedDataReader.cs" />
+    <Compile Include="Encapsulation\Dapper\WrappedReader.cs" />
+    <Compile Include="Encapsulation\Dapper\XmlHandlers.cs" />
     <Compile Include="Helpers\release\ReflectionHelper.cs" />
     <Compile Include="Helpers\release\Base.cs" />
     <Compile Include="Helpers\testing\AppConfig.cs" />
@@ -79,7 +124,7 @@
     </Compile>
     <Compile Include="Helpers\testing\RegExp.cs" />
     <Compile Include="Helpers\release\IniConfig.cs" />
-    <None Include="Encapsulation\T4\DBHelper.ttinclude" />
+    <Content Include="Encapsulation\T4\DBHelper.ttinclude" />
     <Compile Include="Helpers\release\SerializeHelper.cs" />
     <Compile Include="Encapsulation\T4\TemplateClass.cs" />
     <Compile Include="Helpers\nocomplete\FileOperateHelper.cs" />
@@ -159,7 +204,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Encapsulation\Dapper\" />
+    <Folder Include="Encapsulation\Dapper\old\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

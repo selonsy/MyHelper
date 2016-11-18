@@ -69,7 +69,7 @@ namespace Devin
 		//表名称
         public override string TableName
         {
-            get { return "Users"; }
+            get { return "BookMark"; }
         }
 		//过滤字段
         public override string[] NoExistFields

@@ -5,50 +5,50 @@ using System.Text;
 namespace Devin
 {   	
 	/// <summary>
-	/// 用户表
+	/// 书签表
 	/// </summary>
-    public partial class USERS
+    public partial class BOOKMARK
     {
         ///<summary>字段枚举</summary>	
-		public enum EUSERS 
+		public enum EBOOKMARK 
 		{ 	
-			///<summary>用户id</summary>
+			///<summary>书签ID</summary>
 			Id,	
-			///<summary>用户名称</summary>
-			UserName,	
-			///<summary>手机号码</summary>
-			Phone,	
-			///<summary>邮箱</summary>
-			Email,	
-			///<summary>添加时间</summary>
-			AddTime,	
-			///<summary>修改时间</summary>
-			ModifyTime,	
-			///<summary>是否有效</summary>
-			Activity,
+			///<summary>书签名称</summary>
+			BMName,	
+			///<summary>书签链接</summary>
+			BMUrl,	
+			///<summary></summary>
+			BCGuid,	
+			///<summary>书签小图标</summary>
+			BMIcon,	
+			///<summary>书签大图标</summary>
+			BMIcon_big,	
+			///<summary>书签优先级</summary>
+			BMOrder,
 		}
 
         ///<summary>字段列表</summary>	
-        public static string[] ps = { "Id", "UserName", "Phone", "Email", "AddTime", "ModifyTime", "Activity" };
+        public static string[] ps = { "Id", "BMName", "BMUrl", "BCGuid", "BMIcon", "BMIcon_big", "BMOrder" };
         ///<summary>对应数据库的表名</summary>	
-        public static string tablename = "Users";
+        public static string tablename = "BookMark";
 
 		#region 字段成员
 
-		///<summary>用户id</summary>		
+		///<summary>书签ID</summary>		
 		public string Id { get; set; }
-		///<summary>用户名称</summary>		
-		public string UserName { get; set; }
-		///<summary>手机号码</summary>		
-		public string Phone { get; set; }
-		///<summary>邮箱</summary>		
-		public string Email { get; set; }
-		///<summary>添加时间</summary>		
-		public DateTime AddTime { get; set; }
-		///<summary>修改时间</summary>		
-		public DateTime? ModifyTime { get; set; }
-		///<summary>是否有效</summary>		
-		public int Activity { get; set; }
+		///<summary>书签名称</summary>		
+		public string BMName { get; set; }
+		///<summary>书签链接</summary>		
+		public string BMUrl { get; set; }
+		///<summary></summary>		
+		public string BCGuid { get; set; }
+		///<summary>书签小图标</summary>		
+		public string BMIcon { get; set; }
+		///<summary>书签大图标</summary>		
+		public string BMIcon_big { get; set; }
+		///<summary>书签优先级</summary>		
+		public int? BMOrder { get; set; }
 		
 		#endregion
     }
