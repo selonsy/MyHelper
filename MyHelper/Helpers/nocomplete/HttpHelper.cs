@@ -19,7 +19,7 @@ namespace Devin
     /// <summary>
     /// Http请求类
     /// </summary>
-    public class HttpHelper
+    public class HttpHelperppppp
     {
         //function Ok()
         //{

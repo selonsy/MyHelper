@@ -70,10 +70,16 @@ namespace Devin
         }
 
         #region 写文件
-        protected void Write_Txt(string FileName, string Content)
+        public void Write_Txt(string FileName, string Content)
         {
             Encoding code = Encoding.GetEncoding("gb2312");
-            string htmlfilename = HttpContext.Current.Server.MapPath("Precious\\" + FileName + ".txt");　//保存文件的路径
+
+            if (!File.Exists(FileName))
+            {
+                File.Create(FileName);
+            }
+            //string htmlfilename = HttpContext.Current.Server.MapPath("Precious\\" + FileName + ".txt");　//保存文件的路径
+            string htmlfilename = FileName;　//保存文件的路径
             string str = Content;
             StreamWriter sw = null;
             {

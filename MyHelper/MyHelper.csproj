@@ -107,6 +107,7 @@
     <Compile Include="Encapsulation\Dapper\WrappedDataReader.cs" />
     <Compile Include="Encapsulation\Dapper\WrappedReader.cs" />
     <Compile Include="Encapsulation\Dapper\XmlHandlers.cs" />
+    <Compile Include="Helpers\nocomplete\RequestHelper.cs" />
     <Compile Include="Helpers\release\ReflectionHelper.cs" />
     <Compile Include="Helpers\release\Base.cs" />
     <Compile Include="Helpers\testing\AppConfig.cs" />
@@ -119,6 +120,9 @@
     <Compile Include="Helpers\nocomplete\PDFHelper.cs" />
     <Compile Include="Helpers\testing\PicHelper.cs" />
     <Compile Include="Helpers\release\WebApiHelper.cs" />
+    <Compile Include="Helpers\third-part\HttpCookieHelper.cs" />
+    <Compile Include="Helpers\third-part\HttpHelper.cs" />
+    <Compile Include="Helpers\third-part\HttpHelper2.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
