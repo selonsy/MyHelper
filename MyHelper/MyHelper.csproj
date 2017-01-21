@@ -46,6 +46,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CommonConfig\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonConfig\lib\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -107,6 +111,7 @@
     <Compile Include="Encapsulation\Dapper\WrappedDataReader.cs" />
     <Compile Include="Encapsulation\Dapper\WrappedReader.cs" />
     <Compile Include="Encapsulation\Dapper\XmlHandlers.cs" />
+    <Compile Include="Helpers\nocomplete\RedisHelper.cs" />
     <Compile Include="Helpers\nocomplete\RequestHelper.cs" />
     <Compile Include="Helpers\release\ReflectionHelper.cs" />
     <Compile Include="Helpers\release\Base.cs" />

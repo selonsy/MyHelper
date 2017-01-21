@@ -22,7 +22,7 @@ namespace Devin
     public static class Extension
     {
 
-        #region Format String
+        #region string#FormatWith
 
         /// <summary>
         /// Format String
@@ -83,7 +83,7 @@ namespace Devin
 
         #endregion
 
-        #region Is/NotNullOrEmpty
+        #region string#IsNullOrEmpty/IsNotNullOrEmpty
 
         /// <summary>
         /// IsNullOrEmpty
@@ -106,7 +106,7 @@ namespace Devin
 
         #endregion
 
-        #region Match
+        #region string#Match|IsMatch
 
         /// <summary>
         /// Match
@@ -133,31 +133,7 @@ namespace Devin
 
         #endregion
 
-        #region Int
-
-        /// <summary>
-        /// IsInt
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static bool IsInt(this string s)
-        {
-            int i;
-            return int.TryParse(s, out i);
-        }
-        /// <summary>
-        /// ToInt
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static int ToInt(this string s)
-        {
-            return int.Parse(s);
-        }
-
-        #endregion
-
-        #region Camel/Pascal
+        #region string#ToCamel|ToPascal
 
         /// <summary>
         /// ToCamel
@@ -182,7 +158,71 @@ namespace Devin
 
         #endregion
 
-        #region DateTime
+        #region string#IsInt|ToInt
+
+        /// <summary>
+        /// IsInt
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsInt(this string s)
+        {
+            int i;
+            return int.TryParse(s, out i);
+        }
+        /// <summary>
+        /// ToInt
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int ToInt(this string s)
+        {
+            return int.Parse(s);
+        }
+
+        #endregion
+
+        #region Int#sInRange
+
+        /// <summary>
+        /// IsInRange
+        /// </summary>
+        /// <param name="i">i</param>
+        /// <param name="min">最小值</param>
+        /// <param name="max">最大值</param>
+        /// <param name="except">过滤值</param>
+        /// <param name="isInclude">是否包含边界</param>
+        /// <returns></returns>
+        public static bool IsInRange(this int i, int min, int max, int[] except = null, bool isInclude = false)
+        {
+            if (isInclude)
+            {
+                if (except == null)
+                {
+                    if (i >= min && i <= max) return true;
+                }
+                else
+                {
+                    if (i >= min && i <= max && !except.Contains(i)) return true;
+                }
+            }
+            else
+            {
+                if (except == null)
+                {
+                    if (i > min && i < max) return true;
+                }
+                else
+                {
+                    if (i > min && i < max && !except.Contains(i)) return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region DateTime#MinValue
 
         /// <summary>
         /// 日期的最小值(1900-01-01 00:00:00)
@@ -196,7 +236,7 @@ namespace Devin
 
         #endregion
 
-        #region Enum
+        #region Enum#ToInt
 
         /// <summary>
         /// ToInt
