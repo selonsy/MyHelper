@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Encapsulation\Dapper\CommandDefinition.cs" />
     <Compile Include="Encapsulation\Dapper\CommandFlags.cs" />
     <Compile Include="Encapsulation\Dapper\CustomPropertyTypeMap.cs" />
@@ -112,6 +113,55 @@
     <Compile Include="Encapsulation\Dapper\WrappedReader.cs" />
     <Compile Include="Encapsulation\Dapper\XmlHandlers.cs" />
     <Compile Include="Helpers\nocomplete\RedisHelper.cs" />
+=======
+    <Compile Include="Encapsulation\Dapper\Dapper.Contrib\SqlMapperExtensions.Async.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper.Contrib\SqlMapperExtensions.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\CommandDefinition.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\CommandFlags.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\CustomPropertyTypeMap.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\DataTableHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\DbString.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\DefaultTypeMap.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\DynamicParameters.CachedOutputSetters.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\DynamicParameters.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\DynamicParameters.ParamInfo.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\ExplicitConstructorAttribute.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\FeatureSupport.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SimpleMemberMap.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlDataRecordHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlDataRecordListTVPParameter.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.Async.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.CacheInfo.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.DapperRow.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.DapperRowMetaObject.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.DapperTable.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.DeserializerState.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.DontMap.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.GridReader.Async.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.GridReader.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.ICustomQueryParameter.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.IDataReader.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.Identity.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.IDynamicParameters.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.IMemberMap.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.IParameterCallbacks.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.IParameterLookup.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.ITypeHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.ITypeMap.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.Link.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.LiteralToken.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.Settings.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.TypeDeserializerCache.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.TypeHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\SqlMapper.TypeHandlerCache.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\TableValuedParameter.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\TypeExtensions.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\UdtTypeHandler.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\WrappedDataReader.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\WrappedReader.cs" />
+    <Compile Include="Encapsulation\Dapper\Dapper\XmlHandlers.cs" />
+>>>>>>> 626c95aeef2bf4e604f64b003dd661909166b7ca
     <Compile Include="Helpers\nocomplete\RequestHelper.cs" />
     <Compile Include="Helpers\release\ReflectionHelper.cs" />
     <Compile Include="Helpers\release\Base.cs" />
