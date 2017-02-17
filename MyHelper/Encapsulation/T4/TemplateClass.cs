@@ -39,7 +39,7 @@ namespace Devin
 
         public override string TableName
         {
-            get { return "Users"; }
+            get { return "User"; }
         }
 
         public override string[] NoExistFields
