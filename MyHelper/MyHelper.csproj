@@ -50,9 +50,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CommonConfig\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\..\CommonConfig\lib\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -68,6 +72,60 @@
     <Compile Include="Base.cs" />
     <Compile Include="CacheHelper.cs" />
     <Compile Include="CookieHelper.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper.Contrib\SqlMapperExtensions.Async.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper.Contrib\SqlMapperExtensions.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\CommandDefinition.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\CommandFlags.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\CustomPropertyTypeMap.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\DataTableHandler.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\DbString.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\DefaultTypeMap.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\DynamicParameters.CachedOutputSetters.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\DynamicParameters.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\DynamicParameters.ParamInfo.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\ExplicitConstructorAttribute.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\FeatureSupport.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SimpleMemberMap.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlDataRecordHandler.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlDataRecordListTVPParameter.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.Async.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.CacheInfo.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.DapperRow.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.DapperRowMetaObject.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.DapperTable.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.DeserializerState.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.DontMap.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.GridReader.Async.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.GridReader.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.ICustomQueryParameter.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.IDataReader.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.Identity.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.IDynamicParameters.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.IMemberMap.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.IParameterCallbacks.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.IParameterLookup.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.ITypeHandler.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.ITypeMap.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.Link.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.LiteralToken.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.Settings.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.TypeDeserializerCache.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.TypeHandler.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\SqlMapper.TypeHandlerCache.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\TableValuedParameter.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\TypeExtensions.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\UdtTypeHandler.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\WrappedDataReader.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\WrappedReader.cs" />
+    <Compile Include="encapsulation\Dapper\Dapper\XmlHandlers.cs" />
+    <Compile Include="encapsulation\T4\Template.cs" />
+    <Compile Include="encapsulation\T4\Template1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Template.tt</DependentUpon>
+    </Compile>
+    <Compile Include="encapsulation\T4\TemplateClass.cs" />
     <Compile Include="EncrptionHelper.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="IniConfig.cs" />
@@ -76,8 +134,82 @@
     <Compile Include="ReflectionHelper.cs" />
     <Compile Include="SerializeHelper.cs" />
     <Compile Include="SQLHelper.cs" />
+    <Compile Include="temp\AppConfig.cs" />
+    <Compile Include="temp\AppSettings.cs" />
+    <Compile Include="temp\AssemblyHelper.cs" />
+    <Compile Include="temp\Collection.cs" />
+    <Compile Include="temp\Converter.cs" />
+    <Compile Include="temp\Diff.cs" />
+    <Compile Include="temp\EnumHelper.cs" />
+    <Compile Include="temp\Fetch.cs" />
+    <Compile Include="temp\FileWatchHelper.cs" />
+    <Compile Include="temp\GeoHelper.cs" />
+    <Compile Include="temp\ImageUtil.cs" />
+    <Compile Include="temp\JsUtil.cs" />
+    <Compile Include="temp\MailHelper.cs" />
+    <Compile Include="temp\NetHelper.cs" />
+    <Compile Include="temp\ObjectHelper.cs" />
+    <Compile Include="temp\PermutationAndCombination.cs" />
+    <Compile Include="temp\PicHelper.cs" />
+    <Compile Include="temp\RegExp.cs" />
+    <Compile Include="temp\SecureCodeHelper.cs" />
+    <Compile Include="temp\SerializationHelper.cs" />
+    <Compile Include="temp\StringHelper.cs" />
+    <Compile Include="temp\StringUtil.cs" />
+    <Compile Include="temp\Temp.cs" />
+    <Compile Include="temp\TempTest.cs" />
+    <Compile Include="temp\ValidateCode\AnimatedGifEncoder.cs" />
+    <Compile Include="temp\ValidateCode\GifDecoder.cs" />
+    <Compile Include="temp\ValidateCode\LZWEncoder.cs" />
+    <Compile Include="temp\ValidateCode\NeuQuant.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCodeType.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style1.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style10.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style11.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style12.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style13.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style14.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style2.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style3.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style4.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style5.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style6.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style7.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style8.cs" />
+    <Compile Include="temp\ValidateCode\ValidateCode_Style9.cs" />
+    <Compile Include="temp\WcfServiceProxy.cs" />
+    <Compile Include="temp\ZipHelper1.cs" />
+    <Compile Include="temp\ZipHelper2.cs" />
+    <Compile Include="test\Constants.cs" />
+    <Compile Include="test\ExceptionHelper.cs" />
+    <Compile Include="test\FileOperateHelper.cs" />
+    <Compile Include="test\FileUpDownHelper.cs" />
+    <Compile Include="test\HttpHelper.cs" />
+    <Compile Include="test\PDFHelper.cs" />
+    <Compile Include="test\RedisHelper.cs" />
+    <Compile Include="test\RequestHelper.cs" />
+    <Compile Include="third-part\HttpCookieHelper.cs" />
+    <Compile Include="third-part\HttpHelper.cs" />
+    <Compile Include="third-part\HttpHelper2.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WebApiHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="encapsulation\T4\DBHelper.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="encapsulation\T4\Template.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Template1.cs</LastGenOutput>
+    </Content>
+    <Content Include="项目文档\代码规范.txt" />
+    <Content Include="项目文档\其他说明.txt" />
+    <Content Include="项目文档\发布说明.txt" />
+    <Content Include="项目文档\注释说明.txt" />
+    <Content Include="项目文档\需求文档.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,0 +1,25 @@
+﻿
+一.待完成:
+
+2.缓存类的实现,包括本地服务器缓存和redis等第三方缓存.
+
+3.MyHelper的已发布类库的单元测试.
+
+4.统一返回值,msg & code.
+
+5.MyHelper项目GitHub仅托管release版本,增加版本发布说明.readme.md文件.
+
+6.搜索引擎.
+
+7.爬虫程序,使用c#实现.
+
+8.工作流反射调用的类库.
+
+9.json&xml的处理，整理成通用类库.
+
+10.MyHelper的访问数据库的工厂类.
+
+
+
+二.已完成:
+api接口的实现.http://jianzhaoyang.com/MR-YY/p/5972380.html WebApi安全性 使用TOKEN+签名验证.
