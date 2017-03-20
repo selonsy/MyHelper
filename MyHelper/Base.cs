@@ -1,9 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2017-3-20
+// Modifyed：selonsy  
+// ModifyTime：2017-3-20  
+// Desc：
+// 基类
+// </summary> 
+
 using System.Web;
 
 namespace Devin

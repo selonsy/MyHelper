@@ -1,4 +1,13 @@
-﻿using System;
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2017-3-20
+// Modifyed：selonsy  
+// ModifyTime：2017-3-20  
+// Desc：
+// 配置管理类
+// </summary> 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;

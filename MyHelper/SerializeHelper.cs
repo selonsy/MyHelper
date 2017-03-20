@@ -1,7 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2017-3-20
+// Modifyed：selonsy  
+// ModifyTime：2017-3-20  
+// Desc：
+// 序列化帮助类
+// </summary> 
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
