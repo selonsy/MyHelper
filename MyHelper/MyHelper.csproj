@@ -193,6 +193,7 @@
     <Compile Include="third-part\HttpHelper2.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WebApiHelper.cs" />
+    <Compile Include="WebConfigHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="encapsulation\T4\DBHelper.ttinclude" />
