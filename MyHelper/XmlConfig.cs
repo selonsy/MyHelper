@@ -14,24 +14,33 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Devin
 {
     /// <summary>
-    /// 配置管理类(xxx.ini)
+    /// 配置管理类(xxx.config)
     /// </summary>
-    public class IniConfig
+    public class XmlConfig
     {
         #region private
 
         /// <summary>
         /// 配置项字典
         /// </summary>
-        private Dictionary<string, string> config_data;
+        private Dictionary<string, string> configdata;
         /// <summary>
         /// 配置文件路径
         /// </summary>
         private string fullFileName;
+        /// <summary>
+        /// Xml文档
+        /// </summary>
+        private XmlDocument _xml;
+        /// <summary>
+        /// XML的根节点
+        /// </summary>
+        private XmlElement _element;
 
         #endregion
 
@@ -39,9 +48,9 @@ namespace Devin
         /// 初始化
         /// </summary>
         /// <param name="_fileName">.ini文件的绝对路径</param>
-        public IniConfig(string _fileName)
+        public XmlConfig(string _fileName)
         {
-            config_data = new Dictionary<string, string>();
+            configdata = new Dictionary<string, string>();
             fullFileName = _fileName;
             bool hasCfgFile = File.Exists(fullFileName);
             if (hasCfgFile == false)
@@ -49,26 +58,23 @@ namespace Devin
                 StreamWriter writer = new StreamWriter(File.Create(fullFileName), Encoding.Default);
                 writer.Close();
             }
-            StreamReader reader = new StreamReader(fullFileName, Encoding.Default);
-            string line;
-            while ((line = reader.ReadLine()) != null)
+            else
             {
-                if (line.StartsWith(";") || line.StartsWith("[") || string.IsNullOrEmpty(line))
-                    continue;
-                else
+                //创建一个XML对象
+                _xml = new XmlDocument();
+                //加载XML文件
+                _xml.Load(fullFileName);
+                //为XML的根节点赋值
+                _element = _xml.DocumentElement;
+                foreach (XmlNode node in _element.ChildNodes)
                 {
-                    int index = line.IndexOf('=');
-                    if (index != -1)
-                    {
-                        string key = line.Substring(0, index).Trim();
-                        string value = line.Substring(index + 1, line.Length - index - 1).Trim();
-                        config_data.Add(key, value);
-                    }
+                    string key = node.Name;
+                    string value = node.InnerText;
+                    configdata.Add(key, value);
                 }
             }
-            reader.Close();
         }
-
+       
         /// <summary>
         /// 获取配置项
         /// </summary>
@@ -76,14 +82,14 @@ namespace Devin
         /// <returns></returns>
         public string get(string key)
         {
-            if (config_data.Count <= 0)
+            if (configdata.Count <= 0)
                 return null;
-            else if (config_data.ContainsKey(key))
-                return config_data[key].ToString();
+            else if (configdata.ContainsKey(key))
+                return configdata[key].ToString();
             else
                 return null;
         }
-
+        
         /// <summary>
         /// 设置配置项
         /// </summary>
@@ -91,27 +97,10 @@ namespace Devin
         /// <param name="value">配置项内容</param>
         public void set(string key, string value)
         {
-            if (config_data.ContainsKey(key))
-                config_data[key] = value;
+            if (configdata.ContainsKey(key))
+                configdata[key] = value;
             else
-                config_data.Add(key, value);
-        }
-
-        /// <summary>
-        /// 保存配置项
-        /// </summary>
-        public void save()
-        {
-            StreamWriter writer = new StreamWriter(fullFileName, false, Encoding.Default);
-            IDictionaryEnumerator enu = config_data.GetEnumerator();
-            while (enu.MoveNext())
-            {
-                if (enu.Key.ToString().StartsWith(";"))
-                    writer.WriteLine(enu.Value);
-                else
-                    writer.WriteLine(enu.Key + "=" + enu.Value);
-            }
-            writer.Close();
+                configdata.Add(key, value);
         }
 
         #region 属性
@@ -121,10 +110,7 @@ namespace Devin
         /// </summary>
         public Dictionary<string, string> ConfigData
         {
-            get
-            {
-                return config_data;
-            }
+            get { return configdata; }
         }
 
         #endregion

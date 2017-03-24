@@ -28,12 +28,7 @@ namespace Devin
         /// 默认数据库连接字符串(app.config)
         /// </summary>
         private static string connectionString = Base.ConnStr;
-
-        /// <summary>
-        /// 默认数据库连接字符串(web.config)
-        /// </summary>
-        private static string connectionString_w = System.Configuration.ConfigurationManager.AppSettings["ConnStr"].ToString().Trim();
-        
+     
         /// <summary>
         /// Hashtable to store cached parameters
         /// 用于存储缓存的参数信息
@@ -1062,6 +1057,30 @@ namespace Devin
 
         #endregion
 
+        /// <summary>
+        /// 验证数据库链接字符串是否有效 
+        /// </summary>
+        /// <param name="connstr"></param>
+        /// <returns></returns>
+        public static bool IsLegalConnStr(string connstr)
+        {
+            bool result = true;
+            SqlConnection conn = null;            
+            try
+            {
+                conn = new SqlConnection(connstr);
+                conn.Open();
+            }
+            catch(Exception ex)
+            {
+                result = false;                
+            }
+            finally
+            {
+                if (conn != null) conn.Close();
+            }
+            return result;
+        }
     }
 
     //快速扫描数据SQL语句

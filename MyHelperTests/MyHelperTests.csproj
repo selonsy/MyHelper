@@ -50,9 +50,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="BaseTests.cs" />
     <Compile Include="AppConfigTests.cs" />
     <Compile Include="CookieHelperTests.cs" />
-    <Compile Include="ExceptionHelperTests.cs" />
     <Compile Include="IniConfigTests.cs" />
     <Compile Include="LogHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

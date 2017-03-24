@@ -32,6 +32,9 @@ namespace Devin
                 <add key="JVersion" value="1.0.0.0" />
               </appSettings>
            </configuration>
+
+           优势:不会存在因为写错键名导致读取失败的情况.
+           劣势:每一个配置项都需要添加为属性.
         */
 
         /// <summary>

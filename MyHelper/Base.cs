@@ -8,6 +8,8 @@
 // 基类
 // </summary> 
 
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Web;
 
 namespace Devin
@@ -17,88 +19,76 @@ namespace Devin
     /// </summary>
     public class Base
     {
-        #region 私有变量
+        #region private
 
-        private static string _connstr;
-        private static string _logdefaultpath;
-        private static string _inipath;
-        private static string _databasetype;
-        private static string _isdebug;
-        private static string _jversion;
-        private static IniConfig config = new IniConfig(HttpRuntime.AppDomainAppPath.ToString() + "\\bin\\ufjnls.dll.ini");
+        /// <summary>
+        /// 配置项字典
+        /// </summary>
+        private static Dictionary<string, string> config_dic;
+
+        /// <summary>
+        /// 根据调用者的名称自动的获取配置项
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private static string ConfigDataValue([CallerMemberName] string key = null)
+        {
+            if (config_dic.Count <= 0)
+                return null;
+            else if (config_dic.ContainsKey(key.ToLower()))
+                return config_dic[key.ToLower()].ToString();
+            else
+                return null;
+        }
 
         #endregion
 
+        #region 构造函数
+
         /// <summary>
-        /// 构造函数(初始化配置信息)
+        /// 静态构造函数
         /// </summary>
-        public Base()
+        static Base()
         {
-            _connstr = WebConfigHelper.Connstr;
-            _logdefaultpath = WebConfigHelper.LogPath;
-            _isdebug = WebConfigHelper.IsDebug;
-            _databasetype = WebConfigHelper.DataBaseType;
-            _jversion = WebConfigHelper.JVersion;
+            Init_Config();
         }
 
         /// <summary>
-        /// IsDebug
+        /// 初始化配置信息,需要在应用程序启动时执行,如global.asax        
         /// </summary>
-        public static bool IsDebug
+        /// <param name="project_name"></param>
+        public static void Init_Config(string project_name = "default", int config_type = 1)
         {
-            get
+            string config_path = string.Empty;
+            if (config_type == ET.ConfigType.Xml.ToInt())
             {
-                if (_isdebug.IsNullOrEmpty())
-                {
-                    _isdebug = config.get("isdebug");                    
-                }
-                return _isdebug == "true";                
-            }            
-        } 
+                config_path = string.Format("C:\\webconfig\\{0}\\config.xml", project_name);
+                config_dic = new XmlConfig(config_path).ConfigData;
+            }
+            else if (config_type == ET.ConfigType.Ini.ToInt())
+            {
+                config_path = string.Format("C:\\webconfig\\{0}\\config.ini", project_name);
+                config_dic = new IniConfig(config_path).ConfigData;
+            }
+        }
 
-        /// <summary>
-        /// 数据库连接字符串
-        /// </summary>
-        public static string ConnStr
-        {
-            get
-            {
-                if (_connstr.IsNullOrEmpty())
-                {
-                    _connstr = config.get("connstr");
-                }
-                return _connstr;
-            }
-        }        
-     
-        /// <summary>
-        /// 日志文件路径
-        /// </summary>
-        public static string LogDefaultPath
-        {
-            get
-            {
-                if (_logdefaultpath.IsNullOrEmpty())
-                {
-                    _logdefaultpath = config.get("logpath");
-                }
-                return HttpRuntime.AppDomainAppPath.ToString() + _logdefaultpath;
-            }
-        }
-        
-        /// <summary>
-        /// 数据库类型
-        /// </summary>
-        public static string DataBaseType
-        {
-            get
-            {
-                if (_databasetype.IsNullOrEmpty())
-                {
-                    _databasetype = config.get("databasetype");
-                }
-                return _databasetype;
-            }
-        }
+        #endregion
+
+        //项目名称
+        public static string ProjectName { get { return ConfigDataValue(); } }
+        //数据库连接字符串
+        public static string ConnStr { get { return IsDebug ? ConnStr_Debug : ConnStr_Release; } }
+        //测试数据库
+        public static string ConnStr_Debug { get { return ConfigDataValue().Trim('\''); } }
+        //正式数据库
+        public static string ConnStr_Release { get { return ConfigDataValue().Trim('\''); } }
+        //数据库类型
+        public static string DataBaseType { get { return ConfigDataValue(); } }
+        //IsDebug
+        public static bool IsDebug { get { return ConfigDataValue().ToLower() == "true"; } }
+        //日志文件路径
+        public static string LogDefaultPath { get { return ConfigDataValue(); } }
+        //JS版本号
+        public static string JVersion { get { return ConfigDataValue(); } }
     }
 }
