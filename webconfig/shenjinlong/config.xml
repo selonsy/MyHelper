@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <isdebug>false</isdebug>
+  <databasetype>sqlserver</databasetype>
+  <connstr_debug>data source=.; initial catalog=shenjinlong; uid=sa; pwd=95938</connstr_debug>
+  <connstr_release>data source=qds16126820.my3w.com; initial catalog=qds16126820_db; uid=qds16126820; pwd=95270000</connstr_release>
+  <jversion>1000</jversion>
+  <logdefaultpath>c:/webconfig/logs/shenjinlong/</logdefaultpath>
+</config>
