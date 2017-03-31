@@ -72,8 +72,8 @@ namespace Devin
     /// </summary>
     public static class RedisHelper
     {
-        private static string _conn = ConfigurationManager.AppSettings["redis_connection_string"] ?? "127.0.0.1:6379";
-        private static string _pwd = ConfigurationManager.AppSettings["redis_connection_pwd"] ?? "123456";
+        private static string _conn = Base.ConnStr_Redis;
+        private static string _pwd = Base.ConnStr_Redis_Pwd;
 
         static ConnectionMultiplexer _redis;
         static readonly object _locker = new object();
@@ -163,6 +163,7 @@ namespace Devin
                 return false;
             }
         }
+        
         /// <summary>
         /// 是否存在
         /// </summary>

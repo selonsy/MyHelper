@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace Devin.Tests
 {
     [TestFixture()]
-    public class CookieHelperTests
+    public class RedisHelperTests
     {
         [Test()]
-        public void GetTest()
+        public void StringGetTest()
         {
             Assert.Fail();
         }

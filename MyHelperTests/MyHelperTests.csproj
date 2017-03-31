@@ -51,14 +51,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTests.cs" />
-    <Compile Include="AppConfigTests.cs" />
-    <Compile Include="CookieHelperTests.cs" />
-    <Compile Include="IniConfigTests.cs" />
     <Compile Include="LogHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionHelperTests.cs" />
+    <Compile Include="RedisHelperTests.cs" />
     <Compile Include="UtilsTests.cs" />
-    <Compile Include="ZipHelper1Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -33,7 +33,7 @@ namespace Devin
         /// <returns></returns>
         private static string ConfigDataValue([CallerMemberName] string key = null)
         {
-            if (config_dic.Count <= 0)
+            if (config_dic == null || config_dic.Count <= 0)
                 return null;
             else if (config_dic.ContainsKey(key.ToLower()))
                 return config_dic[key.ToLower()].ToString();
@@ -76,6 +76,7 @@ namespace Devin
 
         //项目名称
         public static string ProjectName { get { return ConfigDataValue(); } }
+
         //数据库连接字符串
         public static string ConnStr { get { return IsDebug ? ConnStr_Debug : ConnStr_Release; } }
         //测试数据库
@@ -84,6 +85,15 @@ namespace Devin
         public static string ConnStr_Release { get { return ConfigDataValue().Trim('\''); } }
         //数据库类型
         public static string DataBaseType { get { return ConfigDataValue(); } }
+
+        //Redis
+        public static string ConnStr_Redis { get { return IsDebug ? ConnStr_Redis_Debug : ConnStr_Redis_Release; } }
+        public static string ConnStr_Redis_Pwd { get { return IsDebug ? ConnStr_Redis_Debug_Pwd : ConnStr_Redis_Release_Pwd; } }
+        public static string ConnStr_Redis_Debug { get { return ConfigDataValue().Trim(); } }
+        public static string ConnStr_Redis_Debug_Pwd { get { return ConfigDataValue().Trim(); } }
+        public static string ConnStr_Redis_Release { get { return ConfigDataValue().Trim(); } }
+        public static string ConnStr_Redis_Release_Pwd { get { return ConfigDataValue().Trim(); } }
+
         //IsDebug
         public static bool IsDebug { get { return ConfigDataValue().ToLower() == "true"; } }
         //日志文件路径
