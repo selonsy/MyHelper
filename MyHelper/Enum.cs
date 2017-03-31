@@ -1,4 +1,5 @@
-﻿// <summary>  
+﻿
+// <summary>  
 // Copyright：Sichen International Co. Ltd.
 // Author：Devin
 // Date：2017-3-23  
