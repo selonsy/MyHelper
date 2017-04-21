@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -102,6 +103,20 @@ namespace Devin
         public static bool IsNotNullOrEmpty(this string s)
         {
             return !string.IsNullOrEmpty(s);
+        }
+
+        #endregion
+
+        #region Is/NotNull
+
+        public static bool IsNotNull(this object obj)
+        {
+            return obj != null;
+        }
+
+        public static bool IsNull(this object obj)
+        {
+            return obj == null;
         }
 
         #endregion
@@ -206,6 +221,23 @@ namespace Devin
         public static int ToInt(this Enum value)
         {
             return Convert.ToInt32(value);
+        }
+
+        #endregion
+
+        #region GetAttribute
+
+        public static T GetAttribute<T>(this object obj) where T : class
+        {
+            return obj.GetType().GetAttribute<T>();
+        }
+
+        public static T GetAttribute<T>(this Type type) where T : class
+        {
+            T t;
+            Attribute customAttribute = type.GetCustomAttribute(typeof(T));
+            t = (!customAttribute.IsNotNull() ? default(T) : (T)(customAttribute as T));
+            return t;
         }
 
         #endregion

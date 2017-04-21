@@ -94,6 +94,15 @@ namespace Devin
         public static string ConnStr_Redis_Release { get { return ConfigDataValue().Trim(); } }
         public static string ConnStr_Redis_Release_Pwd { get { return ConfigDataValue().Trim(); } }
 
+        //Mongo
+        public static string ConnStr_Mongo { get { return IsDebug ? ConnStr_Mongo_Debug : ConnStr_Mongo_Release; } }
+        public static string ConnStr_Mongo_Pwd { get { return IsDebug ? ConnStr_Mongo_Debug_Pwd : ConnStr_Mongo_Release_Pwd; } }
+        public static string ConnStr_Mongo_Debug { get { return ConfigDataValue().Trim(); } }
+        public static string ConnStr_Mongo_Debug_Pwd { get { return ConfigDataValue().Trim(); } }
+        public static string ConnStr_Mongo_Release { get { return ConfigDataValue().Trim(); } }
+        public static string ConnStr_Mongo_Release_Pwd { get { return ConfigDataValue().Trim(); } }
+
+
         //IsDebug
         public static bool IsDebug { get { return ConfigDataValue().ToLower() == "true"; } }
         //日志文件路径
