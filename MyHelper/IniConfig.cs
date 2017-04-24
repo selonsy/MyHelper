@@ -62,7 +62,15 @@ namespace Devin
                     {
                         string key = line.Substring(0, index).Trim();
                         string value = line.Substring(index + 1, line.Length - index - 1).Trim();
-                        config_data.Add(key, value);
+                        if (config_data.ContainsKey(key))
+                        {
+                            //同名的键值对,后面的有效
+                            config_data[key] = value;
+                        }
+                        else
+                        {
+                            config_data.Add(key, value);
+                        }                        
                     }
                 }
             }

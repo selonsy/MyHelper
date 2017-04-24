@@ -50,7 +50,7 @@ namespace Devin
         /// </summary>
         static Base()
         {
-            Init_Config();
+            //Init_Config();
         }
 
         /// <summary>

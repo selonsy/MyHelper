@@ -68,9 +68,20 @@ namespace Devin
                 _element = _xml.DocumentElement;
                 foreach (XmlNode node in _element.ChildNodes)
                 {
-                    string key = node.Name;
-                    string value = node.InnerText;
-                    configdata.Add(key, value);
+                    if (node.NodeType == XmlNodeType.Element)
+                    {
+                        string key = node.Name;
+                        string value = node.InnerText;
+                        if (configdata.ContainsKey(key))
+                        {
+                            //同名的键值对,后面的有效
+                            configdata[key] = value;
+                        }
+                        else
+                        {
+                            configdata.Add(key, value);
+                        }                        
+                    }
                 }
             }
         }
