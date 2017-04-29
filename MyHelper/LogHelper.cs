@@ -146,7 +146,7 @@ namespace Devin
         /// <summary>
         /// 日志文件目录 
         /// </summary>                
-        private static string defaultPath = Base.LogDefaultPath;
+        private static string defaultPath = Base.LogPath;
 
         /// <summary>
         /// 日志类型

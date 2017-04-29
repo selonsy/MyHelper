@@ -60,6 +60,7 @@ namespace Devin
             if (cookie != null)
             {
                 cookie.Expires = DateTime.Now.AddDays(-1);
+                cookie.Domain = HttpContext.Current.Request.Url.Host.ToLower();
                 Save(cookie);
             }
         }

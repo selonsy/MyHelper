@@ -22,6 +22,16 @@ namespace Devin
     /// </summary>
     public static class ET
     {
+        public enum SiteType
+        {
+            //阿里云虚拟主机(不带远程桌面)
+            aliyun_virtual = 1,
+            //阿里云主机(带远程桌面)
+            aliyun_realistic = 2,
+            //本地windows+iis
+            local_win_iis = 3
+        }
+
         /// <summary>
         /// 配置类型
         /// </summary>

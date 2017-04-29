@@ -50,14 +50,14 @@ namespace Devin
         /// </summary>
         static Base()
         {
-            //Init_Config();
+            Init_Config();
         }
 
         /// <summary>
         /// 初始化配置信息,需要在应用程序启动时执行,如global.asax        
         /// </summary>
         /// <param name="project_name"></param>
-        public static void Init_Config(string project_name = "default", int config_type = 1)
+        public static void Init_Config(string project_name = "default", int config_type = 1, string config_base_path = "")
         {
             string config_path = string.Empty;
             if (config_type == ET.ConfigType.Xml.ToInt())
@@ -69,6 +69,10 @@ namespace Devin
             {
                 config_path = string.Format("C:\\webconfig\\{0}\\config.ini", project_name);
                 config_dic = new IniConfig(config_path).ConfigData;
+            }
+            else
+            {
+                config_dic = new XmlConfig(config_base_path).ConfigData;
             }
         }
 
@@ -102,11 +106,25 @@ namespace Devin
         public static string ConnStr_Mongo_Release { get { return ConfigDataValue().Trim(); } }
         public static string ConnStr_Mongo_Release_Pwd { get { return ConfigDataValue().Trim(); } }
 
-
+        public static string Site_Path { get { return ConfigDataValue().Trim(); } }
         //IsDebug
         public static bool IsDebug { get { return ConfigDataValue().ToLower() == "true"; } }
+
+        //日志路径
+        public static string LogPath {
+            get
+            {                
+                if (Site_Path == ET.SiteType.aliyun_virtual.ToString())
+                {
+                    return HttpRuntime.AppDomainAppPath + "\\" + LogPath_Aliyun;
+                }
+                return LogPath_Default;
+            }
+        }       
         //日志文件路径
-        public static string LogDefaultPath { get { return ConfigDataValue(); } }
+        public static string LogPath_Default { get { return ConfigDataValue(); } }
+        public static string LogPath_Aliyun { get { return ConfigDataValue(); } }
+        
         //JS版本号
         public static string JVersion { get { return ConfigDataValue(); } }
     }
