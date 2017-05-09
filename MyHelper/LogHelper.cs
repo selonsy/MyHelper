@@ -8,7 +8,6 @@
 // 日志类
 // </summary> 
 
-
 using System;
 using System.IO;
 using System.Web;
@@ -202,7 +201,8 @@ namespace Devin
             try
             {
                 if (!File.Exists(fullName)) fs = new FileStream(fullName, FileMode.CreateNew);
-                else fs = new FileStream(fullName, FileMode.Append);
+                else fs = new FileStream(fullName, FileMode.Append, FileAccess.Write, FileShare.Write);
+                //else fs = new FileStream(fullName, FileMode.Append);
 
                 sw = new StreamWriter(fs);
                 sw.WriteLine(logContext);

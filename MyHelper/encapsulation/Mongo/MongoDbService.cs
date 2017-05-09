@@ -7,6 +7,7 @@ using Devin.MongoDB.Model;
 using Devin.MongoDB.MongoDbConfig;
 using MongoDB.Driver;
 using Devin;
+using MongoDB.Bson;
 
 namespace Devin.MongoDB
 {
@@ -453,6 +454,38 @@ namespace Devin.MongoDB
             where T : MongoEntity
         {
             return GetAsync(predicate, projector).Result;
+        }
+        public T GetOne<T>(string database, string collection, string _id)
+        {
+            var db = _mongoClient.GetDatabase(database);
+            var coll = db.GetCollection<T>(collection);
+
+            var find = coll.Find(string.Format("{{'_id':'{0}'}}", _id));
+            return find.FirstOrDefaultAsync().Result;
+        }
+
+        public List<T> GetList<T>(string database, string collection, string key)
+        {
+            var db = _mongoClient.GetDatabase(database);
+            var coll = db.GetCollection<T>(collection);
+
+            //format字符串本身包含{},需要使用@加上两个{或者}表示一个的方式处理
+            string where = string.Format(@"{{$or:[{{'基础信息.data.姓名':/{0}/}},{{'最高学历.学校':'{0}'}},{{'籍贯.省':'{0}'}},{{'籍贯.市':'{0}'}}]}}", key);
+
+            var find = coll.Find(where);
+            return find.ToListAsync().Result;
+        }
+
+        public BsonArray GetArray<T>(string database, string collection, string key)
+        {
+            var db = _mongoClient.GetDatabase(database);
+            var coll = db.GetCollection<T>(collection);
+
+            //format字符串本身包含{},需要使用@加上两个{或者}表示一个的方式处理
+            string where = string.Format(@"{{$or:[{{'基础信息.data.姓名':/{0}/}},{{'基础信息.data.最高学历.学校':'{0}'}},{{'基础信息.data.籍贯.省':'{0}'}},{{'基础信息.data.籍贯.市':'{0}'}}]}}", key);
+
+            var find = coll.Find(where);
+            return new BsonArray(find.ToListAsync().Result);
         }
 
         /// <summary>

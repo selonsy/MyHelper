@@ -165,9 +165,17 @@ namespace Devin
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static int ToInt(this string s)
+        public static int ToInt(this string s, bool is_exception = true)
         {
-            return int.Parse(s);
+            if (is_exception) { return int.Parse(s); }
+            try
+            {
+                return int.Parse(s);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         #endregion
