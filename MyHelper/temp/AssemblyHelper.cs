@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Web;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     /// <summary>
     /// 程序集反射辅助类

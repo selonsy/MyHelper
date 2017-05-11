@@ -8,7 +8,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     /// <summary>
     /// 噪点干扰(彩色)

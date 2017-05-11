@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
    public  class StringHelper
     {

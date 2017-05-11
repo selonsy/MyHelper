@@ -3,7 +3,7 @@ using System.Web;
 using System.Drawing;
 using System.Security.Cryptography;
 
-namespace Devin
+namespace Devin.Temp
 {
     /// <summary>
     /// 验证码类

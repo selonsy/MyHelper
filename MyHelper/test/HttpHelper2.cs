@@ -4,9 +4,9 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace ConsoleApplication1
+namespace Devin.Testing
 {
-    public static class HttpHelper
+    public static class HttpHelper2
     {
         private static readonly Encoding DEFAULTENCODE = Encoding.UTF8;
 

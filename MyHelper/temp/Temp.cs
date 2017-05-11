@@ -5,7 +5,7 @@ using System.Threading;
 using System.Xml;
 using System.Data;
 
-namespace Devin
+namespace Devin.Temp
 {
     #region 目录
 

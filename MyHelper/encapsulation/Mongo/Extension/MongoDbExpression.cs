@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using MongoDB.Driver;
 
-namespace Devin.MongoDB.Extension
+namespace Devin.MongoDB
 {
     #region Mongo更新字段表达式解析
     /// <summary>
@@ -18,7 +18,7 @@ namespace Devin.MongoDB.Extension
         /// <summary>
         /// 更新列表
         /// </summary>
-        internal List<UpdateDefinition<T>> UpdateDefinitionList = new List<UpdateDefinition<T>>();
+        List<UpdateDefinition<T>> UpdateDefinitionList = new List<UpdateDefinition<T>>();
         private string _fieldname;
 
         #endregion

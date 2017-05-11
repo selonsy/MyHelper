@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Text;
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     public enum SerializationType
     {

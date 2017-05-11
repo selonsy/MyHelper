@@ -15,7 +15,7 @@
 //using System.Text;
 //using System.IO.Compression;
 
-//namespace Devin
+//namespace Devin.Temp
 //{
 //    /// <summary>
 //    /// Zip帮助类:System.IO.Compression.ZipFile
@@ -38,7 +38,7 @@
 //                LogHelper.WriteException(ex);
 //            }
 //        }
-        
+
 //        /// <summary>
 //        /// 解压文件，将指定的压缩文件解压到指定的文件夹
 //        /// </summary>
@@ -62,7 +62,7 @@
 //        /// </summary>
 //        public static void AddFileToZip() 
 //        {
-            
+
 //        }
 
 //        //Todo:添加文件到指定的压缩文件中，待实现
@@ -71,7 +71,7 @@
 //        /// </summary>
 //        public static void GetFileFromZip() 
 //        { 
-            
+
 //        }
 
 //        //DotNetZip https://dotnetzip.codeplex.com/

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GMS.Framework.Utility
-{
+namespace Devin.Temp { 
     /// <summary>
     /// 枚举帮助类
     /// </summary>
-    public class EnumHelper
+public class EnumHelper
     {
         /// <summary>
         /// 转换如："enum1,enum2,enum3"字符串到枚举值

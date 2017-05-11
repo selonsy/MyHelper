@@ -3,7 +3,7 @@ using System.Collections;
 using System.Drawing;
 using System.IO;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
 
     public class GifDecoder

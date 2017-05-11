@@ -6,7 +6,7 @@ using System.IO;
 using System.Web;
 using System.Web.UI.HtmlControls;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     /// <summary>
     /// 水印位置

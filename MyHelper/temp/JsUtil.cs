@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.UI.HtmlControls ;
 using System.Web.UI;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     /// <summary>
     /// 提供向页面输出客户端代码实现特殊功能的方法

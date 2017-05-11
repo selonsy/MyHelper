@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devin
+namespace Devin.Testing
 {
     /// <summary>
     /// 通用请求类

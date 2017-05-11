@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
 
     public class LZWEncoder

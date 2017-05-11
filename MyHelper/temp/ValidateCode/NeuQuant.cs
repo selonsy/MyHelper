@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     public class NeuQuant
     {

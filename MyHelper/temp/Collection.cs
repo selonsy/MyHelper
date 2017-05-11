@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     public static class Collection
     {

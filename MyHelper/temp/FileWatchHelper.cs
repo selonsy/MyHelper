@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     public delegate void FileUpdate(object state);
 

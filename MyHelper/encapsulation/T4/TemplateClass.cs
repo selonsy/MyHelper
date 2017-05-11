@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devin
+namespace Devin.T4
 {
 
     /// <summary>

@@ -9,6 +9,7 @@
 // </summary> 
 
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Web;
 
@@ -63,16 +64,25 @@ namespace Devin
             if (config_type == ET.ConfigType.Xml.ToInt())
             {
                 config_path = string.Format("C:\\webconfig\\{0}\\config.xml", project_name);
-                config_dic = new XmlConfig(config_path).ConfigData;
+                if (File.Exists(config_path))
+                {
+                    config_dic = new XmlConfig(config_path).ConfigData;
+                }                
             }
             else if (config_type == ET.ConfigType.Ini.ToInt())
             {
                 config_path = string.Format("C:\\webconfig\\{0}\\config.ini", project_name);
-                config_dic = new IniConfig(config_path).ConfigData;
+                if (File.Exists(config_path))
+                {
+                    config_dic = new IniConfig(config_path).ConfigData;
+                }
             }
             else
             {
-                config_dic = new XmlConfig(config_base_path).ConfigData;
+                if (File.Exists(config_base_path))
+                {
+                    config_dic = new XmlConfig(config_base_path).ConfigData;
+                }                    
             }
         }
 

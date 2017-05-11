@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Collections.Generic;
 
-namespace Devin
+namespace Devin.Temp
 {
     /// <summary>
     /// Fetch操作类

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     // 算法：排列组合类
     // 调用方法如下：

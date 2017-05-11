@@ -16,7 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Devin
+namespace Devin.Temp
 {
     /// <summary>
     /// 图片处理类

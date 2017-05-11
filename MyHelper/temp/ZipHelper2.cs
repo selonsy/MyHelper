@@ -16,7 +16,7 @@ using ICSharpCode.SharpZipLib.Checksum;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Devin
+namespace Devin.Temp
 {
     /// <summary>
     /// Zip帮助类:ICSharpCode.SharpZipLib.Zip

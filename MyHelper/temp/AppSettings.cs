@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Specialized;
 
-namespace GMS.Framework.Utility
-{
+namespace Devin.Temp { 
     /// <summary>
     /// 配置文件appSettings节点的帮助方法
     /// </summary>
-    public class AppSettingsHelper {
+public class AppSettingsHelper {
         private static readonly NameValueCollection appSettings;
 
         static AppSettingsHelper() {

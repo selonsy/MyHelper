@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 
-namespace Devin.test
+namespace Devin.Testing
 {
     /// <summary>
     /// Xml的操作公共类

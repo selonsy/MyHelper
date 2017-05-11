@@ -5,7 +5,7 @@
 //using System.Xml;
 //using System.ServiceModel.Description;
 
-//namespace GMS.Framework.Utility
+//namespace Devin.Temp
 //{
 //    /// <summary>
 //    /// Wcf∞Ô÷˙¿‡

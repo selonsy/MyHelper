@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Devin.MongoDB.Extension;
+using Devin.MongoDB;
 using Devin.MongoDB.Model;
 using Devin.MongoDB.MongoDbConfig;
 using MongoDB.Driver;

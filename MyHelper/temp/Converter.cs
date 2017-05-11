@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace GMS.Framework.Utility
+namespace Devin.Temp
 {
     /// <summary>
     /// 各种值类型转换

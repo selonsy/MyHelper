@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Devin
+namespace Devin.Testing
 {
      /// <summary>
     /// Cookie操作帮助类

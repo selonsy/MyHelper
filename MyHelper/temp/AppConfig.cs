@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Devin
+namespace Devin.Temp
 {
 
     /// <summary>
