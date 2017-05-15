@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Devin.Temp
+namespace Devin
 {
     /// <summary>
     /// 常用正则匹配类

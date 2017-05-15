@@ -152,6 +152,8 @@
     <Compile Include="EncrptionHelper.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="test\PictureDownloader.cs" />
+    <Compile Include="test\SocketHelper.cs" />
+    <Compile Include="test\TcpHelper.cs" />
     <Compile Include="XmlConfig.cs" />
     <Compile Include="IniConfig.cs" />
     <Compile Include="LogHelper.cs" />
@@ -176,7 +178,7 @@
     <Compile Include="temp\ObjectHelper.cs" />
     <Compile Include="temp\PermutationAndCombination.cs" />
     <Compile Include="temp\PicHelper.cs" />
-    <Compile Include="temp\RegExp.cs" />
+    <Compile Include="RegExp.cs" />
     <Compile Include="temp\SecureCodeHelper.cs" />
     <Compile Include="temp\SerializationHelper.cs" />
     <Compile Include="temp\StringHelper.cs" />
@@ -241,7 +243,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /r /y $(TargetPath) "D:\00MyWorkSpace\01DotNetTest\Shenjinlong_aliyun\Shenjinlong_aliyun\bin"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

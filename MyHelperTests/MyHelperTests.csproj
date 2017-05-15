@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyHelper\MyHelper.csproj">
-      <Project>{EDDFD138-9D78-42BF-A0F9-B8615AB1CDEC}</Project>
+      <Project>{eddfd138-9d78-42bf-a0f9-b8615ab1cdec}</Project>
       <Name>MyHelper</Name>
     </ProjectReference>
   </ItemGroup>

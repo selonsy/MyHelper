@@ -43,7 +43,7 @@ namespace Devin.Tests
         public void LogDefaultPathTest()
         {
             string a = "";
-            string b = Base.LogDefaultPath;
+            string b = Base.LogPath;
             Assert.AreNotEqual(a, b);
         }
         [Test]

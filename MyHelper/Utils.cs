@@ -10,6 +10,8 @@
 
 using System;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 
 namespace Devin
 {
@@ -93,6 +95,29 @@ namespace Devin
         public static string GetNewGuid()
         {
             return Guid.NewGuid().ToString().Replace("-", "");
+        }
+
+        /// <summary>
+        /// 查看端口是否被占用
+        /// </summary>
+        /// <param name="port">端口号</param>
+        /// <returns></returns>
+        public static bool PortInUse(int port)
+        {
+            bool inUse = false;
+
+            IPGlobalProperties ipProperties = IPGlobalProperties.GetIPGlobalProperties();
+            IPEndPoint[] ipEndPoints = ipProperties.GetActiveTcpListeners();
+
+            foreach (IPEndPoint endPoint in ipEndPoints)
+            {
+                if (endPoint.Port == port)
+                {
+                    inUse = true;
+                    break;
+                }
+            }
+            return inUse;
         }
     }
 }
