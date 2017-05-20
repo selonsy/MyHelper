@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <RootNamespace>Devin</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETSTD14</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CacheHelper.cs" />
+    <Compile Remove="CookieHelper.cs" />
+    <Compile Remove="EncrptionHelper.cs" />
+    <Compile Remove="RedisHelper.cs" />
+    <Compile Remove="ReflectionHelper.cs" />
+    <Compile Remove="RegExp.cs" />
+    <Compile Remove="SerializeHelper.cs" />
+    <Compile Remove="SQLHelper.cs" />
+    <Compile Remove="WebApiHelper.cs" />
+    <Compile Remove="WebConfigHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.4.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+
+</Project>

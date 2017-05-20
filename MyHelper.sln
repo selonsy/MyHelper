@@ -3,9 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper", "MyHelper\MyHelper.csproj", "{EDDFD138-9D78-42BF-A0F9-B8615AB1CDEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelperOld", "MyHelperOld\MyHelperOld.csproj", "{EDDFD138-9D78-42BF-A0F9-B8615AB1CDEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelperTests", "MyHelperTests\MyHelperTests.csproj", "{2F005576-306D-41B5-A86C-20FA16C5D6E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelperTestsOld", "MyHelperTestsOld\MyHelperTestsOld.csproj", "{2F005576-306D-41B5-A86C-20FA16C5D6E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHelper.NetCore", "MyHelper.NetCore\MyHelper.NetCore.csproj", "{9FD790A0-58BE-4A9B-A3E9-8880D988AFFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.NetFramework", "MyHelper.NetFramework\MyHelper.NetFramework.csproj", "{03E2F195-20F6-42E4-A74A-D3556FA1874F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHelper.NetCore.Test", "MyHelper.NetCore.Test\MyHelper.NetCore.Test.csproj", "{82021A7F-0CF6-4642-A141-DD689DF52751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.NetFramework.Test", "MyHelper.NetFramework.Test\MyHelper.NetFramework.Test.csproj", "{C4534D79-F957-47E0-9961-E313650F8ED6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{F439C701-E15E-4561-A68F-F7041A8BAA52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary2", "ClassLibrary2\ClassLibrary2.csproj", "{9DF6B377-BD06-4654-98A3-60E2DE1F783E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.NetStandard", "MyHelper.NetStandard\MyHelper.NetStandard.csproj", "{E46F7DC9-B2D8-4010-B90E-14A89CF12226}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.NetStandard.Test", "MyHelper.NetStandard.Test\MyHelper.NetStandard.Test.csproj", "{AAF38E5D-74B3-4EC0-8563-77DE89830D2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppNetCore", "ConsoleAppNetCore\ConsoleAppNetCore.csproj", "{300B92FB-B0E9-4C06-B9B8-EB76984395C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppNetFramework", "ConsoleAppNetFramework\ConsoleAppNetFramework.csproj", "{4F256FD0-1FCE-4B5F-AF9A-6CFF279DC1CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +41,46 @@ Global
 		{2F005576-306D-41B5-A86C-20FA16C5D6E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F005576-306D-41B5-A86C-20FA16C5D6E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F005576-306D-41B5-A86C-20FA16C5D6E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD790A0-58BE-4A9B-A3E9-8880D988AFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD790A0-58BE-4A9B-A3E9-8880D988AFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD790A0-58BE-4A9B-A3E9-8880D988AFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD790A0-58BE-4A9B-A3E9-8880D988AFFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E2F195-20F6-42E4-A74A-D3556FA1874F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E2F195-20F6-42E4-A74A-D3556FA1874F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E2F195-20F6-42E4-A74A-D3556FA1874F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E2F195-20F6-42E4-A74A-D3556FA1874F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82021A7F-0CF6-4642-A141-DD689DF52751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82021A7F-0CF6-4642-A141-DD689DF52751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82021A7F-0CF6-4642-A141-DD689DF52751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82021A7F-0CF6-4642-A141-DD689DF52751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4534D79-F957-47E0-9961-E313650F8ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4534D79-F957-47E0-9961-E313650F8ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4534D79-F957-47E0-9961-E313650F8ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4534D79-F957-47E0-9961-E313650F8ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F439C701-E15E-4561-A68F-F7041A8BAA52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F439C701-E15E-4561-A68F-F7041A8BAA52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F439C701-E15E-4561-A68F-F7041A8BAA52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F439C701-E15E-4561-A68F-F7041A8BAA52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF6B377-BD06-4654-98A3-60E2DE1F783E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF6B377-BD06-4654-98A3-60E2DE1F783E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF6B377-BD06-4654-98A3-60E2DE1F783E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF6B377-BD06-4654-98A3-60E2DE1F783E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E46F7DC9-B2D8-4010-B90E-14A89CF12226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46F7DC9-B2D8-4010-B90E-14A89CF12226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46F7DC9-B2D8-4010-B90E-14A89CF12226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46F7DC9-B2D8-4010-B90E-14A89CF12226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF38E5D-74B3-4EC0-8563-77DE89830D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF38E5D-74B3-4EC0-8563-77DE89830D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF38E5D-74B3-4EC0-8563-77DE89830D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF38E5D-74B3-4EC0-8563-77DE89830D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{300B92FB-B0E9-4C06-B9B8-EB76984395C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{300B92FB-B0E9-4C06-B9B8-EB76984395C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{300B92FB-B0E9-4C06-B9B8-EB76984395C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{300B92FB-B0E9-4C06-B9B8-EB76984395C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F256FD0-1FCE-4B5F-AF9A-6CFF279DC1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F256FD0-1FCE-4B5F-AF9A-6CFF279DC1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F256FD0-1FCE-4B5F-AF9A-6CFF279DC1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F256FD0-1FCE-4B5F-AF9A-6CFF279DC1CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

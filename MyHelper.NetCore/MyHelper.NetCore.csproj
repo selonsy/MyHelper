@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>C:\webconfig\libs\myhelper</OutputPath>
+    <DocumentationFile></DocumentationFile>
+    <DefineConstants>TRACE;DEBUG;NETSTD14</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CacheHelper.cs" />
+    <Compile Remove="Constants.cs" />
+    <Compile Remove="CookieHelper.cs" />
+    <Compile Remove="EncrptionHelper.cs" />
+    <Compile Remove="Enum.cs" />
+    <Compile Remove="Extension.cs" />
+    <Compile Remove="IniConfig.cs" />
+    <Compile Remove="LogHelper.cs" />
+    <Compile Remove="RedisHelper.cs" />
+    <Compile Remove="ReflectionHelper.cs" />
+    <Compile Remove="RegExp.cs" />
+    <Compile Remove="SerializeHelper.cs" />
+    <Compile Remove="SQLHelper.cs" />
+    <Compile Remove="Utils.cs" />
+    <Compile Remove="WebApiHelper.cs" />
+    <Compile Remove="WebConfigHelper.cs" />
+    <Compile Remove="XmlConfig.cs" />
+  </ItemGroup>
+
+</Project>

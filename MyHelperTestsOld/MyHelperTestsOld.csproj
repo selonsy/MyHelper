@@ -61,7 +61,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyHelper\MyHelper.csproj">
+    <ProjectReference Include="..\MyHelperOld\MyHelperOld.csproj">
       <Project>{eddfd138-9d78-42bf-a0f9-b8615ab1cdec}</Project>
       <Name>MyHelper</Name>
     </ProjectReference>
