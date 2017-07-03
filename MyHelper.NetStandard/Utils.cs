@@ -20,7 +20,6 @@ namespace Devin
     /// </summary>
     public abstract class Utils
     {
-
         /// <summary>
         /// 数组比较(linq方式)
         /// </summary>
@@ -71,11 +70,7 @@ namespace Devin
         /// <returns>C#格式时间</returns>
         public static DateTime ConvertInt2DateTime(string timeStamp)
         {
-#if NET452
-            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-#elif NETSTD14
             DateTime dtStart = new DateTime(1970, 1, 1);
-#endif
             long lTime = long.Parse(timeStamp + "0000000");
             TimeSpan toNow = new TimeSpan(lTime);
             return dtStart.Add(toNow);
@@ -88,11 +83,7 @@ namespace Devin
         /// <returns>Unix时间戳格式</returns>
         public static int ConvertDateTime2Int(DateTime time)
         {
-#if NET452
-            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-#elif NETSTD14
-            DateTime startTime = new DateTime(1970, 1, 1);
-#endif            
+            DateTime startTime = new DateTime(1970, 1, 1);   
             return (int)(time - startTime).TotalSeconds;
         }
 
@@ -105,7 +96,7 @@ namespace Devin
             return Guid.NewGuid().ToString().Replace("-", "");
         }
 
-#if NET452
+#if NETFRAMEWORK
         /// <summary>
         /// 查看端口是否被占用
         /// </summary>

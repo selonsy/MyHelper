@@ -8,8 +8,8 @@
 // 基类
 // </summary> 
 
-//NET452:   .NET Framework 4.5.2
-//NETSTD14: .NET Standard  1.4
+//NET452    ,NETFRAMEWORK  :   .NET Framework 4.5.2
+//NETSTD14  ,NETSTANDARD   :   .NET Standard  1.4
 
 using System;
 using System.Collections.Generic;
@@ -141,6 +141,17 @@ namespace Devin
                 else return DBRedis_Release_Connstr;
             }
         }
+        /// <summary>
+        /// Redis密码
+        /// </summary>
+        public static string DBRedisPwd
+        {
+            get
+            {
+                if (IsDebug) return DBRedis_Debug_Pwd;
+                else return DBRedis_Release_Pwd;
+            }
+        }
         #endregion
 
         #region 私有属性
@@ -177,9 +188,17 @@ namespace Devin
         /// </summary>
         private static string DBRedis_Debug_Connstr { get { return ConfigDataValue(); } }
         /// <summary>
+        /// redis数据库密码(debug)
+        /// </summary>
+        private static string DBRedis_Debug_Pwd { get { return ConfigDataValue(); } }
+        /// <summary>
         /// redis数据库地址(release)
         /// </summary>
         private static string DBRedis_Release_Connstr { get { return ConfigDataValue(); } }
+        /// <summary>
+        /// redis数据库密码(release)
+        /// </summary>
+        private static string DBRedis_Release_Pwd { get { return ConfigDataValue(); } }
         #endregion   
     }
 }

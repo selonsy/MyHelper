@@ -7,6 +7,7 @@
 // Desc：
 // 扩展类
 // </summary> 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,6 @@ namespace Devin
     /// </summary>
     public static class Extension
     {
-
         #region Format String
 
         /// <summary>

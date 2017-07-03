@@ -27,7 +27,7 @@ namespace Devin
         /// <summary>
         /// 默认数据库连接字符串(app.config)
         /// </summary>
-        private static string connectionString = Base.ConnStr;
+        private static string connectionString = Config.DBSqlServerStr;
      
         /// <summary>
         /// Hashtable to store cached parameters
@@ -46,7 +46,11 @@ namespace Devin
         /// <returns></returns>
         private static void SetConStr(string connectionStringSign)
         {
-            connectionString = System.Configuration.ConfigurationManager.AppSettings[connectionStringSign].ToString().Trim();
+#if NETFRAMEWORK
+		    connectionString = System.Configuration.ConfigurationManager.AppSettings[connectionStringSign].ToString().Trim();
+#elif NETSTANDARD
+            //Todo:
+#endif
         }
 
         /// <summary>
@@ -60,7 +64,9 @@ namespace Devin
             parmCache[cacheKey] = commandParameters;
         }
 
-        /// <summary>
+#if NETFRAMEWORK
+
+		/// <summary>
         /// Retrieve cached parameters
         /// 根据键值返回缓存的参数数组
         /// </summary>
@@ -76,6 +82,10 @@ namespace Devin
                 clonedParms[i] = (SqlParameter)((ICloneable)cachedParms[i]).Clone();
             return clonedParms;
         }
+
+#elif NETSTANDARD
+
+#endif
 
         /// <summary>
         /// 为执行命令准备参数
@@ -589,6 +599,8 @@ namespace Devin
 
         #endregion
 
+#if NETFRAMEWORK
+
         #region ExecuteDataSet
 
         /// <summary>
@@ -975,6 +987,10 @@ namespace Devin
         }
 
         #endregion
+
+#elif NETSTANDARD
+
+#endif
 
         #region IsExists
 
