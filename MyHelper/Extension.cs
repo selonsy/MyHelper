@@ -7,13 +7,10 @@
 // Desc：
 // 扩展类
 // </summary> 
+using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Devin
 {
@@ -246,6 +243,33 @@ namespace Devin
             Attribute customAttribute = type.GetCustomAttribute(typeof(T));
             t = (!customAttribute.IsNotNull() ? default(T) : (T)(customAttribute as T));
             return t;
+        }
+
+        #endregion
+
+        #region NewtonSoft For MongoDb
+
+        public static JObject ToCommon(this JObject value)
+        {
+            if (value.Property("_id") != null)
+            {
+                value["id"] = value["_id"]["$oid"];
+                value.Remove("_id");
+            }
+            return value;
+        }
+
+        public static JArray ToCommon(this JArray array)
+        {
+            foreach (JObject item in array)
+            {
+                if (item.Property("_id") != null)
+                {
+                    item["id"] = item["_id"]["$oid"];
+                    item.Remove("_id");
+                }
+            }           
+            return array;
         }
 
         #endregion
