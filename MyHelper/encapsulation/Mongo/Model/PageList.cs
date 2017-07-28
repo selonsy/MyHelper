@@ -39,7 +39,6 @@ namespace Devin.MongoDB.Model
             get { return _items; }
         }
 
-
         private readonly int _pageSize;
         /// <summary>
         /// 页项

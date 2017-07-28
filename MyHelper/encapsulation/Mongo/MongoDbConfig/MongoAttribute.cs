@@ -3,11 +3,18 @@
 namespace Devin.MongoDB.MongoDbConfig
 {
     #region Mongo实体标签
+
     /// <summary>
     /// Mongo实体标签
     /// </summary>
     public class MongoAttribute : Attribute
     {
+        public MongoAttribute(string collection)
+        {
+            Database = Base.ConnStr_Mongo.Split(';')[1];
+            Collection = collection;
+        }
+
         public MongoAttribute(string database, string collection)
         {
             Database = database;
@@ -15,15 +22,16 @@ namespace Devin.MongoDB.MongoDbConfig
         }
 
         /// <summary>
-        /// 交换机名称
+        /// 数据库名称
         /// </summary>
         public string Database { get; private set; }
 
         /// <summary>
-        /// 队列名称
+        /// 集合名称
         /// </summary>
         public string Collection { get; private set; }
 
     }
+
     #endregion
 }

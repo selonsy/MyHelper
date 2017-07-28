@@ -7,9 +7,11 @@
 // Desc：
 // 扩展类
 // </summary> 
+using MongoDB.Bson;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Devin
@@ -247,7 +249,7 @@ namespace Devin
 
         #endregion
 
-        #region NewtonSoft For MongoDb
+        #region NewtonSoft
 
         public static JObject ToCommon(this JObject value)
         {
@@ -272,6 +274,73 @@ namespace Devin
             return array;
         }
 
+        #endregion
+
+        #region MongoDb
+
+        /// <summary>
+        /// 格式化Json字符串
+        /// </summary>
+        /// <param name="bson"></param>
+        /// <returns></returns>
+        public static object ToCommonJsonObj(this BsonValue bson)
+        {
+            StringBuilder sb = new StringBuilder();
+            switch (bson.BsonType)
+            {
+                case BsonType.Array:
+                    {
+                        var arr = bson as BsonArray;
+                        sb.Append("[");
+                        foreach (var item in arr)
+                        {
+                            sb.Append(item.ToCommonJsonObj());
+                            sb.Append(",");
+                        }
+                        sb.Remove(sb.Length - 1, 1);
+                        sb.Append("]");
+                    }; break;
+                case BsonType.Document:
+                    {
+                        var doc = bson as BsonDocument;
+                        sb.Append("{");
+                        foreach (var kv in doc)
+                        {
+                            sb.Append($"\"{kv.Name}\":{kv.Value.ToCommonJsonObj()},");
+                        }
+                        sb.Remove(sb.Length - 1, 1);
+                        sb.Append("}");
+
+                    }; break;
+                case BsonType.Boolean:
+                    {
+                        return (bson as BsonBoolean).Value ? true : false;
+                    }                   
+                case BsonType.Double:
+                    return bson.AsDouble;
+                case BsonType.Int32:
+                    return bson.AsInt32;
+                case BsonType.Int64:
+                    return bson.AsInt64;                    
+                case BsonType.DateTime:
+                    return $"\"{bson.ToLocalTime().ToString()}\"";
+                case BsonType.Null:
+                    return "";                    
+                case BsonType.ObjectId:
+                case BsonType.String:
+                    return $"\"{bson.ToString()}\"";                    
+                default:
+                    {
+                        return $"\"{bson.ToString()}\"";
+                    };
+            }
+            return sb.ToString();
+        }
+
+        public static string ToCommonJson(this BsonValue bson)
+        {
+            return bson.ToCommonJsonObj().ToString();
+        }
         #endregion
     }
 }

@@ -161,7 +161,7 @@ namespace Devin.MongoDB
                 case BsonType.Undefined:
                 case BsonType.Null:
                     result = true;
-                    break;              
+                    break;
                 case BsonType.Int32:
                     result = bv.AsInt32 == 0;
                     break;
@@ -184,34 +184,34 @@ namespace Devin.MongoDB
                 default:
                     result = string.IsNullOrEmpty(bv.ToString());
                     break;
-                //case BsonType.EndOfDocument:
-                //    break;
-                //case BsonType.Double:
-                //    break;
-                //case BsonType.Binary:
-                //    break;               
-                //case BsonType.ObjectId:
-                //    break;
-                //case BsonType.Boolean:
-                //    break;
-                //case BsonType.DateTime:
-                //    break;               
-                //case BsonType.RegularExpression:
-                //    break;
-                //case BsonType.JavaScript:
-                //    break;
-                //case BsonType.Symbol:
-                //    break;
-                //case BsonType.JavaScriptWithScope:
-                //    break;
-                //case BsonType.Timestamp:
-                //    break;
-                //case BsonType.Decimal128:
-                //    break;
-                //case BsonType.MinKey:
-                //    break;
-                //case BsonType.MaxKey:
-                //    break;
+                    //case BsonType.EndOfDocument:
+                    //    break;
+                    //case BsonType.Double:
+                    //    break;
+                    //case BsonType.Binary:
+                    //    break;               
+                    //case BsonType.ObjectId:
+                    //    break;
+                    //case BsonType.Boolean:
+                    //    break;
+                    //case BsonType.DateTime:
+                    //    break;               
+                    //case BsonType.RegularExpression:
+                    //    break;
+                    //case BsonType.JavaScript:
+                    //    break;
+                    //case BsonType.Symbol:
+                    //    break;
+                    //case BsonType.JavaScriptWithScope:
+                    //    break;
+                    //case BsonType.Timestamp:
+                    //    break;
+                    //case BsonType.Decimal128:
+                    //    break;
+                    //case BsonType.MinKey:
+                    //    break;
+                    //case BsonType.MaxKey:
+                    //    break;
             }
             return result;
         }
@@ -283,7 +283,6 @@ namespace Devin.MongoDB
                  {"else",new[] { (int)States.IN_SUB_PATH, (int)Actions.APPEND } }
             });
 
-
             pathStateMachine.Add((int)States.IN_SINGLE_QUOTE, new Dictionary<string, int[]>()
             {
                 {"'",new[] { (int)States.IN_SUB_PATH, (int)Actions.APPEND } },
@@ -305,8 +304,7 @@ namespace Devin.MongoDB
         }
 
         /**
-         * Determine the type of a character in a keypath.
-         *
+         * Determine the type of a character in a keypath.         
          * @param {Char} ch
          * @return {String} type
          */
@@ -361,8 +359,7 @@ namespace Devin.MongoDB
         /**
          * Format a subPath, return its plain form if it is
          * a literal string or number. Otherwise prepend the
-         * dynamic indicator (*).
-         *
+         * dynamic indicator (*).         
          * @param {String} path
          * @return {String}
          */
@@ -393,20 +390,19 @@ namespace Devin.MongoDB
         }
 
         /**
-         * Check if an expression is a literal value.
-         *
+         * Check if an expression is a literal value.         
          * @param {String} exp
          * @return {Boolean}
          */
         static string literalValueRE = "^\\s?(true|false|-?[\\d\\.]+|'[^']*'|\"[^\"]*\")\\s?$";
+
         static bool isLiteral(string exp)
         {
             return new Regex(literalValueRE).IsMatch(exp);
         }
 
         /**
-         * Strip quotes from a string
-         *
+         * Strip quotes from a string        
          * @param {String} str
          * @return {String | false}
          */
@@ -516,8 +512,7 @@ namespace Devin.MongoDB
             }
 
             /**
-             * Parse a string path into an array of segments
-             *
+             * Parse a string path into an array of segments             
              * @param {String} path
              * @return {Array|undefined}
              */
@@ -537,8 +532,8 @@ namespace Devin.MongoDB
                     transition = typeMap.ContainsKey(type) ? typeMap[type] : typeMap.ContainsKey("else") ? typeMap["else"] : new[] { (int)States.ERROR };
                     if (transition[0] == (int)States.ERROR)
                     {
-                        // parse error
-                        return null; 
+                        //parse error
+                        return null;
                     }
                     mode = transition[0];
                     action = transition.Length > 1 ? actions[transition[1]] : null;
