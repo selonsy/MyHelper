@@ -7,6 +7,7 @@
 // Desc：
 // 扩展类
 // </summary> 
+using Devin.MongoDB;
 using MongoDB.Bson;
 using Newtonsoft.Json.Linq;
 using System;
@@ -291,6 +292,8 @@ namespace Devin
                 case BsonType.Array:
                     {
                         var arr = bson as BsonArray;
+                        if (arr.IsEmptyValue()) { sb.Append(arr.ToString()); break; }
+
                         sb.Append("[");
                         foreach (var item in arr)
                         {
@@ -303,6 +306,8 @@ namespace Devin
                 case BsonType.Document:
                     {
                         var doc = bson as BsonDocument;
+                        if (doc.IsEmptyValue()) { sb.Append(doc.ToString()); break; }
+
                         sb.Append("{");
                         foreach (var kv in doc)
                         {
