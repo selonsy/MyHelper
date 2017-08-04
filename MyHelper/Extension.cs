@@ -271,7 +271,7 @@ namespace Devin
                     item["id"] = item["_id"]["$oid"];
                     item.Remove("_id");
                 }
-            }           
+            }
             return array;
         }
 
@@ -319,21 +319,21 @@ namespace Devin
                     }; break;
                 case BsonType.Boolean:
                     {
-                        return (bson as BsonBoolean).Value ? true : false;
-                    }                   
+                        return (bson as BsonBoolean).Value ? "true" : "false";
+                    }
                 case BsonType.Double:
                     return bson.AsDouble;
                 case BsonType.Int32:
                     return bson.AsInt32;
                 case BsonType.Int64:
-                    return bson.AsInt64;                    
+                    return bson.AsInt64;
                 case BsonType.DateTime:
                     return $"\"{bson.ToLocalTime().ToString()}\"";
                 case BsonType.Null:
-                    return "";                    
+                    return "";
                 case BsonType.ObjectId:
                 case BsonType.String:
-                    return $"\"{bson.ToString()}\"";                    
+                    return $"\"{bson.ToString()}\"";
                 default:
                     {
                         return $"\"{bson.ToString()}\"";
