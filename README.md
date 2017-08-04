@@ -34,3 +34,4 @@ This is a helper library which includes many useful classes.
 * MailHelper
 * NetHelper
 
+Best Regards.
