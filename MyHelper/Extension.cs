@@ -22,6 +22,22 @@ namespace Devin
     /// </summary>
     public static class Extension
     {
+        #region Substring
+
+        /// <summary>
+        /// 字符串正则截取
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="begin"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public static string SubReg(this string str, string begin, string end)
+        {
+            Regex rg = new Regex("(?<=(" + begin + "))[.\\s\\S]*?(?=(" + end + "))", RegexOptions.Multiline | RegexOptions.Singleline);
+            return rg.Match(str).Value;
+        }
+     
+        #endregion
 
         #region Format String
 
