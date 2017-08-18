@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config>
-  <isdebug>true</isdebug>
-  <connstr>user id=sa;password=95938;initial catalog=selonsy;datasource=localhost;connect Timeout=20</connstr>
-</config>
-

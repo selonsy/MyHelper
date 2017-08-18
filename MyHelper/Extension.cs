@@ -233,6 +233,28 @@ namespace Devin
             return new DateTime(1900, 01, 01, 00, 00, 00);
         }
 
+        /// <summary>
+        /// 将JS时间戳(毫秒)转换成C#的DateTime
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <param name="jsTimeStamp"></param>
+        /// <returns></returns>
+        public static DateTime ToLocalDateTime(this long jsTimeStamp, bool is_unix = false)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            DateTime dt = is_unix ? startTime.AddSeconds(jsTimeStamp) : startTime.AddMilliseconds(jsTimeStamp);
+            return dt;
+        }
+
+        public static long GetTimeStamp(this DateTime datetime, bool is_unix = false)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            long timeStamp = is_unix ? (long)(datetime - startTime).TotalSeconds : (long)(datetime - startTime).TotalMilliseconds;
+            return timeStamp;
+        }
+
+
+
         #endregion
 
         #region Enum
