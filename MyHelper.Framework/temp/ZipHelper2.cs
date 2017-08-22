@@ -12,9 +12,7 @@
 using System;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Checksum;
-using System.Collections.Generic;
-using System.Text;
+using ICSharpCode.SharpZipLib.Checksums;
 
 namespace Devin.Temp
 {
