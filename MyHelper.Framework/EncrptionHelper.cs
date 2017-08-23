@@ -14,7 +14,9 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 using System.Globalization;
+#if NETFRAMEWORK
 using System.Web.Security;
+#endif
 using System.Collections;
 
 namespace Devin
@@ -107,6 +109,8 @@ namespace Devin
             return sb.ToString();                       
         }
 
+#if NETFRAEWORK
+
         /// <summary>
         /// MD5加密字符串(已过时)
         /// </summary>
@@ -116,6 +120,10 @@ namespace Devin
         {
             return FormsAuthentication.HashPasswordForStoringInConfigFile(encryptString, "md5");
         }
+
+#elif NETSTANDARD
+
+#endif
 
         /// <summary>
         /// MD5加密字符串
@@ -142,11 +150,11 @@ namespace Devin
             return result;
         }
 
-        #endregion
+#endregion
         
-        #region RSA
+#region RSA
 
-        #region 公钥和私钥
+#region 公钥和私钥
 
         /// <summary>
         /// RSA公钥
@@ -166,7 +174,7 @@ namespace Devin
         //    string privateKey = rsa1.ToXmlString(true); // 私钥和公钥
         //}
 
-        #endregion
+#endregion
 
         /// <summary>
         /// RSA加密
@@ -226,9 +234,9 @@ namespace Devin
             return Encoding.UTF8.GetString(cipherbytes);
         }
 
-        #endregion
+#endregion
 
-        #region Mysoft
+#region Mysoft
 
         /// <summary>
         /// 明源的加密函数
@@ -328,17 +336,17 @@ namespace Devin
             return strBuff + new String(' ', inStr.Length - intLen);
         }
 
-        #endregion
+#endregion
     }
 
-    #region DES加密详解_测试 
+#region DES加密详解_测试 
 
     /// <summary>
     /// DES实体类，仅用于DESHelper的返回
     /// </summary>
     class DESEntity
     {
-        #region 属性定义
+#region 属性定义
         /// <summary>
         /// 加密后的字符串
         /// </summary>
@@ -351,11 +359,11 @@ namespace Devin
         /// 转化成字符串的IV
         /// </summary>
         public string IVstr { get; set; }
-        #endregion
+#endregion
 
-        #region 构造函数
+#region 构造函数
 
-        #endregion
+#endregion
     }
 
     /// <summary>
@@ -363,7 +371,7 @@ namespace Devin
     /// </summary>
     class DESHelper
     {
-        #region 加密知识
+#region 加密知识
         /*
          加密方式：3重DES
          <生成key和IV>
@@ -384,13 +392,13 @@ namespace Devin
               所以从字符串到字节流的转换是需要指定使用何种编码的。在解密之后，要从字节流转换到字符串就要使用相同的代码页解码，
               否则就会出现乱码。
         */
-        #endregion
+#endregion
 
-        #region 字段定义
+#region 字段定义
 
-        #endregion
+#endregion
 
-        #region 属性定义
+#region 属性定义
         /// <summary>
         /// 编码方式
         /// </summary>
@@ -403,9 +411,9 @@ namespace Devin
         /// IV数组
         /// </summary>
         public byte[] IVArray { get; set; }
-        #endregion
+#endregion
 
-        #region 构造方法
+#region 构造方法
         /// <summary>
         /// 实例化EncryptionHelper对象
         /// </summary>
@@ -427,9 +435,9 @@ namespace Devin
             IVArray = tDESalg.IV;
             EncodingType = encodeType;
         }
-        #endregion
+#endregion
 
-        #region 加密和解密
+#region 加密和解密
         /// <summary>
         /// 加密方法
         /// </summary>
@@ -514,9 +522,9 @@ namespace Devin
             return result;
         }
 
-        #endregion
+#endregion
 
-        #region 编码和解码
+#region 编码和解码
         /// <summary>
         /// 将字符串编码为字节流-系统自带
         /// </summary>
@@ -559,9 +567,9 @@ namespace Devin
             }
             return result;
         }
-        #endregion
+#endregion
 
-        #region 加密底层处理过程
+#region 加密底层处理过程
 
         /// <summary>
         /// 将一个明文的二进制流转换成一个加密的二进制流
@@ -598,9 +606,9 @@ namespace Devin
             //返回值
             return ret;
         }
-        #endregion
+#endregion
 
-        #region 解密底层处理过程
+#region 解密底层处理过程
         /// <summary>
         /// 将一个加密后的二进制数据流进行解密，产生一个明文的二进制数据流
         /// </summary>
@@ -633,8 +641,8 @@ namespace Devin
             //返回值
             return DecryptDataArray;
         }
-        #endregion
+#endregion
     }
 
-    #endregion
+#endregion
 }

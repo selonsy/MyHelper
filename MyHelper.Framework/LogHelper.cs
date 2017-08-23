@@ -237,7 +237,7 @@ namespace Devin
 #if NETFRAMEWORK
 		    result += "[TargetSite]" + ex.TargetSite + "\r\n";
 #elif NETSTANDARD
-
+            
 #endif
             result += "[Data]" + ex.Data + "\r\n";
             result += "[StackTrace]\r\n" + ex.StackTrace + "\r\n";

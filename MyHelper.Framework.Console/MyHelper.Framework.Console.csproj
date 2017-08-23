@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyHelper.Framework\MyHelper.Framework.csproj">
+      <Project>{eddfd138-9d78-42bf-a0f9-b8615ab1cdec}</Project>
+      <Name>MyHelper.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

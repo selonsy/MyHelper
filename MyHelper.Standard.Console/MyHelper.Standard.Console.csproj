@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyHelper.Standard\MyHelper.Standard.csproj" />
+  </ItemGroup>
+
 </Project>
