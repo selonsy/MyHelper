@@ -18,8 +18,8 @@ namespace Devin
     /// 日志类
     /// </summary>
     public static class LogHelper
-    {        
-      
+    {
+
         #region Exception日志
 
         /// <summary>
@@ -145,8 +145,9 @@ namespace Devin
         /// <summary>
         /// 日志文件目录 
         /// </summary>                
-        private static string defaultPath = Base.LogPath;
+        private static string defaultPath = Config.LogPath + "//" + Config.ProjectName;
 
+        private static object _lock = new object();
         /// <summary>
         /// 日志类型
         /// </summary>
@@ -177,7 +178,7 @@ namespace Devin
         /// <param name="path">日志存放路径</param>
         /// <param name="logType">日志类型</param>
         private static void MyWriteLog(string msg, string path, LogType logType)
-        {                     
+        {
             string fileName = path.Trim('\\') + "\\" + logType + "\\" + CreateFileName(logType);
             WriteFile(msg, fileName);
         }
@@ -200,23 +201,22 @@ namespace Devin
 
             try
             {
-                if (!File.Exists(fullName)) fs = new FileStream(fullName, FileMode.CreateNew);
-                else fs = new FileStream(fullName, FileMode.Append, FileAccess.Write, FileShare.Write);
-                //else fs = new FileStream(fullName, FileMode.Append);
-
+                fs = new FileStream(fullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+                fs.Seek(0, SeekOrigin.End);
                 sw = new StreamWriter(fs);
-                sw.WriteLine(logContext);
+                lock (_lock)
+                {
+                    sw.WriteLine(logContext);
+                }
             }
             finally
             {
                 if (sw != null)
                 {
-                    sw.Close();
                     sw.Dispose();
                 }
                 if (fs != null)
                 {
-                    fs.Close();
                     fs.Dispose();
                 }
             }
@@ -232,10 +232,14 @@ namespace Devin
             string result = string.Empty;
             result += "\r\n堆栈信息:";
             result += "\r\n[GetType]" + ex.GetType() + "\r\n";
-            result += "[Message]"+ex.Message + "\r\n";
+            result += "[Message]" + ex.Message + "\r\n";
             result += "[Source]" + ex.Source + "\r\n";
-            result += "[TargetSite]" + ex.TargetSite + "\r\n";
-            result += "[Data]" + ex.Data + "\r\n";                       
+#if NETFRAMEWORK
+		    result += "[TargetSite]" + ex.TargetSite + "\r\n";
+#elif NETSTANDARD
+
+#endif
+            result += "[Data]" + ex.Data + "\r\n";
             result += "[StackTrace]\r\n" + ex.StackTrace + "\r\n";
             return result;
         }
@@ -252,10 +256,10 @@ namespace Devin
         {
             //Result
             string result;
-                
+
             //Header
             string header = string.Format("[{0}][{1} {2}] ", logtype.ToString(), DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
-            
+
             //Msg
             msg = string.Format(msg, ps);
             if (ex != null)

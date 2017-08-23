@@ -43,7 +43,6 @@ namespace Devin.Temp
 
         public static void SendEmail(string subject, string content)
         {
-            //TODO
             return;
         }
     }

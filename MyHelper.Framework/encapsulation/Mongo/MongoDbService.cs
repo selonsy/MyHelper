@@ -19,7 +19,7 @@ namespace Devin.MongoDB
     {
         #region 初始化
 
-        private readonly string _connString = Base.ConnStr_Mongo;
+        private readonly string _connString = Config.DBMongoStr;
         private readonly MongoClient _mongoClient;
 
         public MongoDbService()

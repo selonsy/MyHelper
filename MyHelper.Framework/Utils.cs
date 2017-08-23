@@ -55,7 +55,7 @@ namespace Devin
                     if (arr1[i] == arr2[j]) flag[i] = true;
                 }
             }
-            if (strict){ return strictFlag; }
+            if (strict) { return strictFlag; }
             foreach (var item in flag)
             {
                 //遍历bool数组,还有false,就说明有不同的值,结果返回false
@@ -71,7 +71,7 @@ namespace Devin
         /// <returns>C#格式时间</returns>
         public static DateTime ConvertInt2DateTime(string timeStamp)
         {
-            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            DateTime dtStart = new DateTime(1970, 1, 1);
             long lTime = long.Parse(timeStamp + "0000000");
             TimeSpan toNow = new TimeSpan(lTime);
             return dtStart.Add(toNow);
@@ -84,7 +84,7 @@ namespace Devin
         /// <returns>Unix时间戳格式</returns>
         public static int ConvertDateTime2Int(DateTime time)
         {
-            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            DateTime startTime = new DateTime(1970, 1, 1);
             return (int)(time - startTime).TotalSeconds;
         }
 
@@ -97,6 +97,7 @@ namespace Devin
             return Guid.NewGuid().ToString().Replace("-", "");
         }
 
+#if NETFRAMEWORK
         /// <summary>
         /// 查看端口是否被占用
         /// </summary>
@@ -119,5 +120,6 @@ namespace Devin
             }
             return inUse;
         }
+#endif
     }
 }

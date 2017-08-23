@@ -1273,9 +1273,6 @@ namespace Devin.Temp
     //{
     //    public UpLoadFiles()
     //    {
-    //        //
-    //        // TODO: 在此处添加构造函数逻辑
-    //        //
     //    }
 
     //    public string UploadFile(string filePath, int maxSize, string[] fileType, System.Web.UI.HtmlControls.HtmlInputFile TargetFile)
@@ -3223,9 +3220,6 @@ namespace Devin.Temp
     //{
     //    public GridViewExport()
     //    {
-    //        //
-    //        // TODO: Add constructor logic here
-    //        //
     //    }
 
     //    public static void Export(string fileName, GridView gv)

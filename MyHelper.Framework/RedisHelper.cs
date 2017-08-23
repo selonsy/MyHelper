@@ -11,9 +11,7 @@ using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
 using System.ComponentModel;
-using System.Configuration;
 using System.Reflection;
-using System.Text;
 
 namespace Devin
 {
@@ -72,8 +70,8 @@ namespace Devin
     /// </summary>
     public static class RedisHelper
     {
-        private static string _conn = Base.ConnStr_Redis;
-        private static string _pwd = Base.ConnStr_Redis_Pwd;
+        private static string _conn = Config.DBRedisStr;
+        private static string _pwd = Config.DBRedisPwd;
 
         static ConnectionMultiplexer _redis;
         static readonly object _locker = new object();
@@ -246,7 +244,10 @@ namespace Devin
             }
 
             FieldInfo field = type.GetField(name);
-            DescriptionAttribute attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
+
+            DescriptionAttribute attribute = field.GetCustomAttribute<DescriptionAttribute>();
+
+            //DescriptionAttribute attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
 
             if (attribute == null && nameInstead == true)
             {

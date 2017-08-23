@@ -38,7 +38,8 @@ namespace Devin
         public enum ConfigType
         {
             Xml = 1,
-            Ini = 2
+            Ini = 2,
+            Json = 3,
         }
 
         /// <summary>
