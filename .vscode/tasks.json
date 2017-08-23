@@ -1,0 +1,37 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "build_console",
+            "command": "dotnet",
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "args": [
+                "build", //组成dotnet build
+                //设置需要编译的项目，如果存在多个启动项目可以设置成解决方案文件（.sln）,这里只有一个项目所以设置运行项目也可以
+                "${workspaceRoot}\\MyHelperDotNetCore\\MyHelperConsole\\MyHelperConsole.csproj"
+            ],            
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "build_unit",
+            "command": "dotnet",
+            "type": "shell",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "args": [
+                "test", //组成dotnet test
+                //设置需要编译的项目，如果存在多个启动项目可以设置成解决方案文件（.sln）,这里只有一个项目所以设置运行项目也可以
+                "${workspaceRoot}\\MyHelperDotNetCore\\MyHelperXunit\\MyHelperXunit.csproj"
+            ],            
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

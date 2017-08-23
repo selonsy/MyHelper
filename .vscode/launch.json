@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [       
+        {
+            "name": "MyHelperConsole Debug",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_console",
+            "program": "${workspaceRoot}/MyHelperDotNetCore/MyHelperConsole/bin/Debug/netcoreapp1.1/MyHelperConsole.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}/MyHelperDotNetCore/MyHelperConsole",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}
