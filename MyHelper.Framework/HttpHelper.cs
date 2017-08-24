@@ -1,14 +1,13 @@
-﻿/// <summary>
-/// 类说明：HttpHelper类，用来实现Http访问，Post或者Get方式的，直接访问，带Cookie的，带证书的等方式，可以设置代理
-/// 重要提示：请不要自行修改本类，如果因为你自己修改后将无法升级到新版本。如果确实有什么问题请到官方网站提建议，
-/// 我们一定会及时修改
-/// 编码日期：2011-09-20
-/// 编 码 人：苏飞
-/// 联系方式：361983679  
-/// 官方网址：http://www.sufeinet.com/thread-3-1-1.html
-/// 修改日期：2016-12-05
-/// 版 本 号：1.7
-/// </summary>
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2016-10-20
+// Modifyed：selonsy  
+// ModifyTime：2016-10-20  
+// Desc：
+// Http请求类
+// </summary> 
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,14 +20,14 @@ using System.Net.Security;
 using System.Linq;
 using System.Net.Cache;
 
-namespace Devin.Testing
+namespace Devin
 {
     /// <summary>
     /// Http连接操作帮助类
     /// </summary>
     public class HttpHelper
     {
-        #region 预定义方变量
+        #region 预定义变量
         //默认的编码
         private Encoding encoding = Encoding.Default;
         //Post数据编码
@@ -44,7 +43,7 @@ namespace Devin.Testing
         #region Public
 
         /// <summary>
-        /// 根据相传入的数据，得到相应页面数据
+        /// 根据相传入的数据,得到相应页面数据
         /// </summary>
         /// <param name="item">参数类对象</param>
         /// <returns>返回HttpResult类型</returns>
@@ -91,6 +90,7 @@ namespace Devin.Testing
             if (item.IsToLower) result.Html = result.Html.ToLower();
             return result;
         }
+
         #endregion
 
         #region GetData
@@ -260,7 +260,7 @@ namespace Devin.Testing
             request.Accept = item.Accept;
             //ContentType返回类型
             request.ContentType = item.ContentType;
-            //UserAgent客户端的访问类型，包括浏览器版本和操作系统信息
+            //UserAgent客户端的访问类型,包括浏览器版本和操作系统信息
             request.UserAgent = item.UserAgent;
             // 编码
             encoding = item.Encoding;
@@ -289,9 +289,9 @@ namespace Devin.Testing
         {
             if (!string.IsNullOrWhiteSpace(item.CerPath))
             {
-                //这一句一定要写在创建连接的前面。使用回调的方法进行证书验证。
+                //这一句一定要写在创建连接的前面.使用回调的方法进行证书验证.
                 ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(CheckValidationResult);
-                //初始化对像，并设置请求的URL地址
+                //初始化对像,并设置请求的URL地址
                 request = (HttpWebRequest)WebRequest.Create(item.URL);
                 SetCerList(item);
                 //将证书添加到请求里
@@ -299,7 +299,7 @@ namespace Devin.Testing
             }
             else
             {
-                //初始化对像，并设置请求的URL地址
+                //初始化对像,并设置请求的URL地址
                 request = (HttpWebRequest)WebRequest.Create(item.URL);
                 SetCerList(item);
             }
@@ -412,7 +412,6 @@ namespace Devin.Testing
             }
         }
 
-
         #endregion
 
         #region private main
@@ -427,7 +426,7 @@ namespace Devin.Testing
         private bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors) { return true; }
 
         /// <summary>
-        /// 通过设置这个属性，可以在发出连接的时候绑定客户端发出连接所使用的IP地址。 
+        /// 通过设置这个属性,可以在发出连接的时候绑定客户端发出连接所使用的IP地址. 
         /// </summary>
         /// <param name="servicePoint"></param>
         /// <param name="remoteEndPoint"></param>
@@ -441,6 +440,7 @@ namespace Devin.Testing
     }
 
     #region public calss
+
     /// <summary>
     /// Http请求参考类
     /// </summary>
@@ -450,6 +450,7 @@ namespace Devin.Testing
         /// 请求URL必须填写
         /// </summary>
         public string URL { get; set; }
+
         string _Method = "GET";
         /// <summary>
         /// 请求方式默认为GET方式,当为POST方式时必须设置Postdata的值
@@ -459,6 +460,7 @@ namespace Devin.Testing
             get { return _Method; }
             set { _Method = value; }
         }
+
         int _Timeout = 100000;
         /// <summary>
         /// 默认请求超时时间
@@ -468,6 +470,7 @@ namespace Devin.Testing
             get { return _Timeout; }
             set { _Timeout = value; }
         }
+
         int _ReadWriteTimeout = 30000;
         /// <summary>
         /// 默认写入Post数据超时间
@@ -477,19 +480,22 @@ namespace Devin.Testing
             get { return _ReadWriteTimeout; }
             set { _ReadWriteTimeout = value; }
         }
+
         /// <summary>
         /// 设置Host的标头信息
         /// </summary>
         public string Host { get; set; }
+
         Boolean _KeepAlive = true;
         /// <summary>
-        ///  获取或设置一个值，该值指示是否与 Internet 资源建立持久性连接默认为true。
+        ///  获取或设置一个值,该值指示是否与 Internet 资源建立持久性连接,默认为true.
         /// </summary>
         public Boolean KeepAlive
         {
             get { return _KeepAlive; }
             set { _KeepAlive = value; }
         }
+
         string _Accept = "text/html, application/xhtml+xml, */*";
         /// <summary>
         /// 请求标头值 默认为text/html, application/xhtml+xml, */*
@@ -499,6 +505,7 @@ namespace Devin.Testing
             get { return _Accept; }
             set { _Accept = value; }
         }
+
         string _ContentType = "text/html";
         /// <summary>
         /// 请求返回类型默认 text/html
@@ -508,6 +515,7 @@ namespace Devin.Testing
             get { return _ContentType; }
             set { _ContentType = value; }
         }
+
         string _UserAgent = "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)";
         /// <summary>
         /// 客户端访问信息默认Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
@@ -517,10 +525,12 @@ namespace Devin.Testing
             get { return _UserAgent; }
             set { _UserAgent = value; }
         }
+
         /// <summary>
         /// 返回数据编码默认为NUll,可以自动识别,一般为utf-8,gbk,gb2312
         /// </summary>
         public Encoding Encoding { get; set; }
+
         private PostDataType _PostDataType = PostDataType.String;
         /// <summary>
         /// Post的数据类型
@@ -530,52 +540,62 @@ namespace Devin.Testing
             get { return _PostDataType; }
             set { _PostDataType = value; }
         }
+
         /// <summary>
         /// Post请求时要发送的字符串Post数据
         /// </summary>
         public string Postdata { get; set; }
+
         /// <summary>
         /// Post请求时要发送的Byte类型的Post数据
         /// </summary>
         public byte[] PostdataByte { get; set; }
+
         /// <summary>
         /// Cookie对象集合
         /// </summary>
         public CookieCollection CookieCollection { get; set; }
+
         /// <summary>
         /// 请求时的Cookie
         /// </summary>
         public string Cookie { get; set; }
+
         /// <summary>
-        /// 来源地址，上次访问地址
+        /// 来源地址,上次访问地址
         /// </summary>
         public string Referer { get; set; }
+
         /// <summary>
         /// 证书绝对路径
         /// </summary>
         public string CerPath { get; set; }
+
         /// <summary>
-        /// 设置代理对象，不想使用IE默认配置就设置为Null，而且不要设置ProxyIp
+        /// 设置代理对象,不想使用IE默认配置就设置为Null,而且不要设置ProxyIp.
         /// </summary>
         public WebProxy WebProxy { get; set; }
+
         private Boolean isToLower = false;
         /// <summary>
-        /// 是否设置为全文小写，默认为不转化
+        /// 是否设置为全文小写,默认为不转化
         /// </summary>
         public Boolean IsToLower
         {
             get { return isToLower; }
             set { isToLower = value; }
         }
+
         private Boolean allowautoredirect = false;
         /// <summary>
-        /// 支持跳转页面，查询结果将是跳转后的页面，默认是不跳转
+        /// 支持跳转页面,查询结果将是跳转后的页面,默认是不跳转
         /// </summary>
         public Boolean Allowautoredirect
         {
             get { return allowautoredirect; }
             set { allowautoredirect = value; }
         }
+
         private int connectionlimit = 1024;
         /// <summary>
         /// 最大连接数
@@ -585,6 +605,7 @@ namespace Devin.Testing
             get { return connectionlimit; }
             set { connectionlimit = value; }
         }
+
         /// <summary>
         /// 代理Proxy 服务器用户名
         /// </summary>
@@ -597,6 +618,7 @@ namespace Devin.Testing
         /// 代理 服务IP,如果要使用IE代理就设置为ieproxy
         /// </summary>
         public string ProxyIp { get; set; }
+
         private ResultType resulttype = ResultType.String;
         /// <summary>
         /// 设置返回类型String和Byte
@@ -606,6 +628,7 @@ namespace Devin.Testing
             get { return resulttype; }
             set { resulttype = value; }
         }
+
         private WebHeaderCollection header = new WebHeaderCollection();
         /// <summary>
         /// header对象
@@ -615,27 +638,32 @@ namespace Devin.Testing
             get { return header; }
             set { header = value; }
         }
+
         /// <summary>
-        /// 获取或设置用于请求的 HTTP 版本。返回结果:用于请求的 HTTP 版本。默认为 System.Net.HttpVersion.Version11。
+        /// 获取或设置用于请求的 HTTP 版本.返回结果:用于请求的 HTTP 版本.默认为 System.Net.HttpVersion.Version11.
         /// </summary>
         public Version ProtocolVersion { get; set; }
+
         private Boolean _expect100continue = false;
         /// <summary>
-        ///  获取或设置一个 System.Boolean 值，该值确定是否使用 100-Continue 行为。如果 POST 请求需要 100-Continue 响应，则为 true；否则为 false。默认值为 true。
+        ///  获取或设置一个 System.Boolean 值,该值确定是否使用 100-Continue 行为.如果 POST 请求需要 100-Continue 响应,则为 true；否则为 false.默认值为 true.
         /// </summary>
         public Boolean Expect100Continue
         {
             get { return _expect100continue; }
             set { _expect100continue = value; }
         }
+
         /// <summary>
         /// 设置509证书集合
         /// </summary>
         public X509CertificateCollection ClentCertificates { get; set; }
+
         /// <summary>
         /// 设置或获取Post参数编码,默认的为Default编码
         /// </summary>
         public Encoding PostEncoding { get; set; }
+
         private ResultCookieType _ResultCookieType = ResultCookieType.String;
         /// <summary>
         /// Cookie返回类型,默认的是只返回字符串类型
@@ -645,29 +673,32 @@ namespace Devin.Testing
             get { return _ResultCookieType; }
             set { _ResultCookieType = value; }
         }
+
         private ICredentials _ICredentials = CredentialCache.DefaultCredentials;
         /// <summary>
-        /// 获取或设置请求的身份验证信息。
+        /// 获取或设置请求的身份验证信息.
         /// </summary>
         public ICredentials ICredentials
         {
             get { return _ICredentials; }
             set { _ICredentials = value; }
         }
+
         /// <summary>
         /// 设置请求将跟随的重定向的最大数目
         /// </summary>
         public int MaximumAutomaticRedirections { get; set; }
+
         private DateTime? _IfModifiedSince = null;
         /// <summary>
-        /// 获取和设置IfModifiedSince，默认为当前日期和时间
+        /// 获取和设置IfModifiedSince,默认为当前日期和时间
         /// </summary>
         public DateTime? IfModifiedSince
         {
             get { return _IfModifiedSince; }
             set { _IfModifiedSince = value; }
         }
-        #region ip-port
+
         private IPEndPoint _IPEndPoint = null;
         /// <summary>
         /// 设置本地的出口ip和端口
@@ -680,8 +711,8 @@ namespace Devin.Testing
             get { return _IPEndPoint; }
             set { _IPEndPoint = value; }
         }
-        #endregion
     }
+
     /// <summary>
     /// Http返回参数类
     /// </summary>
@@ -691,39 +722,47 @@ namespace Devin.Testing
         /// Http请求返回的Cookie
         /// </summary>
         public string Cookie { get; set; }
+
         /// <summary>
         /// Cookie对象集合
         /// </summary>
         public CookieCollection CookieCollection { get; set; }
+
         private string _html = string.Empty;
         /// <summary>
-        /// 返回的String类型数据 只有ResultType.String时才返回数据，其它情况为空
+        /// 返回的String类型数据 只有ResultType.String时才返回数据,其它情况为空
         /// </summary>
         public string Html
         {
             get { return _html; }
             set { _html = value; }
         }
+
         /// <summary>
-        /// 返回的Byte数组 只有ResultType.Byte时才返回数据，其它情况为空
+        /// 返回的Byte数组 只有ResultType.Byte时才返回数据,其它情况为空
         /// </summary>
         public byte[] ResultByte { get; set; }
+
         /// <summary>
         /// header对象
         /// </summary>
         public WebHeaderCollection Header { get; set; }
+
         /// <summary>
         /// 返回状态说明
         /// </summary>
         public string StatusDescription { get; set; }
+
         /// <summary>
         /// 返回状态码,默认为OK
         /// </summary>
         public HttpStatusCode StatusCode { get; set; }
+
         /// <summary>
         /// 最后访问的URl
         /// </summary>
         public string ResponseUri { get; set; }
+
         /// <summary>
         /// 获取重定向的URl
         /// </summary>
@@ -756,6 +795,7 @@ namespace Devin.Testing
             }
         }
     }
+
     /// <summary>
     /// 返回类型
     /// </summary>
@@ -770,24 +810,26 @@ namespace Devin.Testing
         /// </summary>
         Byte
     }
+
     /// <summary>
     /// Post的数据格式默认为string
     /// </summary>
     public enum PostDataType
     {
         /// <summary>
-        /// 字符串类型，这时编码Encoding可不设置
+        /// 字符串类型,这时编码Encoding可不设置
         /// </summary>
         String,
         /// <summary>
-        /// Byte类型，需要设置PostdataByte参数的值编码Encoding可设置为空
+        /// Byte类型,需要设置PostdataByte参数的值编码Encoding可设置为空
         /// </summary>
         Byte,
         /// <summary>
-        /// 传文件，Postdata必须设置为文件的绝对路径，必须设置Encoding的值
+        /// 传文件,Postdata必须设置为文件的绝对路径,必须设置Encoding的值
         /// </summary>
         FilePath
     }
+
     /// <summary>
     /// Cookie返回类型
     /// </summary>
@@ -802,5 +844,6 @@ namespace Devin.Testing
         /// </summary>
         CookieCollection
     }
+
     #endregion
 }

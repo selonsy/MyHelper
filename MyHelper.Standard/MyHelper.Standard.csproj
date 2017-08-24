@@ -22,6 +22,8 @@
 	<Compile Include="..\MyHelper.Framework\ReflectionHelper.cs" />
 	<Compile Include="..\MyHelper.Framework\EncrptionHelper.cs" />	
 	<Compile Include="..\MyHelper.Framework\WebApiHelper.cs" />	
+	<Compile Include="..\MyHelper.Framework\UploadFileHelper.cs" />	
+	<Compile Include="..\MyHelper.Framework\HttpHelper.cs" />	
 	<Compile Include="..\MyHelper.Framework\encapsulation\Mongo\Extension\MongoDbExpression.cs" Link="Mongo\Extension\MongoDbExpression.cs" />
     <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\Extension\MongoDbExtension.cs" Link="Mongo\Extension\MongoDbExtension.cs" />
     <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\Model\PageList.cs" Link="Mongo\Model\PageList.cs" />

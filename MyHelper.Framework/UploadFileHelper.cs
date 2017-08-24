@@ -4,9 +4,9 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace Devin.Testing
+namespace Devin
 {
-    public static class HttpHelper2
+    public static class UploadFileHelper
     {
         private static readonly Encoding DEFAULTENCODE = Encoding.UTF8;
 
@@ -91,10 +91,10 @@ namespace Devin.Testing
                 {
                     stream.Write(boundarybytes, 0, boundarybytes.Length);
                     string header = string.Format(headerTemplate, "file" + i, Path.GetFileName(files[i]));
-                    byte[] headerbytes = encoding.GetBytes(header);                    
+                    byte[] headerbytes = encoding.GetBytes(header);
                     stream.Write(headerbytes, 0, headerbytes.Length);
                     using (FileStream fileStream = new FileStream(files[i], FileMode.Open, FileAccess.Read))
-                    {                        
+                    {
                         while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
                         {
                             stream.Write(buffer, 0, bytesRead);

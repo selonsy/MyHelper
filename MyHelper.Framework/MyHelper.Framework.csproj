@@ -144,7 +144,6 @@
     <Compile Include="encapsulation\T4\TemplateClass.cs" />
     <Compile Include="EncrptionHelper.cs" />
     <Compile Include="Extension.cs" />
-    <Compile Include="test\PictureDownloader.cs" />
     <Compile Include="test\SocketHelper.cs" />
     <Compile Include="test\TcpHelper.cs" />
     <Compile Include="LogHelper.cs" />
@@ -202,14 +201,11 @@
     <Compile Include="test\ExceptionHelper.cs" />
     <Compile Include="test\FileOperateHelper.cs" />
     <Compile Include="test\FileUpDownHelper.cs" />
-    <Compile Include="test\HttpHelper1.cs" />
     <Compile Include="test\PDFHelper.cs" />
     <Compile Include="RedisHelper.cs" />
-    <Compile Include="test\RequestHelper.cs" />
     <Compile Include="test\XmlHelper.cs" />
-    <Compile Include="test\HttpCookieHelper.cs" />
-    <Compile Include="test\HttpHelper.cs" />
-    <Compile Include="test\HttpHelper2.cs" />
+    <Compile Include="HttpHelper.cs" />
+    <Compile Include="UploadFileHelper.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WebApiHelper.cs" />
     <Compile Include="WebConfigHelper.cs" />
