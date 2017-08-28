@@ -14,19 +14,35 @@ using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Checksums;
 
-namespace Devin.Temp
+namespace Devin
 {
     /// <summary>
     /// Zip帮助类:ICSharpCode.SharpZipLib.Zip
     /// </summary>
-    public static class ZipHelper2
+    public static class ZipHelper
     {
         /// <summary>
         /// 100MB写一次
         /// </summary>
         public static int avg = 1024 * 1024 * 100;
 
-        #region 压缩文件、文件夹
+        /// <summary>
+        /// 添加文件到指定的压缩文件中
+        /// </summary>
+        public static void AddFileToZip()
+        {
+            //todo:添加文件到指定的压缩文件中
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 从压缩文件中获取指定名称的文件
+        /// </summary>
+        public static void GetFileFromZip()
+        {
+            //todo:从压缩文件中获取指定名称的文件
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// 压缩文件、文件夹
@@ -45,7 +61,7 @@ namespace Devin.Temp
         /// <param name="FolderToZip">待压缩的文件夹，全路径格式</param>
         /// <param name="ZipedFile">压缩后生成的压缩文件名，全路径格式</param>
         /// <returns>压缩是否成功</returns>
-        public static bool ZipNo(string FolderToZip, string ZipedFile)
+        public static bool ZipWithoutTop(string FolderToZip, string ZipedFile)
         {
             if (!Directory.Exists(FolderToZip))
                 return false;
@@ -123,10 +139,6 @@ namespace Devin.Temp
             }
         }
 
-        #endregion
-
-        #region 解压
-
         /// <summary>  
         /// 解压zip格式的文件
         /// </summary>  
@@ -196,8 +208,9 @@ namespace Devin.Temp
             }
             return true;
         }
-        
-        #endregion
+
+        #region private
+
 
         #region 压缩目录
 
@@ -374,5 +387,8 @@ namespace Devin.Temp
         }
 
         #endregion
+
+        #endregion
+
     }
 }

@@ -11,6 +11,8 @@ using Devin.MongoDB;
 using MongoDB.Bson;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -18,111 +20,10 @@ using System.Text.RegularExpressions;
 namespace Devin
 {
     /// <summary>
-    /// 扩展类
+    /// object(默认)
     /// </summary>
-    public static class Extension
+    public static partial class Extension
     {
-        #region Substring
-
-        /// <summary>
-        /// 字符串正则截取
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="begin"></param>
-        /// <param name="end"></param>
-        /// <returns></returns>
-        public static string SubReg(this string str, string begin, string end)
-        {
-            Regex rg = new Regex("(?<=(" + begin + "))[.\\s\\S]*?(?=(" + end + "))", RegexOptions.Multiline | RegexOptions.Singleline);
-            return rg.Match(str).Value;
-        }
-     
-        #endregion
-
-        #region Format String
-
-        /// <summary>
-        /// Format String
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static string FormatWith(this string format, params object[] param)
-        {
-            return string.Format(format, param);
-        }
-        /// <summary>
-        /// Format String
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="arg0"></param>
-        /// <returns></returns>
-        public static string FormatWith(this string format, object arg0)
-        {
-            return string.Format(format, arg0);
-        }
-        /// <summary>
-        /// Format String
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="arg0"></param>
-        /// <param name="arg1"></param>
-        /// <returns></returns>
-        public static string FormatWith(this string format, object arg0, object arg1)
-        {
-            return string.Format(format, arg0, arg1);
-        }
-        /// <summary>
-        /// Format String
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="arg0"></param>
-        /// <param name="arg1"></param>
-        /// <param name="arg2"></param>
-        /// <returns></returns>
-        public static string FormatWith(this string format, object arg0, object arg1, object arg2)
-        {
-            return string.Format(format, arg0, arg1, arg2);
-        }
-        /// <summary>
-        /// Format String
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="arg0"></param>
-        /// <param name="arg1"></param>
-        /// <param name="arg2"></param>
-        /// <param name="arg3"></param>
-        /// <returns></returns>
-        public static string FormatWith(this string format, object arg0, object arg1, object arg2, object arg3)
-        {
-            return string.Format(format, arg0, arg1, arg2, arg3);
-        }
-
-        #endregion
-
-        #region Is/NotNullOrEmpty
-
-        /// <summary>
-        /// IsNullOrEmpty
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static bool IsNullOrEmpty(this string s)
-        {
-            return string.IsNullOrEmpty(s);
-        }
-        /// <summary>
-        /// IsNotNullOrEmpty
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static bool IsNotNullOrEmpty(this string s)
-        {
-            return !string.IsNullOrEmpty(s);
-        }
-
-        #endregion
-
         #region Is/NotNull
 
         public static bool IsNotNull(this object obj)
@@ -137,91 +38,30 @@ namespace Devin
 
         #endregion
 
-        #region Match
+        #region GetAttribute
 
-        /// <summary>
-        /// Match
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="pattern"></param>
-        /// <returns></returns>
-        public static bool IsMatch(this string s, string pattern)
+        public static T GetAttribute<T>(this object obj) where T : class
         {
-            if (s == null) return false;
-            else return Regex.IsMatch(s, pattern);
+            return obj.GetType().GetAttribute<T>();
         }
-        /// <summary>
-        /// Match
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="pattern"></param>
-        /// <returns></returns>
-        public static string Match(this string s, string pattern)
+
+        public static T GetAttribute<T>(this Type type) where T : class
         {
-            if (s == null) return "";
-            return Regex.Match(s, pattern).Value;
+            T t;
+            Attribute customAttribute = type.GetCustomAttribute(typeof(T));
+            t = (!customAttribute.IsNotNull() ? default(T) : (T)(customAttribute as T));
+            return t;
         }
 
         #endregion
 
-        #region Int
+    }
 
-        /// <summary>
-        /// IsInt
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static bool IsInt(this string s)
-        {
-            int i;
-            return int.TryParse(s, out i);
-        }
-        /// <summary>
-        /// ToInt
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static int ToInt(this string s, bool is_exception = true)
-        {
-            if (is_exception) { return int.Parse(s); }
-            try
-            {
-                return int.Parse(s);
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-        #endregion
-
-        #region Camel/Pascal
-
-        /// <summary>
-        /// ToCamel
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string ToCamel(this string s)
-        {
-            if (s.IsNullOrEmpty()) return s;
-            return s[0].ToString().ToLower() + s.Substring(1);
-        }
-        /// <summary>
-        /// ToPascal
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string ToPascal(this string s)
-        {
-            if (s.IsNullOrEmpty()) return s;
-            return s[0].ToString().ToUpper() + s.Substring(1);
-        }
-
-        #endregion
-
-        #region DateTime
+    /// <summary>
+    /// DateTime
+    /// </summary>
+    public static partial class Extension
+    {
 
         /// <summary>
         /// 日期的最小值(1900-01-01 00:00:00)
@@ -251,78 +91,21 @@ namespace Devin
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
             long timeStamp = is_unix ? (long)(datetime - startTime).TotalSeconds : (long)(datetime - startTime).TotalMilliseconds;
             return timeStamp;
-        }
+        }        
+           
+    }
 
-
-
-        #endregion
-
-        #region Enum
-
-        /// <summary>
-        /// ToInt
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static int ToInt(this Enum value)
-        {
-            return Convert.ToInt32(value);
-        }
-
-        #endregion
-
-        #region GetAttribute
-
-        public static T GetAttribute<T>(this object obj) where T : class
-        {
-            return obj.GetType().GetAttribute<T>();
-        }
-
-        public static T GetAttribute<T>(this Type type) where T : class
-        {
-            T t;
-            Attribute customAttribute = type.GetCustomAttribute(typeof(T));
-            t = (!customAttribute.IsNotNull() ? default(T) : (T)(customAttribute as T));
-            return t;
-        }
-
-        #endregion
-
-        #region NewtonSoft
-
-        public static JObject ToCommon(this JObject value)
-        {
-            if (value.Property("_id") != null)
-            {
-                value["id"] = value["_id"]["$oid"];
-                value.Remove("_id");
-            }
-            return value;
-        }
-
-        public static JArray ToCommon(this JArray array)
-        {
-            foreach (JObject item in array)
-            {
-                if (item.Property("_id") != null)
-                {
-                    item["id"] = item["_id"]["$oid"];
-                    item.Remove("_id");
-                }
-            }
-            return array;
-        }
-
-        #endregion
-
-        #region MongoDb
-
+    /// <summary>
+    /// Mongo
+    /// </summary>
+    public static partial class Extension
+    {
         /// <summary>
         /// 格式化Json字符串
         /// </summary>
         /// <param name="bson"></param>
         /// <returns></returns>
-        public static object ToCommonJsonObj(this BsonValue bson)
+        private static object ToCommonJsonObj(this BsonValue bson)
         {
             StringBuilder sb = new StringBuilder();
             switch (bson.BsonType)
@@ -384,6 +167,242 @@ namespace Devin
         {
             return bson.ToCommonJsonObj().ToString();
         }
+    }
+
+    /// <summary>
+    /// Enum
+    /// </summary>
+    public static partial class Extension
+    {
+        /// <summary>
+        /// ToInt
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static int ToInt(this Enum value)
+        {
+            return Convert.ToInt32(value);
+        }
+    }
+
+    /// <summary>
+    /// String
+    /// </summary>
+    public static partial class Extension
+    {
+        #region Format String
+
+        /// <summary>
+        /// Format String
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static string FormatWith(this string format, params object[] param)
+        {
+            return string.Format(format, param);
+        }
+        /// <summary>
+        /// Format String
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="arg0"></param>
+        /// <returns></returns>
+        public static string FormatWith(this string format, object arg0)
+        {
+            return string.Format(format, arg0);
+        }
+        /// <summary>
+        /// Format String
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="arg0"></param>
+        /// <param name="arg1"></param>
+        /// <returns></returns>
+        public static string FormatWith(this string format, object arg0, object arg1)
+        {
+            return string.Format(format, arg0, arg1);
+        }
+        /// <summary>
+        /// Format String
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="arg0"></param>
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        /// <returns></returns>
+        public static string FormatWith(this string format, object arg0, object arg1, object arg2)
+        {
+            return string.Format(format, arg0, arg1, arg2);
+        }
+        /// <summary>
+        /// Format String
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="arg0"></param>
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        /// <param name="arg3"></param>
+        /// <returns></returns>
+        public static string FormatWith(this string format, object arg0, object arg1, object arg2, object arg3)
+        {
+            return string.Format(format, arg0, arg1, arg2, arg3);
+        }
+
         #endregion
+
+        #region Substring
+
+        /// <summary>
+        /// 字符串正则截取
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="begin"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public static string SubReg(this string str, string begin, string end)
+        {
+            Regex rg = new Regex("(?<=(" + begin + "))[.\\s\\S]*?(?=(" + end + "))", RegexOptions.Multiline | RegexOptions.Singleline);
+            return rg.Match(str).Value;
+        }
+
+        #endregion
+
+        #region Is/NotNullOrEmpty
+
+        /// <summary>
+        /// IsNullOrEmpty
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
+        }
+        /// <summary>
+        /// IsNotNullOrEmpty
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNotNullOrEmpty(this string str)
+        {
+            return !string.IsNullOrEmpty(str);
+        }
+
+        #endregion
+
+        #region Match
+
+        /// <summary>
+        /// Match
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static bool IsMatch(this string s, string pattern)
+        {
+            if (s == null) return false;
+            else return Regex.IsMatch(s, pattern);
+        }
+        /// <summary>
+        /// Match
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static string Match(this string s, string pattern)
+        {
+            if (s == null) return "";
+            return Regex.Match(s, pattern).Value;
+        }
+
+        #endregion
+
+        #region Camel/Pascal
+
+        /// <summary>
+        /// ToCamel
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ToCamel(this string s)
+        {
+            if (s.IsNullOrEmpty()) return s;
+            return s[0].ToString().ToLower() + s.Substring(1);
+        }
+        /// <summary>
+        /// ToPascal
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ToPascal(this string s)
+        {
+            if (s.IsNullOrEmpty()) return s;
+            return s[0].ToString().ToUpper() + s.Substring(1);
+        }
+
+        #endregion
+
+        #region Int
+
+        /// <summary>
+        /// IsInt
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsInt(this string s)
+        {
+            int i;
+            return int.TryParse(s, out i);
+        }
+        /// <summary>
+        /// 字符串转整型
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int ToInt(this string s, bool is_exception = true)
+        {
+            if (is_exception) { return int.Parse(s); }
+            try
+            {
+                return int.Parse(s);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// IEnumerable<T>
+    /// </summary>
+    public static partial class Extension
+    {
+        /// <summary>
+        /// 数组或list随机选出几个
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="collection">数组或list</param>
+        /// <param name="count">选出数量</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Random<T>(this IEnumerable<T> collection, int count)
+        {
+            var rd = new Random();
+            return collection.OrderBy(c => rd.Next()).Take(count);
+        }
+
+        /// <summary>
+        /// 数组或list随机选出一个
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static T Random<T>(this IEnumerable<T> collection)
+        {
+            return collection.Random<T>(1).SingleOrDefault();
+        }
     }
 }

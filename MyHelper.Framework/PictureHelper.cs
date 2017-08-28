@@ -1,54 +1,110 @@
-﻿using System;
-using System.Collections;
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2016-09-07  
+// Modifyed：selonsy  
+// ModifyTime：2016-09-07  
+// Desc：
+// 图片处理类
+// </summary>  
+
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Web;
-using System.Web.UI.HtmlControls;
+using System.Net;
 
-namespace Devin.Temp
+namespace Devin
 {
     /// <summary>
-    /// 水印位置
+    /// 图片处理类
     /// </summary>
-    public enum ImagePosition
+    public class PictureHelper
     {
         /// <summary>
-        /// 默认
+        /// 图片转化为字节数组
         /// </summary>
-        Default = 1,
-        /// <summary>
-        /// 左上
-        /// </summary>
-        LeftTop = 2,
-        /// <summary>
-        /// 左下
-        /// </summary>
-        LeftBottom = 3,
-        /// <summary>
-        /// 右上
-        /// </summary>
-        RightTop = 4,
-        /// <summary>
-        /// 右下
-        /// </summary>
-        RigthBottom = 5,
-        //TopMiddle,     //顶部居中
-        //BottomMiddle, //底部居中
-        //Center           //中心
-    }
-
-    /// <summary>
-    /// ImageUtil 的摘要说明。
-    /// </summary>
-    public class ImageUtil
-    {
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public ImageUtil()
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public byte[] Image2ByteArray(string filePath)
         {
-        
+            //将图片以文件流的形式进行保存
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            //将流读入到字节数组中
+            byte[] imgBytesIn = br.ReadBytes((int)fs.Length);
+            return imgBytesIn;
+        }
+
+        /// <summary>
+        /// 图片转化为字符串
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public string Image2ByteString(string filePath)
+        {
+            //将图片以文件流的形式进行保存
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            //将流读入到字节数组中
+            byte[] imgBytesIn = br.ReadBytes((int)fs.Length);
+            string imgString = System.Text.Encoding.UTF8.GetString(imgBytesIn);
+            return imgString;
+        }
+
+        /// <summary>
+        /// 字节数组转化为图片
+        /// </summary>
+        /// <param name="imgBytesIn"></param>
+        /// <returns></returns>
+        public Image ByteArray2Image(byte[] imgBytesIn)
+        {
+            MemoryStream ms = new MemoryStream(imgBytesIn);
+            return Image.FromStream(ms);
+        }
+
+        /// <summary>
+        /// 字节串转化为图片
+        /// </summary>
+        /// <param name="imgBytesIn"></param>
+        /// <returns></returns>
+        public Image ByteString2Image(string imgBytesIn)
+        {
+            byte[] imgByte = System.Text.Encoding.Unicode.GetBytes(imgBytesIn);
+            MemoryStream ms = new MemoryStream(imgByte);
+            return Image.FromStream(ms);
+        }
+
+        #region 缩略图,加水印
+
+        /// <summary>
+        /// 水印位置
+        /// </summary>
+        public enum ImagePosition
+        {
+            /// <summary>
+            /// 默认
+            /// </summary>
+            Default = 1,
+            /// <summary>
+            /// 左上
+            /// </summary>
+            LeftTop = 2,
+            /// <summary>
+            /// 左下
+            /// </summary>
+            LeftBottom = 3,
+            /// <summary>
+            /// 右上
+            /// </summary>
+            RightTop = 4,
+            /// <summary>
+            /// 右下
+            /// </summary>
+            RigthBottom = 5,
+            //TopMiddle,     //顶部居中
+            //BottomMiddle, //底部居中
+            //Center           //中心
         }
 
         /// <summary>
@@ -173,7 +229,8 @@ namespace Devin.Temp
             g.Clear(Color.White);
 
             //在指定位置并且按指定大小绘制原图片的指定部分
-            g.DrawImage(originalImage, new Rectangle(0, 0, towidth, toheight),
+            g.DrawImage(originalImage,
+                new Rectangle(0, 0, towidth, toheight),
                 new Rectangle(x, y, ow, oh),
                 GraphicsUnit.Pixel);
 
@@ -258,5 +315,74 @@ namespace Devin.Temp
                 g.Dispose();
             }
         }
+
+        #endregion
+
+        #region 图片下载
+
+        /// <summary>
+        /// 下载图片
+        /// </summary>
+        /// <param name="picUrl">图片Http地址</param>
+        /// <param name="savePath">保存路径(绝对地址)</param>
+        /// <param name="timeOut">Request最大请求时间(单位毫秒),如果为-1则无限制,默认10秒钟</param>
+        /// <returns></returns>
+        public static bool Download(string picUrl, string savePath, int timeOut = 10000)
+        {
+            bool value = false;
+            WebResponse response = null;
+            Stream stream = null;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(picUrl);
+                if (timeOut != -1) request.Timeout = timeOut;
+                response = request.GetResponse();
+                stream = response.GetResponseStream();
+                if (!response.ContentType.ToLower().StartsWith("text/"))
+                    value = SaveBinaryFile(response, savePath);
+            }
+            finally
+            {
+                if (stream != null) stream.Close();
+                if (response != null) response.Close();
+            }
+            return value;
+        }
+
+        /// <summary>
+        /// 保存二进制文件
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="savePath"></param>
+        /// <returns></returns>
+        private static bool SaveBinaryFile(WebResponse response, string savePath)
+        {
+            bool value = false;
+            byte[] buffer = new byte[1024];
+            Stream outStream = null;
+            Stream inStream = null;
+            try
+            {
+                if (File.Exists(savePath)) File.Delete(savePath);
+                outStream = System.IO.File.Create(savePath);
+                inStream = response.GetResponseStream();
+                int l;
+                do
+                {
+                    l = inStream.Read(buffer, 0, buffer.Length);
+                    if (l > 0) outStream.Write(buffer, 0, l);
+                } while (l > 0);
+                value = true;
+            }
+            finally
+            {
+                if (outStream != null) outStream.Close();
+                if (inStream != null) inStream.Close();
+            }
+            return value;
+        }
+
+        #endregion
+
     }
 }
