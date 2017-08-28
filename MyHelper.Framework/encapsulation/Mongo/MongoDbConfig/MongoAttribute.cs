@@ -11,7 +11,7 @@ namespace Devin.MongoDB.MongoDbConfig
     {
         public MongoAttribute(string collection)
         {
-            Database = Config.DBMongoStr.Split(';')[1];
+            Database = Config.DBMongoDBName;
             Collection = collection;
         }
 

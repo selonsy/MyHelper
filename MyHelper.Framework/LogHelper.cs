@@ -145,7 +145,7 @@ namespace Devin
         /// <summary>
         /// 日志文件目录 
         /// </summary>                
-        private static string defaultPath = Config.LogPath + "//" + Config.ProjectName;
+        private static string defaultPath = Config.LogPath;
 
         private static object _lock = new object();
         /// <summary>

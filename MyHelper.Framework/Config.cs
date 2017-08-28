@@ -94,9 +94,29 @@ namespace Devin
         /// </summary>
         public static bool IsDebug { get { return ConfigDataValue().ToLower() == "true"; } }
         /// <summary>
+        /// 是否需要权限校验
+        /// </summary>
+        public static bool IsNeedAuthorize { get { return ConfigDataValue().ToLower() == "true"; } }
+        /// <summary>
         /// JS版本号
         /// </summary>
         public static string JSVersion { get { return ConfigDataValue(); } }
+        /// <summary>
+        /// 数据库类型
+        /// </summary>
+        public static string DataBaseType { get { return ConfigDataValue(); } }
+        /// <summary>
+        /// 数据库链接字符串
+        /// </summary>
+        public static string DBConnStr
+        {
+            get
+            {
+                if (DataBaseType == ET.DataBaseType.sqlserver.ToString()) return DBSqlServerStr;
+                if (DataBaseType == ET.DataBaseType.mongo.ToString()) return DBMongoStr;
+                return DBSqlServerStr;
+            }
+        }
         /// <summary>
         /// 日志地址
         /// </summary>
@@ -104,8 +124,17 @@ namespace Devin
         {
             get
             {
-                if ("remote".Equals(LogType)) return LogPath_Remote;
-                else return LogPath_Local;
+                string temp_path = string.Empty;
+                if ("remote".Equals(LogType))
+                {
+                    temp_path = LogPath_Remote;
+                }
+                else
+                {
+                    temp_path = LogPath_Local;
+                }
+                if (temp_path.IsNullOrEmpty()) return "C://webconfig//logs//default//";
+                else return temp_path + ProjectName;
             }
         }
         /// <summary>
@@ -128,6 +157,17 @@ namespace Devin
             {
                 if (IsDebug) return DBMongo_Debug_Connstr;
                 else return DBMongo_Release_Connstr;
+            }
+        }
+        /// <summary>
+        /// MongoDB数据库名称
+        /// </summary>
+        public static string DBMongoDBName
+        {
+            get
+            {
+                if (IsDebug) return DBMongo_Debug_DataBase;
+                else return DBMongo_Release_DataBase;
             }
         }
         /// <summary>
@@ -180,9 +220,17 @@ namespace Devin
         /// </summary>
         private static string DBMongo_Debug_Connstr { get { return ConfigDataValue(); } }
         /// <summary>
+        /// mongo数据库名称(debug)
+        /// </summary>
+        private static string DBMongo_Debug_DataBase { get { return ConfigDataValue(); } }
+        /// <summary>
         /// mongo数据库地址(release)
         /// </summary>
         private static string DBMongo_Release_Connstr { get { return ConfigDataValue(); } }
+        /// <summary>
+        /// mongo数据库名称(release)
+        /// </summary>
+        private static string DBMongo_Release_DataBase { get { return ConfigDataValue(); } }
         /// <summary>
         /// redis数据库地址(debug)
         /// </summary>
