@@ -154,14 +154,11 @@
     <Compile Include="temp\AppConfig.cs" />
     <Compile Include="temp\AppSettings.cs" />
     <Compile Include="temp\AssemblyHelper.cs" />
-    <Compile Include="temp\Collection.cs" />
     <Compile Include="temp\Converter.cs" />
     <Compile Include="temp\Diff.cs" />
     <Compile Include="temp\EnumHelper.cs" />
     <Compile Include="temp\Fetch.cs" />
     <Compile Include="temp\FileWatchHelper.cs" />
-    <Compile Include="temp\GeoHelper.cs" />
-    <Compile Include="temp\ImageUtil.cs" />
     <Compile Include="temp\JsUtil.cs" />
     <Compile Include="temp\MailHelper.cs" />
     <Compile Include="temp\NetHelper.cs" />
