@@ -7,13 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.Framework", "MyHel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.Framework.Console", "MyHelper.Framework.Console\MyHelper.Framework.Console.csproj", "{3C955D34-7392-4001-B8D3-270443C0A1FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.Framework.Test", "MyHelper.Framework.Test\MyHelper.Framework.Test.csproj", "{A1AF88CC-730A-4726-9CD9-2AD865381728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHelper.Standard", "MyHelper.Standard\MyHelper.Standard.csproj", "{F6DA2B51-EB57-4EAB-8407-CC2A850BE9E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.Standard", "MyHelper.Standard\MyHelper.Standard.csproj", "{F6DA2B51-EB57-4EAB-8407-CC2A850BE9E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHelper.Standard.Console", "MyHelper.Standard.Console\MyHelper.Standard.Console.csproj", "{F6B19EA6-94D6-4224-BD3A-A4A82917D338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.Standard.Console", "MyHelper.Standard.Console\MyHelper.Standard.Console.csproj", "{F6B19EA6-94D6-4224-BD3A-A4A82917D338}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHelper.Standard.Test", "MyHelper.Standard.Test\MyHelper.Standard.Test.csproj", "{32E5DB40-92F6-43E9-B0CB-711C82C0277E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.Standard.Test", "MyHelper.Standard.Test\MyHelper.Standard.Test.csproj", "{32E5DB40-92F6-43E9-B0CB-711C82C0277E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHelper.Framework.Tests", "MyHelper.Framework.Tests\MyHelper.Framework.Tests.csproj", "{0598ECAE-70D5-4987-B7A7-B6121988E8C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{3C955D34-7392-4001-B8D3-270443C0A1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C955D34-7392-4001-B8D3-270443C0A1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C955D34-7392-4001-B8D3-270443C0A1FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1AF88CC-730A-4726-9CD9-2AD865381728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1AF88CC-730A-4726-9CD9-2AD865381728}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1AF88CC-730A-4726-9CD9-2AD865381728}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1AF88CC-730A-4726-9CD9-2AD865381728}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F6DA2B51-EB57-4EAB-8407-CC2A850BE9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F6DA2B51-EB57-4EAB-8407-CC2A850BE9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6DA2B51-EB57-4EAB-8407-CC2A850BE9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{32E5DB40-92F6-43E9-B0CB-711C82C0277E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32E5DB40-92F6-43E9-B0CB-711C82C0277E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32E5DB40-92F6-43E9-B0CB-711C82C0277E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0598ECAE-70D5-4987-B7A7-B6121988E8C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0598ECAE-70D5-4987-B7A7-B6121988E8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0598ECAE-70D5-4987-B7A7-B6121988E8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0598ECAE-70D5-4987-B7A7-B6121988E8C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

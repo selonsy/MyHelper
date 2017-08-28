@@ -47,7 +47,7 @@ namespace Devin.Temp
         /// <param name="js">窗口信息</param>
         public static void Alert(string message)
         {
-            message = StringUtil.DeleteUnVisibleChar(message);
+            message = StringHelper.DeleteUnVisibleChar(message);
             string js = @"<Script language='JavaScript'>
                     alert('" + message + "');</Script>";
             HttpContext.Current.Response.Write(js);

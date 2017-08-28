@@ -1,9 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// <summary>  
+// Copyright：Sichen International Co. Ltd.
+// Author：Devin
+// Date：2016-10-25
+// Modifyed：selonsy  
+// ModifyTime：2016-10-25  
+// Desc：
+// 算法帮助类
+// </summary> 
 
-namespace Devin.Temp
+using System.Collections.Generic;
+
+namespace Devin
 {
     // 算法：排列组合类
     // 调用方法如下：
@@ -16,7 +23,7 @@ namespace Devin.Temp
     // 4.GetCombination(T[], n)
     // 返回数组中n个元素的组合
 
-    public class PermutationAndCombination<T>
+    public class AlgorithmHelper<T>
     {
         /// <summary>
         /// 交换两个变量
@@ -144,7 +151,6 @@ namespace Devin.Temp
             }
             return list;
         }
-
 
         /// <summary>
         /// 求数组中n个元素的组合
