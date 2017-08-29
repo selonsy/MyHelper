@@ -24,6 +24,7 @@ namespace Devin
     /// </summary>
     public static partial class Extension
     {
+
         #region Is/NotNull
 
         public static bool IsNotNull(this object obj)
@@ -69,7 +70,7 @@ namespace Devin
         /// <param name="sqlDateTime"></param>
         /// <returns></returns>
         public static DateTime MinValue(this DateTime sqlDateTime)
-        {
+        {            
             return new DateTime(1900, 01, 01, 00, 00, 00);
         }
 
@@ -81,18 +82,64 @@ namespace Devin
         /// <returns></returns>
         public static DateTime ToLocalDateTime(this long jsTimeStamp, bool is_unix = false)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            DateTime startTime = new DateTime(1970, 1, 1).ToLocalTime();
             DateTime dt = is_unix ? startTime.AddSeconds(jsTimeStamp) : startTime.AddMilliseconds(jsTimeStamp);
             return dt;
         }
 
+        /// <summary>
+        /// 获取当前时间的时间戳表示
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <param name="is_unix"></param>
+        /// <returns></returns>
         public static long GetTimeStamp(this DateTime datetime, bool is_unix = false)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            DateTime startTime = new DateTime(1970, 1, 1).ToLocalTime();
             long timeStamp = is_unix ? (long)(datetime - startTime).TotalSeconds : (long)(datetime - startTime).TotalMilliseconds;
             return timeStamp;
-        }        
-           
+        }
+
+        /// <summary>
+        /// 将当前时间转化成发布时间(几个月前,几周前,几天前,几小时前,几分钟前,几秒前或刚刚)
+        /// 备注:一个月按30天计算
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string ToPublishTime(this DateTime datetime)
+        {
+            TimeSpan span = DateTime.Now - datetime;
+            if (span.TotalDays > 60) return datetime.ToLongDateString();
+            else
+            {
+                if (span.TotalDays > 30) return "1个月前";
+                else
+                {
+                    if (span.TotalDays > 14) return "2周前";
+                    else
+                    {
+                        if (span.TotalDays > 7) return "1周前";
+                        else
+                        {
+                            if (span.TotalDays > 1) return string.Format("{0}天前", (int)Math.Floor(span.TotalDays));
+                            else
+                            {
+                                if (span.TotalHours > 1) return string.Format("{0}小时前", (int)Math.Floor(span.TotalHours));
+                                else
+                                {
+                                    if (span.TotalMinutes > 1) return string.Format("{0}分钟前", (int)Math.Floor(span.TotalMinutes));
+                                    else
+                                    {
+                                        if (span.TotalSeconds >= 1) return string.Format("{0}秒前", (int)Math.Floor(span.TotalSeconds));
+                                        else return "刚刚";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /// <summary>
