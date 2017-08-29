@@ -2,105 +2,135 @@
 using System.Web;
 using System.Drawing;
 using System.Security.Cryptography;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Devin.Temp
+namespace Devin
 {
     /// <summary>
-    /// 验证码类
+    /// 随机字符类
     /// </summary>
     public class Rand
     {
-        #region 生成随机数字
+        #region private
+
         /// <summary>
-        /// 生成随机数字
+        /// 组合规则
         /// </summary>
-        /// <param name="length">生成长度</param>
-        public static string Number(int Length)
+        private enum 组合规则
         {
-            return Number(Length, false);
+            数字 = 1,
+            小写字母 = 2,
+            大写字母 = 3,
+            大小写字母混合 = 4,
+            小写字母和数字混合 = 5,
+            大写字母和数字混合 = 6,
+            大小写字母和数字混合 = 7
         }
 
         /// <summary>
-        /// 生成随机数字
+        /// 随机种子
         /// </summary>
-        /// <param name="Length">生成长度</param>
-        /// <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
-        public static string Number(int Length, bool Sleep)
+        private Random seed;
+
+        /// <summary>
+        /// 原始字符串
+        /// </summary>
+        private string original_str = "0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ";
+
+        /// <summary>
+        /// 获取一个随机字符
+        /// </summary>
+        /// <param name="rnd"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private string getRandomChar(Random rnd, 组合规则 type)
         {
-            //sleep():将当前线程阻塞指定的时间 by selonsy
-            if (Sleep) System.Threading.Thread.Sleep(3);
-            string result = "";
-            System.Random random = new Random();
-            for (int i = 0; i < Length; i++)
+            string strChar = string.Empty;
+            switch (type)
             {
-                result += random.Next(10).ToString();
+                case 组合规则.数字:
+                    strChar = rnd.Next(10).ToString();
+                    break;
+                case 组合规则.小写字母:
+                    strChar = original_str.Substring(10 + rnd.Next(26), 1);
+                    break;
+                case 组合规则.大写字母:
+                    strChar = original_str.Substring(36 + rnd.Next(26), 1);
+                    break;
+                case 组合规则.大小写字母混合:
+                    strChar = original_str.Substring(10 + rnd.Next(52), 1);
+                    break;
+                case 组合规则.小写字母和数字混合:
+                    strChar = original_str.Substring(0 + rnd.Next(36), 1);
+                    break;
+                case 组合规则.大写字母和数字混合:
+                    strChar = original_str.Substring(0 + rnd.Next(36), 1).ToUpper();
+                    break;
+                case 组合规则.大小写字母和数字混合:
+                    strChar = original_str.Substring(0 + rnd.Next(61), 1);
+                    break;
             }
-            return result;
+            return strChar;
         }
+
         #endregion
 
-        #region 生成随机字母与数字
-        /// <summary>
-        /// 生成随机字母与数字
-        /// </summary>
-        /// <param name="IntStr">生成长度</param>
-        public static string Str(int Length)
+        #region 构造函数
+
+        public Rand(int rand)
         {
-            return Str(Length, false);
+            seed = new Random(rand);
+        }
+        public Rand()
+        {
+            seed = new Random(new Random().Next(100000));
         }
 
-        /// <summary>
-        /// 生成随机字母与数字
-        /// </summary>
-        /// <param name="Length">生成长度</param>
-        /// <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
-        public static string Str(int Length, bool Sleep)
-        {
-            if (Sleep) System.Threading.Thread.Sleep(3);
-            char[] Pattern = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-            string result = "";
-            int n = Pattern.Length;
-            //??? by selonsy
-            System.Random random = new Random(~unchecked((int)DateTime.Now.Ticks));
-            for (int i = 0; i < Length; i++)
-            {
-                int rnd = random.Next(0, n);
-                result += Pattern[rnd];
-            }
-            return result;
-        }
         #endregion
 
-        #region 生成随机纯字母随机数
         /// <summary>
-        /// 生成随机纯字母随机数
+        /// 获取指定长度字符串(大小写字母和数字混合)
         /// </summary>
-        /// <param name="IntStr">生成长度</param>
-        public static string Str_char(int Length)
+        /// <param name="length">字符串长度</param>
+        /// <returns></returns>
+        public string GetRandomStr(int strLength)
         {
-            return Str_char(Length, false);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < strLength; i++)
+            {
+                sb.Append(getRandomChar(seed, 组合规则.大小写字母和数字混合));
+            }
+            return sb.ToString();
         }
 
         /// <summary>
-        /// 生成随机纯字母随机数
+        /// 获取指定长度字符串
         /// </summary>
-        /// <param name="Length">生成长度</param>
-        /// <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
-        public static string Str_char(int Length, bool Sleep)
+        /// <param name="intLength">数字长度</param>
+        /// <param name="lowerLength">小写字母长度</param>
+        /// <param name="upperLength">大写字母长度</param>
+        /// <returns></returns>
+        public string GetRandomStr(int intLength, int lowerLength, int upperLength)
         {
-            if (Sleep) System.Threading.Thread.Sleep(3);
-            char[] Pattern = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-            string result = "";
-            int n = Pattern.Length;
-            System.Random random = new Random(~unchecked((int)DateTime.Now.Ticks));
-            for (int i = 0; i < Length; i++)
+            List<string> str_list = new List<string>();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < intLength; i++)
             {
-                int rnd = random.Next(0, n);
-                result += Pattern[rnd];
+                str_list.Add(getRandomChar(seed, 组合规则.数字));
             }
-            return result;
-        }
-        #endregion
+            for (int i = 0; i < lowerLength; i++)
+            {
+                str_list.Add(getRandomChar(seed, 组合规则.小写字母));
+            }
+            for (int i = 0; i < upperLength; i++)
+            {
+                str_list.Add(getRandomChar(seed, 组合规则.大写字母));
+            }
+            return string.Join("", str_list.OrderBy(r => Guid.NewGuid()).ToList());
+        }       
+
     }
 
     /// <summary>
@@ -111,21 +141,21 @@ namespace Devin.Temp
         #region 私有字段
         private string text;
         private Bitmap image;
-        private int letterCount = 4;   //验证码位数
         private int letterWidth = 16;  //单个字体的宽度范围
         private int letterHeight = 20; //单个字体的高度范围
         private static byte[] randb = new byte[4];
         private static RNGCryptoServiceProvider rand = new RNGCryptoServiceProvider();
-        private Font[] fonts = 
-    {
-       new Font(new FontFamily("Times New Roman"),10 +Next(1),System.Drawing.FontStyle.Regular),
-       new Font(new FontFamily("Georgia"), 10 + Next(1),System.Drawing.FontStyle.Regular),
-       new Font(new FontFamily("Arial"), 10 + Next(1),System.Drawing.FontStyle.Regular),
-       new Font(new FontFamily("Comic Sans MS"), 10 + Next(1),System.Drawing.FontStyle.Regular)
-    };
+        private Font[] fonts =
+        {
+           new Font(new FontFamily("Times New Roman"),10 +Next(1),System.Drawing.FontStyle.Regular),
+           new Font(new FontFamily("Georgia"), 10 + Next(1),System.Drawing.FontStyle.Regular),
+           new Font(new FontFamily("Arial"), 10 + Next(1),System.Drawing.FontStyle.Regular),
+           new Font(new FontFamily("Comic Sans MS"), 10 + Next(1),System.Drawing.FontStyle.Regular)
+        };
         #endregion
 
         #region 公有属性
+
         /// <summary>
         /// 验证码
         /// </summary>
@@ -141,48 +171,29 @@ namespace Devin.Temp
         {
             get { return this.image; }
         }
+
         #endregion
 
         #region 构造函数
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public SecureCodeHelper()
         {
-            HttpContext.Current.Response.Expires = 0;
-            HttpContext.Current.Response.Buffer = true;
-            HttpContext.Current.Response.ExpiresAbsolute = DateTime.Now.AddSeconds(-1);
-            HttpContext.Current.Response.AddHeader("pragma", "no-cache");
-            HttpContext.Current.Response.CacheControl = "no-cache";
-            this.text = Rand.Number(4);
+            //HttpContext.Current.Response.Expires = 0;
+            //HttpContext.Current.Response.Buffer = true;
+            //HttpContext.Current.Response.ExpiresAbsolute = DateTime.Now.AddSeconds(-1);
+            //HttpContext.Current.Response.AddHeader("pragma", "no-cache");
+            //HttpContext.Current.Response.CacheControl = "no-cache";
+            this.text = new Rand().GetRandomStr(4);
             CreateImage();
         }
-        #endregion
 
-        #region 私有方法
-        /// <summary>
-        /// 获得下一个随机数
-        /// </summary>
-        /// <param name="max">最大值</param>
-        private static int Next(int max)
-        {
-            rand.GetBytes(randb);
-            int value = BitConverter.ToInt32(randb, 0);
-            value = value % (max + 1);
-            if (value < 0) value = -value;
-            return value;
-        }
-
-        /// <summary>
-        /// 获得下一个随机数
-        /// </summary>
-        /// <param name="min">最小值</param>
-        /// <param name="max">最大值</param>
-        private static int Next(int min, int max)
-        {
-            int value = Next(max - min) + min;
-            return value;
-        }
-        #endregion
+        #endregion      
 
         #region 公共方法
+
         /// <summary>
         /// 绘制验证码
         /// </summary>
@@ -222,10 +233,14 @@ namespace Devin.Temp
             this.image = image;
         }
 
+        #endregion
+
+        #region 私有方法
+
         /// <summary>
         /// 字体随机颜色
         /// </summary>
-        public Color GetRandomColor()
+        private Color GetRandomColor()
         {
             Random RandomNum_First = new Random((int)DateTime.Now.Ticks);
             System.Threading.Thread.Sleep(RandomNum_First.Next(50));
@@ -244,7 +259,7 @@ namespace Devin.Temp
         /// <param name="bXDir">如果扭曲则选择为True</param>
         /// <param name="nMultValue">波形的幅度倍数，越大扭曲的程度越高,一般为3</param>
         /// <param name="dPhase">波形的起始相位,取值区间[0-2*PI)</param>
-        public System.Drawing.Bitmap TwistImage(Bitmap srcBmp, bool bXDir, double dMultValue, double dPhase)
+        private System.Drawing.Bitmap TwistImage(Bitmap srcBmp, bool bXDir, double dMultValue, double dPhase)
         {
             double PI = 6.283185307179586476925286766559;
             Bitmap destBmp = new Bitmap(srcBmp.Width, srcBmp.Height);
@@ -275,6 +290,31 @@ namespace Devin.Temp
             srcBmp.Dispose();
             return destBmp;
         }
+
+        /// <summary>
+        /// 获得下一个随机数
+        /// </summary>
+        /// <param name="max">最大值</param>
+        private static int Next(int max)
+        {
+            rand.GetBytes(randb);
+            int value = BitConverter.ToInt32(randb, 0);
+            value = value % (max + 1);
+            if (value < 0) value = -value;
+            return value;
+        }
+
+        /// <summary>
+        /// 获得下一个随机数
+        /// </summary>
+        /// <param name="min">最小值</param>
+        /// <param name="max">最大值</param>
+        private static int Next(int min, int max)
+        {
+            int value = Next(max - min) + min;
+            return value;
+        }
+
         #endregion
     }
 }

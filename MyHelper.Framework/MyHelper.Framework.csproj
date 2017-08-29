@@ -166,11 +166,10 @@
     <Compile Include="AlgorithmHelper.cs" />
     <Compile Include="PictureHelper.cs" />
     <Compile Include="RegExp.cs" />
-    <Compile Include="temp\SecureCodeHelper.cs" />
+    <Compile Include="SecureCodeHelper.cs" />
     <Compile Include="temp\SerializationHelper.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="temp\Temp.cs" />
-    <Compile Include="temp\TempTest.cs" />
     <Compile Include="temp\ValidateCode\AnimatedGifEncoder.cs" />
     <Compile Include="temp\ValidateCode\GifDecoder.cs" />
     <Compile Include="temp\ValidateCode\LZWEncoder.cs" />
