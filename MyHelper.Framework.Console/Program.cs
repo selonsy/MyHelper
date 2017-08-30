@@ -14,14 +14,15 @@ namespace MyHelper.Framework.Console
     {
         static void Main(string[] args)
         {
-            SecureCodeTest();
+            new Program().SecureCodeTest();
         }
 
-        public static void SecureCodeTest()
+        public void SecureCodeTest()
         {
-            SecureCodeHelper obj = new SecureCodeHelper();
-            Bitmap bit = obj.Image;
-            bit.Save("c://test.jpg");
+            SecureCodeHelper obj = new SecureCodeHelper(ValidateCodeStyle.噪点干扰_扭曲);            
+            Image bit = obj.Image;
+            bit.Save("c://test1.png");
+            System.Console.WriteLine(obj.Text);
         }
 
         /// <summary>
