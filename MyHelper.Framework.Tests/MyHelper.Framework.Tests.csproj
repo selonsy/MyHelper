@@ -62,8 +62,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="temp\StringHelperTests.cs" />
+    <Compile Include="RandTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

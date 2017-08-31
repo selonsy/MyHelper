@@ -166,30 +166,10 @@
     <Compile Include="AlgorithmHelper.cs" />
     <Compile Include="PictureHelper.cs" />
     <Compile Include="RegExp.cs" />
-    <Compile Include="temp\SecureCodeHelper.cs" />
+    <Compile Include="SecureCodeHelper.cs" />
     <Compile Include="temp\SerializationHelper.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="temp\Temp.cs" />
-    <Compile Include="temp\TempTest.cs" />
-    <Compile Include="temp\ValidateCode\AnimatedGifEncoder.cs" />
-    <Compile Include="temp\ValidateCode\GifDecoder.cs" />
-    <Compile Include="temp\ValidateCode\LZWEncoder.cs" />
-    <Compile Include="temp\ValidateCode\NeuQuant.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCodeType.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style1.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style10.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style11.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style12.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style13.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style14.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style2.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style3.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style4.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style5.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style6.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style7.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style8.cs" />
-    <Compile Include="temp\ValidateCode\ValidateCode_Style9.cs" />
     <Compile Include="temp\WcfServiceProxy.cs" />
     <Compile Include="ZipHelper.cs" />
     <Compile Include="Constants.cs" />
@@ -215,6 +195,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
