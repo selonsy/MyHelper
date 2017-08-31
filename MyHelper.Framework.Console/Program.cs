@@ -11,14 +11,14 @@ namespace MyHelper.Framework.Console
     {
         static void Main(string[] args)
         {
-            
+            CreateFuzzyDir("D:\\00MyTest\\");
         }
 
         /// <summary>
         /// 在指定文件夹下面创建100*100的干扰文件夹
         /// </summary>
         /// <param name="root_path"></param>
-        public void CreateFuzzyDir(string root_path)
+        public static void CreateFuzzyDir(string root_path)
         {
             string path = root_path;
             DirectoryInfo dir = new DirectoryInfo(path);
