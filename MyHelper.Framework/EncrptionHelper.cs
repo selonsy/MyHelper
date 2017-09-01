@@ -150,22 +150,20 @@ namespace Devin
             return result;
         }
 
-#endregion
+        #endregion
         
-#region RSA
+        #region RSA
 
-#region 公钥和私钥
+        #region 公钥和私钥
 
         /// <summary>
         /// RSA公钥
         /// </summary>
-        private static string RSAPublicKey = @"<RSAKeyValue><Modulus>puajh2nmtmaLPAQfrbtnEjlZylRDNmpgSmSnriPwK3nKrC06ZkjYsPnyw0Z3LXQw3OQyoH1R+d8/k68AKkbxv01elW9Xkg9eCqfLvUoJ46oX3CyRmtmp5jclrIT2upBXbjlAqBiRyEAsyLnwBtiG4qudNV+V1/YgV8dKen/jF8U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>"
-             ;
+        private static string RSAPublicKey = @"<RSAKeyValue><Modulus>puajh2nmtmaLPAQfrbtnEjlZylRDNmpgSmSnriPwK3nKrC06ZkjYsPnyw0Z3LXQw3OQyoH1R+d8/k68AKkbxv01elW9Xkg9eCqfLvUoJ46oX3CyRmtmp5jclrIT2upBXbjlAqBiRyEAsyLnwBtiG4qudNV+V1/YgV8dKen/jF8U=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
         /// <summary>
         /// RSA私钥
         /// </summary>
-        private static string RSAPrivateKey = @"            <RSAKeyValue><Modulus>puajh2nmtmaLPAQfrbtnEjlZylRDNmpgSmSnriPwK3nKrC06ZkjYsPnyw0Z3LXQw3OQyoH1R+d8/k68AKkbxv01elW9Xkg9eCqfLvUoJ46oX3CyRmtmp5jclrIT2upBXbjlAqBiRyEAsyLnwBtiG4qudNV+V1/YgV8dKen/jF8U=</Modulus><Exponent>AQAB</Exponent><P>6d19htFXzFa0Rof2vlxuF5AuaCQ7m8ieBCHhr7ZRt02blUYireWv6Km2FwXNXn5mwpWaSlBJdTDoG9xLOmJYTw==</P><Q>trKd8DiYEeF8CHKIRGkxK0z7ulCwdB8pHDpCKwJN6w7bClFGfikFQkbbEdBPQmuFfiy9+cH3dQQa1y64yUp1qw==</Q><DP>KVnkjCYP5C2giqgX1Oj6/mecDQX7FDyQ1CI5iZwvLr4mOGrCTwVB6V24uLFp8r9e5CEXuvQfSP1wzRxSoOwquQ==</DP><DQ>nspWLZDy0y+4/xqUx2jqPGlXrRMumm7u60LTedAx6uhphuknLMX4dSdihnQYP3F2gDjhEW/95S2hKn/ISeO2qw==</DQ><InverseQ>q50M0lubWlnW1wX2dEFt8mhFI7E8jtfH0MfTkVqZlky2O7dG075Os+QawBevb0N3Q0npXRJtvEJZFfHUZrgHzA==</InverseQ><D>PqNItEWWhNYvYzLZAMbYhApqHHlLUFzUDpeAJubt+CMZYU0IIeMtEB5+cbM8fx6gSAaMyZa+8VxL7A09rqA5kcoNI9GAsWJopm22+fydLl7ftHn/Eco+xJQ0xsm9zTWLful4j1kMSFkr5F7crv54NjMcOOdel42toISX3Mv5Q/E=</D></RSAKeyValue>"
-            ;
+        private static string RSAPrivateKey = @"<RSAKeyValue><Modulus>puajh2nmtmaLPAQfrbtnEjlZylRDNmpgSmSnriPwK3nKrC06ZkjYsPnyw0Z3LXQw3OQyoH1R+d8/k68AKkbxv01elW9Xkg9eCqfLvUoJ46oX3CyRmtmp5jclrIT2upBXbjlAqBiRyEAsyLnwBtiG4qudNV+V1/YgV8dKen/jF8U=</Modulus><Exponent>AQAB</Exponent><P>6d19htFXzFa0Rof2vlxuF5AuaCQ7m8ieBCHhr7ZRt02blUYireWv6Km2FwXNXn5mwpWaSlBJdTDoG9xLOmJYTw==</P><Q>trKd8DiYEeF8CHKIRGkxK0z7ulCwdB8pHDpCKwJN6w7bClFGfikFQkbbEdBPQmuFfiy9+cH3dQQa1y64yUp1qw==</Q><DP>KVnkjCYP5C2giqgX1Oj6/mecDQX7FDyQ1CI5iZwvLr4mOGrCTwVB6V24uLFp8r9e5CEXuvQfSP1wzRxSoOwquQ==</DP><DQ>nspWLZDy0y+4/xqUx2jqPGlXrRMumm7u60LTedAx6uhphuknLMX4dSdihnQYP3F2gDjhEW/95S2hKn/ISeO2qw==</DQ><InverseQ>q50M0lubWlnW1wX2dEFt8mhFI7E8jtfH0MfTkVqZlky2O7dG075Os+QawBevb0N3Q0npXRJtvEJZFfHUZrgHzA==</InverseQ><D>PqNItEWWhNYvYzLZAMbYhApqHHlLUFzUDpeAJubt+CMZYU0IIeMtEB5+cbM8fx6gSAaMyZa+8VxL7A09rqA5kcoNI9GAsWJopm22+fydLl7ftHn/Eco+xJQ0xsm9zTWLful4j1kMSFkr5F7crv54NjMcOOdel42toISX3Mv5Q/E=</D></RSAKeyValue>";
 
         //生成秘钥
         //using (RSACryptoServiceProvider rsa1 = new RSACryptoServiceProvider())
@@ -174,7 +172,7 @@ namespace Devin
         //    string privateKey = rsa1.ToXmlString(true); // 私钥和公钥
         //}
 
-#endregion
+        #endregion
 
         /// <summary>
         /// RSA加密
@@ -234,9 +232,9 @@ namespace Devin
             return Encoding.UTF8.GetString(cipherbytes);
         }
 
-#endregion
+        #endregion
 
-#region Mysoft
+        #region Mysoft
 
         /// <summary>
         /// 明源的加密函数
@@ -336,34 +334,34 @@ namespace Devin
             return strBuff + new String(' ', inStr.Length - intLen);
         }
 
-#endregion
+        #endregion
     }
 
-#region DES加密详解_测试 
+    #region DES加密详解_测试 
 
     /// <summary>
     /// DES实体类，仅用于DESHelper的返回
     /// </summary>
     class DESEntity
     {
-#region 属性定义
-        /// <summary>
-        /// 加密后的字符串
-        /// </summary>
-        public string EncrptedString { get; set; }
-        /// <summary>
-        /// 转化成字符串的Key
-        /// </summary>
-        public string keyStr { get; set; }
-        /// <summary>
-        /// 转化成字符串的IV
-        /// </summary>
-        public string IVstr { get; set; }
-#endregion
+        #region 属性定义
+                /// <summary>
+                /// 加密后的字符串
+                /// </summary>
+                public string EncrptedString { get; set; }
+                /// <summary>
+                /// 转化成字符串的Key
+                /// </summary>
+                public string keyStr { get; set; }
+                /// <summary>
+                /// 转化成字符串的IV
+                /// </summary>
+                public string IVstr { get; set; }
+        #endregion
 
-#region 构造函数
+        #region 构造函数
 
-#endregion
+        #endregion
     }
 
     /// <summary>
@@ -371,278 +369,278 @@ namespace Devin
     /// </summary>
     class DESHelper
     {
-#region 加密知识
-        /*
-         加密方式：3重DES
-         <生成key和IV>
-            1、System.Security.Cryptography. TripleDESCryptoServiceProvider类是dotnet中实现TripleDES算法的主要的类。
-            2、TripleDESCryptoServiceProvider类只有一个构造方法TripleDESCryptoServiceProvider（），这个方法把一些属性初始化：
-                KeySize（加密密钥长度，以位为单位）= 192（24字节）
-                BlockSize（加密处理的数据块大小，以位为单位）= 64（8字节）
-                FeedbackSize（加密数据块后返回的数据大小，以位为单位）= 64（8字节）
-            3、TripleDESCryptoServiceProvider构造方法同时会初始化一组随机的key和IV。
-            默认的TripleDESCryptoServiceProvider的key为24字节，IV为8字节，加密数据块为8字节。
+        #region 加密知识
+                /*
+                 加密方式：3重DES
+                 <生成key和IV>
+                    1、System.Security.Cryptography. TripleDESCryptoServiceProvider类是dotnet中实现TripleDES算法的主要的类。
+                    2、TripleDESCryptoServiceProvider类只有一个构造方法TripleDESCryptoServiceProvider（），这个方法把一些属性初始化：
+                        KeySize（加密密钥长度，以位为单位）= 192（24字节）
+                        BlockSize（加密处理的数据块大小，以位为单位）= 64（8字节）
+                        FeedbackSize（加密数据块后返回的数据大小，以位为单位）= 64（8字节）
+                    3、TripleDESCryptoServiceProvider构造方法同时会初始化一组随机的key和IV。
+                    默认的TripleDESCryptoServiceProvider的key为24字节，IV为8字节，加密数据块为8字节。
             
-            生成key和IV的代码很简单：
-            TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
-            byte[] keyArray = tDESalg.Key;
-            byte[] IVArray = tDESalg.IV;
-            4、待加密的数据可能有两种形式，一种是二进制的数据，本身就是一组字节流，这样的数据可以跳过这一步，直接进入加密步骤。
-              还有一种情况是字符串数据，字符串中同样的字符使用不同的代码页会生成不同的字节码，
-              所以从字符串到字节流的转换是需要指定使用何种编码的。在解密之后，要从字节流转换到字符串就要使用相同的代码页解码，
-              否则就会出现乱码。
-        */
-#endregion
+                    生成key和IV的代码很简单：
+                    TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
+                    byte[] keyArray = tDESalg.Key;
+                    byte[] IVArray = tDESalg.IV;
+                    4、待加密的数据可能有两种形式，一种是二进制的数据，本身就是一组字节流，这样的数据可以跳过这一步，直接进入加密步骤。
+                      还有一种情况是字符串数据，字符串中同样的字符使用不同的代码页会生成不同的字节码，
+                      所以从字符串到字节流的转换是需要指定使用何种编码的。在解密之后，要从字节流转换到字符串就要使用相同的代码页解码，
+                      否则就会出现乱码。
+                */
+        #endregion
 
-#region 字段定义
+        #region 字段定义
 
-#endregion
+        #endregion
 
-#region 属性定义
-        /// <summary>
-        /// 编码方式
-        /// </summary>
-        public static string EncodingType { get; set; }
-        /// <summary>
-        /// Key数组
-        /// </summary>
-        public byte[] keyArray { get; set; }
-        /// <summary>
-        /// IV数组
-        /// </summary>
-        public byte[] IVArray { get; set; }
-#endregion
+        #region 属性定义
+                /// <summary>
+                /// 编码方式
+                /// </summary>
+                public static string EncodingType { get; set; }
+                /// <summary>
+                /// Key数组
+                /// </summary>
+                public byte[] keyArray { get; set; }
+                /// <summary>
+                /// IV数组
+                /// </summary>
+                public byte[] IVArray { get; set; }
+        #endregion
 
-#region 构造方法
-        /// <summary>
-        /// 实例化EncryptionHelper对象
-        /// </summary>
-        public DESHelper()
-        {
-            TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
-            keyArray = tDESalg.Key;
-            IVArray = tDESalg.IV;
-            EncodingType = "utf-8";
-        }
-        /// <summary>
-        /// 实例化EncryptionHelper对象
-        /// </summary>
-        /// <param name="encodeType">编码方式</param>
-        public DESHelper(string encodeType)
-        {
-            TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
-            keyArray = tDESalg.Key;
-            IVArray = tDESalg.IV;
-            EncodingType = encodeType;
-        }
-#endregion
+        #region 构造方法
+                /// <summary>
+                /// 实例化EncryptionHelper对象
+                /// </summary>
+                public DESHelper()
+                {
+                    TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
+                    keyArray = tDESalg.Key;
+                    IVArray = tDESalg.IV;
+                    EncodingType = "utf-8";
+                }
+                /// <summary>
+                /// 实例化EncryptionHelper对象
+                /// </summary>
+                /// <param name="encodeType">编码方式</param>
+                public DESHelper(string encodeType)
+                {
+                    TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
+                    keyArray = tDESalg.Key;
+                    IVArray = tDESalg.IV;
+                    EncodingType = encodeType;
+                }
+        #endregion
 
-#region 加密和解密
-        /// <summary>
-        /// 加密方法
-        /// </summary>
-        /// <param name="str">待加密字符串</param>
-        /// <returns></returns>
-        public static DESEntity MyEncryption(string str)
-        {
-            //实例化EncryptionHelper
-            DESHelper encryptionHelper = new DESHelper();
+        #region 加密和解密
+                /// <summary>
+                /// 加密方法
+                /// </summary>
+                /// <param name="str">待加密字符串</param>
+                /// <returns></returns>
+                public static DESEntity MyEncryption(string str)
+                {
+                    //实例化EncryptionHelper
+                    DESHelper encryptionHelper = new DESHelper();
 
-            //为EncryptString加密方法准备参数
-            byte[] strArray = StrToBytes(str);
-            byte[] keyArray = encryptionHelper.keyArray;
-            byte[] ivArray = encryptionHelper.IVArray;
+                    //为EncryptString加密方法准备参数
+                    byte[] strArray = StrToBytes(str);
+                    byte[] keyArray = encryptionHelper.keyArray;
+                    byte[] ivArray = encryptionHelper.IVArray;
 
-            //获取加密后的数据流
-            byte[] getStream = EncryptString(strArray, keyArray, ivArray);
+                    //获取加密后的数据流
+                    byte[] getStream = EncryptString(strArray, keyArray, ivArray);
 
-            //实例化EncrptionEntity对象
-            DESEntity encrptionEntity = new DESEntity();
+                    //实例化EncrptionEntity对象
+                    DESEntity encrptionEntity = new DESEntity();
 
-            //为encrptionEntity属性赋值
-            encrptionEntity.EncrptedString = BytesArrayToString(getStream);
-            encrptionEntity.keyStr = BytesArrayToString(encryptionHelper.keyArray);
-            encrptionEntity.IVstr = BytesArrayToString(encryptionHelper.IVArray);
+                    //为encrptionEntity属性赋值
+                    encrptionEntity.EncrptedString = BytesArrayToString(getStream);
+                    encrptionEntity.keyStr = BytesArrayToString(encryptionHelper.keyArray);
+                    encrptionEntity.IVstr = BytesArrayToString(encryptionHelper.IVArray);
 
-            //返回 
-            return encrptionEntity;
-        }
+                    //返回 
+                    return encrptionEntity;
+                }
 
-        /// <summary>
-        /// 加密方法
-        /// </summary>
-        /// <param name="str">待加密字符串</param>
-        /// <param name="encodeType">编码方式</param>
-        /// <returns></returns>
-        public static DESEntity MyEncryption(string str, string encodeType)
-        {
+                /// <summary>
+                /// 加密方法
+                /// </summary>
+                /// <param name="str">待加密字符串</param>
+                /// <param name="encodeType">编码方式</param>
+                /// <returns></returns>
+                public static DESEntity MyEncryption(string str, string encodeType)
+                {
 
-            //实例化EncryptionHelper
-            DESHelper encryptionHelper = new DESHelper(encodeType);
+                    //实例化EncryptionHelper
+                    DESHelper encryptionHelper = new DESHelper(encodeType);
 
-            //为EncryptString加密方法准备参数
-            byte[] strArray = StrToBytes(str);
-            byte[] keyArray = encryptionHelper.keyArray;
-            byte[] ivArray = encryptionHelper.IVArray;
+                    //为EncryptString加密方法准备参数
+                    byte[] strArray = StrToBytes(str);
+                    byte[] keyArray = encryptionHelper.keyArray;
+                    byte[] ivArray = encryptionHelper.IVArray;
 
-            //获取加密后的数据流
-            byte[] getStream = EncryptString(strArray, keyArray, ivArray);
+                    //获取加密后的数据流
+                    byte[] getStream = EncryptString(strArray, keyArray, ivArray);
 
-            //实例化EncrptionEntity对象
-            DESEntity encrptionEntity = new DESEntity();
+                    //实例化EncrptionEntity对象
+                    DESEntity encrptionEntity = new DESEntity();
 
-            //为encrptionEntity属性赋值
-            encrptionEntity.EncrptedString = BytesArrayToString(getStream);
-            encrptionEntity.IVstr = BytesArrayToString(encryptionHelper.keyArray);
-            encrptionEntity.keyStr = BytesArrayToString(encryptionHelper.IVArray);
+                    //为encrptionEntity属性赋值
+                    encrptionEntity.EncrptedString = BytesArrayToString(getStream);
+                    encrptionEntity.IVstr = BytesArrayToString(encryptionHelper.keyArray);
+                    encrptionEntity.keyStr = BytesArrayToString(encryptionHelper.IVArray);
 
-            //返回 
-            return encrptionEntity;
-        }
+                    //返回 
+                    return encrptionEntity;
+                }
 
-        /// <summary>
-        /// 解密方法
-        /// </summary>
-        /// <param name="str">待解密字符串</param>
-        /// <param name="key">Key</param>
-        /// <param name="iv">IV</param>
-        /// <returns></returns>
-        public static string MyDecryption(string str, string key, string iv)
-        {
-            //为DecryptTextFromMemory解密方法准备参数
-            byte[] strArray = StringToBytesArray(str);
-            byte[] keyArray = StringToBytesArray(key);
-            byte[] ivArray = StringToBytesArray(iv);
+                /// <summary>
+                /// 解密方法
+                /// </summary>
+                /// <param name="str">待解密字符串</param>
+                /// <param name="key">Key</param>
+                /// <param name="iv">IV</param>
+                /// <returns></returns>
+                public static string MyDecryption(string str, string key, string iv)
+                {
+                    //为DecryptTextFromMemory解密方法准备参数
+                    byte[] strArray = StringToBytesArray(str);
+                    byte[] keyArray = StringToBytesArray(key);
+                    byte[] ivArray = StringToBytesArray(iv);
 
-            //获取解密后的数据流
-            byte[] getStream = DecryptTextFromMemory(strArray, keyArray, ivArray);
-            //转化为字符串
-            string result = BytesToStr(getStream);
-            //返回
-            return result;
-        }
+                    //获取解密后的数据流
+                    byte[] getStream = DecryptTextFromMemory(strArray, keyArray, ivArray);
+                    //转化为字符串
+                    string result = BytesToStr(getStream);
+                    //返回
+                    return result;
+                }
 
-#endregion
+        #endregion
 
-#region 编码和解码
-        /// <summary>
-        /// 将字符串编码为字节流-系统自带
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static byte[] StrToBytes(string str)
-        {
-            Encoding sEncoding = Encoding.GetEncoding(EncodingType);
-            return sEncoding.GetBytes(str);
-        }
-        /// <summary>
-        /// 将字节流编码为字符串-系统自带
-        /// </summary>
-        /// <param name="strArray"></param>
-        /// <returns></returns>
-        public static string BytesToStr(byte[] strArray)
-        {
-            Encoding sEncoding = Encoding.GetEncoding(EncodingType);
-            return sEncoding.GetString(strArray);
-        }
-        /// <summary>
-        /// 将字节流数组编码为字符串-数字
-        /// </summary>
-        /// <returns></returns>
-        public static string BytesArrayToString(byte[] strArray)
-        {
-            return string.Join(",", strArray);
-        }
-        /// <summary>
-        /// 将字符串转化为字节流数组-数字
-        /// </summary>
-        /// <returns></returns>
-        public static byte[] StringToBytesArray(string str)
-        {
-            string[] strTemp = str.Split(',');
-            byte[] result = new byte[strTemp.Length];
-            for (int i = 0; i < strTemp.Length; i++)
-            {
-                result[i] = Convert.ToByte(strTemp[i]);
-            }
-            return result;
-        }
-#endregion
+        #region 编码和解码
+                /// <summary>
+                /// 将字符串编码为字节流-系统自带
+                /// </summary>
+                /// <param name="str"></param>
+                /// <returns></returns>
+                public static byte[] StrToBytes(string str)
+                {
+                    Encoding sEncoding = Encoding.GetEncoding(EncodingType);
+                    return sEncoding.GetBytes(str);
+                }
+                /// <summary>
+                /// 将字节流编码为字符串-系统自带
+                /// </summary>
+                /// <param name="strArray"></param>
+                /// <returns></returns>
+                public static string BytesToStr(byte[] strArray)
+                {
+                    Encoding sEncoding = Encoding.GetEncoding(EncodingType);
+                    return sEncoding.GetString(strArray);
+                }
+                /// <summary>
+                /// 将字节流数组编码为字符串-数字
+                /// </summary>
+                /// <returns></returns>
+                public static string BytesArrayToString(byte[] strArray)
+                {
+                    return string.Join(",", strArray);
+                }
+                /// <summary>
+                /// 将字符串转化为字节流数组-数字
+                /// </summary>
+                /// <returns></returns>
+                public static byte[] StringToBytesArray(string str)
+                {
+                    string[] strTemp = str.Split(',');
+                    byte[] result = new byte[strTemp.Length];
+                    for (int i = 0; i < strTemp.Length; i++)
+                    {
+                        result[i] = Convert.ToByte(strTemp[i]);
+                    }
+                    return result;
+                }
+        #endregion
 
-#region 加密底层处理过程
+        #region 加密底层处理过程
 
-        /// <summary>
-        /// 将一个明文的二进制流转换成一个加密的二进制流
-        /// </summary>
-        /// <param name="strArray">一个明文的二进制数据流，其实也就是你要加密的字符串的二进制形式的数据流</param>
-        /// <param name="Key"></param>
-        /// <param name="IV"></param>
-        /// <returns>返回一个加密后是二进制数据流</returns>
-        /// <remarks>
-        /// 加密的原料是明文字节流，TripleDES算法对字节流进行加密，返回的是加密后的字节流,同时要给定加密使用的key和IV。
-        /// 把字符串明文转换成utf-8编码的字节流。
-        /// </remarks>
-        public static byte[] EncryptString(byte[] strArray, byte[] Key, byte[] IV)
-        {
-            //建立一个MemoryStream,这里面存放加密后的数据流
-            MemoryStream mStream = new MemoryStream();
+                /// <summary>
+                /// 将一个明文的二进制流转换成一个加密的二进制流
+                /// </summary>
+                /// <param name="strArray">一个明文的二进制数据流，其实也就是你要加密的字符串的二进制形式的数据流</param>
+                /// <param name="Key"></param>
+                /// <param name="IV"></param>
+                /// <returns>返回一个加密后是二进制数据流</returns>
+                /// <remarks>
+                /// 加密的原料是明文字节流，TripleDES算法对字节流进行加密，返回的是加密后的字节流,同时要给定加密使用的key和IV。
+                /// 把字符串明文转换成utf-8编码的字节流。
+                /// </remarks>
+                public static byte[] EncryptString(byte[] strArray, byte[] Key, byte[] IV)
+                {
+                    //建立一个MemoryStream,这里面存放加密后的数据流
+                    MemoryStream mStream = new MemoryStream();
 
-            //使用MemoryStream和key,IV新建一个CryptoStream对象  
-            CryptoStream cStream = new CryptoStream(mStream, new TripleDESCryptoServiceProvider().CreateEncryptor(Key, IV), CryptoStreamMode.Write);
+                    //使用MemoryStream和key,IV新建一个CryptoStream对象  
+                    CryptoStream cStream = new CryptoStream(mStream, new TripleDESCryptoServiceProvider().CreateEncryptor(Key, IV), CryptoStreamMode.Write);
 
-            //将加密后的字节流写入到MemoryStream
-            cStream.Write(strArray, 0, strArray.Length);
+                    //将加密后的字节流写入到MemoryStream
+                    cStream.Write(strArray, 0, strArray.Length);
 
-            //把缓冲区中的最后状态更新到MemoryStream，并清除cStream的缓存区
-            cStream.FlushFinalBlock();
+                    //把缓冲区中的最后状态更新到MemoryStream，并清除cStream的缓存区
+                    cStream.FlushFinalBlock();
 
-            // 把加密后的数据流转成字节流
-            byte[] ret = mStream.ToArray();
+                    // 把加密后的数据流转成字节流
+                    byte[] ret = mStream.ToArray();
 
-            //关闭两个streams
-            cStream.Close();
-            mStream.Close();
+                    //关闭两个streams
+                    cStream.Close();
+                    mStream.Close();
 
-            //返回值
-            return ret;
-        }
-#endregion
+                    //返回值
+                    return ret;
+                }
+        #endregion
 
-#region 解密底层处理过程
-        /// <summary>
-        /// 将一个加密后的二进制数据流进行解密，产生一个明文的二进制数据流
-        /// </summary>
-        /// <param name="EncryptedDataArray">加密后的数据流</param>
-        /// <param name="Key"></param>
-        /// <param name="IV"></param>
-        /// <returns>一个已经解密的二进制流</returns>
-        /// <remarks>
-        /// 解密操作解密上面步骤生成的密文byte[]，需要使用到加密步骤使用的同一组Key和IV。
-        /// </remarks>
-        public static byte[] DecryptTextFromMemory(byte[] EncryptedDataArray, byte[] Key, byte[] IV)
-        {
+        #region 解密底层处理过程
+                /// <summary>
+                /// 将一个加密后的二进制数据流进行解密，产生一个明文的二进制数据流
+                /// </summary>
+                /// <param name="EncryptedDataArray">加密后的数据流</param>
+                /// <param name="Key"></param>
+                /// <param name="IV"></param>
+                /// <returns>一个已经解密的二进制流</returns>
+                /// <remarks>
+                /// 解密操作解密上面步骤生成的密文byte[]，需要使用到加密步骤使用的同一组Key和IV。
+                /// </remarks>
+                public static byte[] DecryptTextFromMemory(byte[] EncryptedDataArray, byte[] Key, byte[] IV)
+                {
 
-            // 建立一个MemoryStream，这里面存放加密后的数据流
-            MemoryStream msDecrypt = new MemoryStream(EncryptedDataArray);
+                    // 建立一个MemoryStream，这里面存放加密后的数据流
+                    MemoryStream msDecrypt = new MemoryStream(EncryptedDataArray);
 
-            // 使用MemoryStream 和key、IV新建一个CryptoStream 对象
-            CryptoStream csDecrypt = new CryptoStream(msDecrypt, new TripleDESCryptoServiceProvider().CreateDecryptor(Key, IV), CryptoStreamMode.Read);
+                    // 使用MemoryStream 和key、IV新建一个CryptoStream 对象
+                    CryptoStream csDecrypt = new CryptoStream(msDecrypt, new TripleDESCryptoServiceProvider().CreateDecryptor(Key, IV), CryptoStreamMode.Read);
 
-            // 根据密文byte[]的长度（可能比加密前的明文长），新建一个存放解密后明文的byte[]
-            byte[] DecryptDataArray = new byte[EncryptedDataArray.Length];
+                    // 根据密文byte[]的长度（可能比加密前的明文长），新建一个存放解密后明文的byte[]
+                    byte[] DecryptDataArray = new byte[EncryptedDataArray.Length];
 
-            // 把解密后的数据读入到DecryptDataArray
-            csDecrypt.Read(DecryptDataArray, 0, DecryptDataArray.Length);
+                    // 把解密后的数据读入到DecryptDataArray
+                    csDecrypt.Read(DecryptDataArray, 0, DecryptDataArray.Length);
 
-            //关闭两个streams
-            msDecrypt.Close();
-            csDecrypt.Close();
+                    //关闭两个streams
+                    msDecrypt.Close();
+                    csDecrypt.Close();
 
-            //返回值
-            return DecryptDataArray;
-        }
-#endregion
+                    //返回值
+                    return DecryptDataArray;
+                }
+        #endregion
     }
 
-#endregion
+    #endregion
 }

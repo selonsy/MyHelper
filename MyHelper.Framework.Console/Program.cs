@@ -7,6 +7,8 @@ using System.IO;
 using Devin.Temp;
 using System.Drawing;
 using Devin;
+using Devin.MongoDB;
+using MongoDB.Bson;
 
 namespace MyHelper.Framework.Console
 {
@@ -14,9 +16,13 @@ namespace MyHelper.Framework.Console
     {
         static void Main(string[] args)
         {
-            new Program().SecureCodeTest();
+            //验证码测试
+            //new Program().SecureCodeTest();
         }
 
+        /// <summary>
+        /// 验证码测试
+        /// </summary>
         public void SecureCodeTest()
         {
             SecureCodeHelper obj = new SecureCodeHelper(ValidateCodeStyle.噪点干扰_扭曲);            
@@ -111,6 +117,29 @@ namespace MyHelper.Framework.Console
             //System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase:
             //D:\00MyWorkSpace\99MyGitHub\MyHelper\MyHelper.Tests\bin\Debug
 
+        }
+
+        /// <summary>
+        /// 设置密码相关
+        /// </summary>
+        /// <returns></returns>
+        public BsonDocument SetMyPassword(string doc, string key)
+        {
+            doc = @"{                
+                '名称':'新浪邮箱selonsy'
+                '关键字':['新浪','邮箱','selonsy'],
+                '描述':'这是一个新浪的邮箱',
+                '详情':
+                {
+                   '手机号码':'13208364059',
+                   '密保':''
+                }               
+            }";
+
+            BsonDocument bson = doc.ParseBson();
+            //if (bson.IsNull()) "";
+
+            return new BsonDocument();
         }
     }
 }
