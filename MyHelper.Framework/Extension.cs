@@ -140,6 +140,26 @@ namespace Devin
                 }
             }
         }
+
+        /// <summary>
+        /// 获取合法的日期(支持日期字符串和时间戳字符)
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static DateTime? ToValidateTime(this string obj)
+        {
+            DateTime result = DateTime.MinValue;
+            bool b_datetime = DateTime.TryParse(obj, out result);
+            if (b_datetime) return result;
+            long stamp = long.MinValue;
+            bool b_long = long.TryParse(obj, out stamp);
+            if (b_long)
+            {
+                if (obj.Length == 10) return stamp.ToLocalDateTime(true);
+                if (obj.Length == 13) return stamp.ToLocalDateTime();
+            }
+            return null;
+        }
     }
 
     /// <summary>

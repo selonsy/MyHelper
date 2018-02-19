@@ -174,7 +174,7 @@
     <Compile Include="ZipHelper.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="test\ExceptionHelper.cs" />
-    <Compile Include="test\FileOperateHelper.cs" />
+    <Compile Include="FileOperateHelper.cs" />
     <Compile Include="test\FileUpDownHelper.cs" />
     <Compile Include="test\PDFHelper.cs" />
     <Compile Include="RedisHelper.cs" />

@@ -225,6 +225,14 @@ namespace Devin.MongoDB
         {
             return !IsEmptyValue(bv);
         }
+
+        public static double AsDoubleEx(this BsonValue bv)
+        {
+            if (bv.BsonType == BsonType.Double) return bv.AsDouble;
+            if (bv.BsonType == BsonType.Int64 || bv.BsonType == BsonType.Int32)
+                return double.Parse(bv.ToString());
+            else throw new Exception("DS:The value is not the type of double or int");
+        }
     }
 
     /// <summary>

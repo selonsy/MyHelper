@@ -15,8 +15,9 @@ using System.IO;
 
 namespace Devin.Testing
 {
-    public class FileOperateHelper
+    public partial class FileHelper
     {
+        #region 文件复制
 
         public bool FilesCopy(string fileName, string sourcePath, string targetPath)
         {
@@ -69,24 +70,25 @@ namespace Devin.Testing
             }
         }
 
-        #region 写文件
-        public void Write_Txt(string FileName, string Content)
-        {
-            Encoding code = Encoding.GetEncoding("gb2312");
 
-            if (!File.Exists(FileName))
-            {
-                File.Create(FileName);
-            }
-            //string htmlfilename = HttpContext.Current.Server.MapPath("Precious\\" + FileName + ".txt");　//保存文件的路径
-            string htmlfilename = FileName;　//保存文件的路径
-            string str = Content;
+        #endregion
+
+        #region 写文件
+
+        /// <summary>
+        /// 写文件
+        /// </summary>
+        /// <param name="FileName">文件路径</param>
+        /// <param name="Content">文件内容</param>     
+        public static void Write_Txt(string FileName, string Content)
+        {
+            if (!File.Exists(FileName)) File.Create(FileName);                                   
             StreamWriter sw = null;
             {
                 try
                 {
-                    sw = new StreamWriter(htmlfilename, false, code);
-                    sw.Write(str);
+                    sw = new StreamWriter(FileName, false, Encoding.UTF8);
+                    sw.Write(Content);
                     sw.Flush();
                 }
                 catch { }
@@ -94,20 +96,50 @@ namespace Devin.Testing
             sw.Close();
             sw.Dispose();
         }
-        #endregion
-        #region 读文件
-        protected string Read_Txt(string filename)
+
+        /// <summary>
+        /// 写文件
+        /// </summary>
+        /// <param name="FileName">文件路径</param>
+        /// <param name="Content">文件内容</param>
+        /// <param name="IsAppend">是否追加</param>
+        /// <param name="code">文件编码</param>
+        public static void Write_Txt(string FileName, string Content, bool IsAppend, Encoding code)
         {
-            Encoding code = Encoding.GetEncoding("gb2312");
-            string temp = HttpContext.Current.Server.MapPath("Precious\\" + filename + ".txt");
+            if (!File.Exists(FileName)) File.Create(FileName);
+            StreamWriter sw = null;
+            {
+                try
+                {
+                    sw = new StreamWriter(FileName, IsAppend, code);
+                    sw.Write(Content);
+                    sw.Flush();
+                }
+                catch { }
+            }
+            sw.Close();
+            sw.Dispose();
+        }
+
+        #endregion
+
+        #region 读文件
+
+        /// <summary>
+        /// 读文件
+        /// </summary>
+        /// <param name="filename">文件路径</param>
+        /// <returns></returns>
+        public static string Read_Txt(string filename)
+        {
             string str = "";
-            if (File.Exists(temp))
+            if (File.Exists(filename))
             {
                 StreamReader sr = null;
                 try
                 {
-                    sr = new StreamReader(temp, code);
-                    str = sr.ReadToEnd(); // 读取文件
+                    sr = new StreamReader(filename);
+                    str = sr.ReadToEnd(); 
                 }
                 catch { }
                 sr.Close();
@@ -117,24 +149,16 @@ namespace Devin.Testing
             {
                 str = "";
             }
-
             return str;
         }
+
         #endregion
-        #region 取得文件后缀名
-        /****************************************
-     * 函数名称：GetPostfixStr
-     * 功能说明：取得文件后缀名
-     * 参  数：filename:文件名称
-     * 调用示列：
-     *      string filename = "aaa.aspx";    
-     *      string s = DotNet.Utilities.FileOperate.GetPostfixStr(filename);    
-    *****************************************/
+
         /// <summary>
-        /// 取后缀名
+        /// 获取文件后缀名
         /// </summary>
         /// <param name="filename">文件名</param>
-        /// <returns>.gif|.html格式</returns>
+        /// <returns></returns>
         public static string GetPostfixStr(string filename)
         {
             int start = filename.LastIndexOf(".");
@@ -142,66 +166,7 @@ namespace Devin.Testing
             string postfix = filename.Substring(start, length - start);
             return postfix;
         }
-        #endregion
-        #region 写文件
-        /****************************************
-     * 函数名称：WriteFile
-     * 功能说明：当文件不存时，则创建文件，并追加文件
-     * 参  数：Path:文件路径,Strings:文本内容
-     * 调用示列：
-     *      string Path = Server.MapPath("Default2.aspx");   
-     *      string Strings = "这是我写的内容啊";
-     *      DotNet.Utilities.FileOperate.WriteFile(Path,Strings);
-    *****************************************/
-        /// <summary>
-        /// 写文件
-        /// </summary>
-        /// <param name="Path">文件路径</param>
-        /// <param name="Strings">文件内容</param>
-        public static void WriteFile(string Path, string Strings)
-        {
-            if (!System.IO.File.Exists(Path))
-            {
-                System.IO.FileStream f = System.IO.File.Create(Path);
-                f.Close();
-                f.Dispose();
-            }
-            System.IO.StreamWriter f2 = new System.IO.StreamWriter(Path, true, System.Text.Encoding.UTF8);
-            f2.WriteLine(Strings);
-            f2.Close();
-            f2.Dispose();
 
-        }
-        #endregion
-        #region 读文件
-        /****************************************
-     * 函数名称：ReadFile
-     * 功能说明：读取文本内容
-     * 参  数：Path:文件路径
-     * 调用示列：
-     *      string Path = Server.MapPath("Default2.aspx");   
-     *      string s = DotNet.Utilities.FileOperate.ReadFile(Path);
-    *****************************************/
-        /// <summary>
-        /// 读文件
-        /// </summary>
-        /// <param name="Path">文件路径</param>
-        /// <returns></returns>
-        public static string ReadFile(string Path)
-        {
-            string s = "";
-            if (!System.IO.File.Exists(Path))
-                s = "不存在相应的目录";
-            else
-            {
-                StreamReader f2 = new StreamReader(Path, System.Text.Encoding.GetEncoding("gb2312"));
-                s = f2.ReadToEnd();
-                f2.Close();
-                f2.Dispose();
-            }
-            return s;
-        }
-        #endregion
         #region 追加文件
         /****************************************
      * 函数名称：FileAdd
@@ -617,10 +582,10 @@ namespace Devin.Testing
     }
 
     /// <summary>
-    /// 
+    /// 文件操作类
     /// </summary>
-    public class FileHelper
-    {
+    public partial class FileHelper
+    { 
         /// <summary>
         /// 安全的递归的删除一个文件夹
         /// </summary>
@@ -641,5 +606,8 @@ namespace Devin.Testing
             }
             Directory.Delete(targetDir, false);
         }
+
+
+
     }
 }
