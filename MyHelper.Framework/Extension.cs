@@ -234,6 +234,16 @@ namespace Devin
         {
             return bson.ToCommonJsonObj().ToString();
         }
+
+        public static BsonDocument ParseBson(this string doc, bool is_throw_exception = false)
+        {
+            BsonDocument bson = null;
+            if (is_throw_exception) return BsonDocument.Parse(doc);
+
+            bool is_success = BsonDocument.TryParse(doc, out bson);
+            if (is_success) return bson;
+            else return null;
+        }
     }
 
     /// <summary>
