@@ -9,6 +9,7 @@
 // </summary> 
 
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -98,27 +99,47 @@ namespace Devin
         }
 
         /// <summary>
-        /// 时间戳转为C#格式时间
+        /// Unix时间戳转为C#格式时间
         /// </summary>
         /// <param name="timeStamp">Unix时间戳格式</param>
         /// <returns>C#格式时间</returns>
-        public static DateTime ConvertInt2DateTime(string timeStamp)
-        {
-            DateTime dtStart = new DateTime(1970, 1, 1);
-            long lTime = long.Parse(timeStamp + "0000000");
-            TimeSpan toNow = new TimeSpan(lTime);
-            return dtStart.Add(toNow);
+        public static DateTime ConvertLong2DateTime(long timeStamp)
+        {        
+            //long timeStamp = 1478162177;
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            DateTime dt = startTime.AddSeconds(timeStamp);
+            return dt;            
         }
 
         /// <summary>
-        /// DateTime时间格式转换为Unix时间戳格式
+        /// c#格式时间转换为Unix时间戳格式
         /// </summary>
         /// <param name="time"> DateTime时间格式</param>
         /// <returns>Unix时间戳格式</returns>
         public static int ConvertDateTime2Int(DateTime time)
         {
             DateTime startTime = new DateTime(1970, 1, 1);
-            return (int)(time - startTime).TotalSeconds;
+            return (int)(time - startTime).TotalSeconds;            
+        }
+        public static long ConvertDateTime2Long(DateTime time)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            long timeStamp = (long)(time - startTime).TotalSeconds; // 相差秒数
+            return timeStamp;            
+        }
+
+        public static long ConvertDateTime2Js(DateTime time)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            long timeStamp = (long)(time - startTime).TotalMilliseconds; // 相差毫秒数
+            return timeStamp;
+        }
+        public static DateTime ConvertJs2DateTime(long jsTimeStamp)
+        {
+            //long jsTimeStamp = 1478169023479;
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            DateTime dt = startTime.AddMilliseconds(jsTimeStamp);
+            return dt;            
         }
 
         /// <summary>
@@ -128,6 +149,23 @@ namespace Devin
         public static string GetNewGuid()
         {
             return Guid.NewGuid().ToString().Replace("-", "");
+        }
+
+        /// <summary>
+        /// 字节数组转化成图片
+        /// </summary>
+        /// <param name="Bytes"></param>
+        /// <returns></returns>
+        public static Image ByteArrayToImage(byte[] Bytes)
+        {
+            Image photo = null;
+            using (MemoryStream ms = new MemoryStream(Bytes, 0, Bytes.Length))
+            {
+                ms.Write(Bytes, 0, Bytes.Length);
+                ms.Position = 0;
+                photo = Image.FromStream(ms);
+            }
+            return photo;
         }
 
 #if NETFRAMEWORK
