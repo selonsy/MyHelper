@@ -1,35 +1,36 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>D:\Workspace\myhelper\Backup1\</UpgradeBackupLocation>
+    <OldToolsVersion>15.0</OldToolsVersion>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD</DefineConstants>
   </PropertyGroup>
-  <ItemGroup>  
-    <Compile Include="..\MyHelper.Framework\Config.cs" />	
-	<Compile Include="..\MyHelper.Framework\Enum.cs" />
-	<Compile Include="..\MyHelper.Framework\Extension.cs" />
-	<Compile Include="..\MyHelper.Framework\LogHelper.cs" />
-	<Compile Include="..\MyHelper.Framework\Utils.cs" />
-	<Compile Include="..\MyHelper.Framework\ConfigBase.cs" />
-	<Compile Include="..\MyHelper.Framework\Constants.cs" />
-	<Compile Include="..\MyHelper.Framework\RegExp.cs" />
-	<Compile Include="..\MyHelper.Framework\SQLHelper.cs" />
-	<Compile Include="..\MyHelper.Framework\SerializeHelper.cs" />
-	<Compile Include="..\MyHelper.Framework\RedisHelper.cs" />
-	<Compile Include="..\MyHelper.Framework\ReflectionHelper.cs" />
-	<Compile Include="..\MyHelper.Framework\EncrptionHelper.cs" />	
-	<Compile Include="..\MyHelper.Framework\WebApiHelper.cs" />	
-	<Compile Include="..\MyHelper.Framework\UploadFileHelper.cs" />	
-	<Compile Include="..\MyHelper.Framework\HttpHelper.cs" />	
-	<Compile Include="..\MyHelper.Framework\encapsulation\Mongo\Extension\MongoDbExpression.cs" Link="Mongo\Extension\MongoDbExpression.cs" />
+  <ItemGroup>
+    <Compile Include="..\MyHelper.Framework\Config.cs" />
+    <Compile Include="..\MyHelper.Framework\Enum.cs" />
+    <Compile Include="..\MyHelper.Framework\Extension.cs" />
+    <Compile Include="..\MyHelper.Framework\LogHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\Utils.cs" />
+    <Compile Include="..\MyHelper.Framework\ConfigBase.cs" />
+    <Compile Include="..\MyHelper.Framework\Constants.cs" />
+    <Compile Include="..\MyHelper.Framework\RegExp.cs" />
+    <Compile Include="..\MyHelper.Framework\SQLHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\SerializeHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\RedisHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\ReflectionHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\EncrptionHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\WebApiHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\UploadFileHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\HttpHelper.cs" />
+    <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\Extension\MongoDbExpression.cs" Link="Mongo\Extension\MongoDbExpression.cs" />
     <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\Extension\MongoDbExtension.cs" Link="Mongo\Extension\MongoDbExtension.cs" />
     <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\Model\PageList.cs" Link="Mongo\Model\PageList.cs" />
     <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\MongoDbConfig\MongoAttribute.cs" Link="Mongo\MongoDbConfig\MongoAttribute.cs" />
     <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\MongoDbConfig\MongoEntity.cs" Link="Mongo\MongoDbConfig\MongoEntity.cs" />
-    <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\MongoDbService.cs" Link="Mongo\MongoDbService.cs" />	
+    <Compile Include="..\MyHelper.Framework\encapsulation\Mongo\MongoDbService.cs" Link="Mongo\MongoDbService.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.2" />
@@ -42,7 +43,5 @@
     <Folder Include="Mongo\Extension\" />
     <Folder Include="Mongo\Model\" />
     <Folder Include="Mongo\MongoDbConfig\" />
-  </ItemGroup>  
-
-
+  </ItemGroup>
 </Project>
